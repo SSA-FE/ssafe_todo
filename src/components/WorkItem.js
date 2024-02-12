@@ -2,7 +2,7 @@ import '../scss/WorkItem.scss';
 import closeIcon from '../icon/close.svg';
 import editIcon from '../icon/edit.svg';
 
-const WorkItem = () => {
+const WorkItem = ({ work }) => {
   return (
     <div className="WorkItem">
       <div className="workBtns">
@@ -13,8 +13,8 @@ const WorkItem = () => {
           <img src={editIcon}></img>
         </button>
       </div>
-      <h3 className="workTitle">TabletView</h3>
-      <div className="workExplain">태블랫 뷰를 구현해야함.</div>
+      <h3 className="workTitle">{work.title}</h3>
+      {work.body ? <div className="workBody">{work.body}</div> : null}
     </div>
   );
 };
