@@ -5,7 +5,7 @@ const TodoTopStyle=styled.div`
     .todoTopContainer{
         display:flex;
         flex-direction:row;
-        justify-content:space-between;
+        justify-content:space-evenly;
         padding:20px;
         align-items:center;
     }
@@ -14,7 +14,10 @@ const TodoTopStyle=styled.div`
         height:60px;
         font-size:50px;
 
-
+    }
+    .todoTopDark{
+        width:40px;
+        height:40px;
     }
 `;
 
@@ -25,8 +28,8 @@ function TodoTop(){
                 <div className="todoTopTitle">
                     RoadMap
                 </div>
-                <img src="res/iconDark.svg"></img>
-
+                <img className="todoTopDark" src="res/iconDark.svg"></img>
+                
             </div>
         </TodoTopStyle>
     )
