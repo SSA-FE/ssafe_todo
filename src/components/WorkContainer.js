@@ -5,8 +5,10 @@ const WorkContainer = ({ children }) => {
   return (
     <div className="WorkContainer">
       <h2 className="containerTitle">{children}</h2>
-      <WorkItem></WorkItem>
-      <WorkItem></WorkItem>
+      <div className="containerContent">
+        <WorkItem></WorkItem>
+        <WorkItem></WorkItem>
+      </div>
     </div>
   );
 };
