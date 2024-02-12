@@ -25,10 +25,13 @@ const WorkContainer = ({ children, type }) => {
     const newItem = { id: id, title: _title, body: _body };
     const nextItems = [...items, newItem];
     setItems(nextItems);
+    console.log(nextItems);
     for (let category of categories) {
-      if (category === type) jsonLocalStorage.setItem(type, items);
+      if (category === type) jsonLocalStorage.setItem(type, nextItems);
+      console.log(jsonLocalStorage.getItem(type));
     }
     setId(id + 1);
+    
     //등록시 초기화 기능 생성
     //setValue해야함
   };
