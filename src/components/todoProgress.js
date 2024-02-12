@@ -81,22 +81,38 @@ const TodoProgressSytle=styled.div`
         margin:2px;
 
     }
+    .hoverMoveTodoBtn{
+        
+        border-radius:8px;
+        backgroud-color:white;
+    }
+    .hoverMoveProgressBtn{
+        display:none;
+        border-radius:8px;
+        backgroud-color:white;
+    }  
+    .hoverMoveDoneBtn{
+        border-radius:8px;
+        backgroud-color:white;
+    }
 `
 
 function TodoProgress(){
+    const [todos, setTodos] = useState([]);
+    const [todoDone, setDone] = useState([]);
     const [todoProgress, setProgress] = useState([]);
     useEffect(() => {
+        const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        const savedDone = JSON.parse(localStorage.getItem('todoDone')) || [];
         const savedProgress = JSON.parse(localStorage.getItem('todoProgress')) || [];
-
-        if (savedProgress.length === 0) {
-            const todoProgress = [
-                { title: '할일 1', content: '해야 할일 1' ,isEdit:false },
-                { title: '할일 2', content: '해야 할일 2' ,isEdit:false },
-            ];
-            localStorage.setItem('todoProgress', JSON.stringify(todoProgress));
-            setProgress(todoProgress);
-        } else {
-            setProgress(savedProgress);
+        if(savedDone.length>0){
+            setDone(savedDone)
+        }
+        if(savedProgress.length>0){
+            setProgress(savedProgress)
+        }
+        if(savedTodos.length>0){
+            setTodos(savedTodos);
         }
     }, []);
 
@@ -121,6 +137,27 @@ function TodoProgress(){
         setProgress(updatedProgress);
         
     };
+    const moveToDone=(index)=>{
+        const newDone = { title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false};
+        const updatedDone = [...todoDone, newDone];
+        localStorage.setItem('todoDone', JSON.stringify(updatedDone));
+        setDone(updatedDone);
+        const updatedProgress = [...todoProgress];
+        updatedProgress.splice(index, 1);
+        localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
+        setProgress(updatedProgress);
+    };
+    const moveToTodo=(index)=>{
+        const newTodo = { title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false};
+        const updatedTodo = [...todos, newTodo];
+        localStorage.setItem('todos', JSON.stringify(updatedTodo));
+        setDone(updatedTodo);
+        const updatedProgress = [...todoProgress];
+        updatedProgress.splice(index, 1);
+        localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
+        setProgress(updatedProgress);
+
+    };
     return(
         <TodoProgressSytle>
             <div className="todoProgressContainer">
@@ -131,7 +168,9 @@ function TodoProgress(){
                     <TodoListItem key={index} title={todo.title} content={todo.content}
                         onRemove={() => removeTodo(index)}
                         onUpdate={(updatedTitle, updatedContent) => updateTodo(index, updatedTitle, updatedContent)
-                        }isEdit={todo.isEdit} />
+                        }isEdit={todo.isEdit}
+                        onMoveTodo={()=>moveToTodo(index)}
+                        onMoveDone={()=>moveToDone(index)} />
                 ))}
                 <button className="todoListPlus" onClick={addTodo}> +</button>
 

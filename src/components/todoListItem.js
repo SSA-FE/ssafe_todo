@@ -32,7 +32,7 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
     onMouseLeave={() => setIsHovered(false)}>
       {isHovered && !isEditing && (
         <div className="hoverButtons">
-          <button className="hoverMoveTodoBtn" onClick={handleMoveProgress}>Move To do 🐣</button>
+          <button className="hoverMoveTodoBtn" onClick={handleMoveTodo}>Move To do 🐣</button>
           <button className="hoverMoveProgressBtn" onClick={handleMoveProgress}>Move Progress 🐥</button>
           <button className="hoverMoveDoneBtn" onClick={handleMoveDone}>Move Done 🕊</button>
         </div>

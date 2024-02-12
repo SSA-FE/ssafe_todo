@@ -81,24 +81,39 @@ const TodoDoneSytle=styled.div`
         margin:2px;
 
     }
+    .hoverMoveTodoBtn{
+        
+        border-radius:8px;
+        backgroud-color:white;
+    }
+    .hoverMoveProgressBtn{
+        border-radius:8px;
+        backgroud-color:white;
+    }  
+    .hoverMoveDoneBtn{
+        display:none;
+        border-radius:8px;
+        backgroud-color:white;
+    }
 
 `
 
 function TodoDone(){
+    const [todos, setTodos] = useState([]);
     const [todoDone, setDone] = useState([]);
+    const [todoProgress, setProgress] = useState([]);
     useEffect(() => {
-        const savedDones = JSON.parse(localStorage.getItem('todoDone')) || [];
-
-        if (savedDones.length === 0) {
-            const defaultDones = [
-                { title: '할일 1', content: '해야 할일 1' ,isEdit:false },
-                { title: '할일 1 2', content: '해야 할일 2' ,isEdit:false },
-            ];
-            console.log(defaultDones);
-            localStorage.setItem('todoDone', JSON.stringify(defaultDones));
-            setDone(defaultDones);
-        } else {
-            setDone(savedDones);
+        const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        const savedDone = JSON.parse(localStorage.getItem('todoDone')) || [];
+        const savedProgress = JSON.parse(localStorage.getItem('todoProgress')) || [];
+        if(savedDone.length>0){
+            setDone(savedDone)
+        }
+        if(savedProgress.length>0){
+            setProgress(savedProgress)
+        }
+        if(savedTodos.length>0){
+            setTodos(savedTodos);
         }
     }, []);
 
@@ -123,6 +138,28 @@ function TodoDone(){
         setDone(updatedDones);
         
     };
+    const moveToProgress=(index)=>{
+        const newProgress = { title: todoDone[index].title, content:todoDone[index].content , isEdit:false};
+        const updatedProgress = [...todoProgress, newProgress];
+        localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
+        setProgress(updatedProgress);
+        const updatedDones = [...todoDone];
+        updatedDones.splice(index, 1);
+        localStorage.setItem('todoDone', JSON.stringify(updatedDones));
+        setDone(updatedDones);
+  
+    };
+    const moveToTodo=(index)=>{
+        const newTodo = { title: todoDone[index].title, content:todoDone[index].content , isEdit:false};
+        const updatedTodo = [...todos, newTodo];
+        localStorage.setItem('todos', JSON.stringify(updatedTodo));
+        setDone(updatedTodo);
+        const updatedDones = [...todoDone];
+        updatedDones.splice(index, 1);
+        localStorage.setItem('todoDone', JSON.stringify(updatedDones));
+        setDone(updatedDones);
+
+    };
     return(
         <TodoDoneSytle>
             <div className="todoDoneContainer">
@@ -133,7 +170,9 @@ function TodoDone(){
                     <TodoListItem key={index} title={todo.title} content={todo.content}
                         onRemove={() => removeTodo(index)}
                         onUpdate={(updatedTitle, updatedContent) => updateTodo(index, updatedTitle, updatedContent)
-                        }isEdit={todo.isEdit} />
+                        }isEdit={todo.isEdit}
+                        onMoveTodo={()=>moveToTodo(index)}
+                        onMoveProgress={()=>moveToProgress(index)} />
                 ))}
                 <button className="todoListPlus" onClick={addTodo}> +</button>
 
