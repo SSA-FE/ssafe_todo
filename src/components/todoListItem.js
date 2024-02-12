@@ -11,10 +11,7 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
   };
 
   const handleUpdate = () => {
-    // 수정된 내용을 상위 컴포넌트로 전달
     onUpdate(updatedTitle, updatedContent);
-
-    // 수정 모드 종료
     setIsEditing(false);
   };
   const handleMoveProgress=()=>{
@@ -52,6 +49,11 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
             onChange={(e) => setUpdatedContent(e.target.value)}
           />
           <button className="todoListEditBtn" onClick={handleUpdate}>저장</button>
+          <button className="todoListRedBtn"></button>
+          <button className="todoListBlueBtn"></button>
+          <button className="todoListGreenBtn"></button>
+          <button className="todoListPurpleBtn"></button>
+
         </div>
       ) : (
         // 일반 모드일 때

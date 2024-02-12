@@ -5,7 +5,7 @@ import TodoListItem from './todoListItem';
 const TodoProgressSytle=styled.div`
     .todoProgressContainer{
         position:relative;
-        background-color: rgb(26, 26, 26);
+        background-color: #262626;
         border-radius: 8px;
         width:370px;
         display:flex;
@@ -19,7 +19,7 @@ const TodoProgressSytle=styled.div`
         color:white;
         font-size:37px;
         text-align: left;
-        width:80%;
+        width:90%;
 
     }
     .todoListPlus{
@@ -39,7 +39,7 @@ const TodoProgressSytle=styled.div`
         margin:10px;
         padding:10px;
         border-radius:8px;
-        background-color: rgb(114, 55, 55);
+        background-color:#D93535;
         width:90%;
         
     }
@@ -63,12 +63,14 @@ const TodoProgressSytle=styled.div`
     .todoListEditContainer{
         display:flex;
         flex-direction:column;
+        position:relative;
     }
     .todoListEditTitle{
         border-radius:8px;
         background-color: rgb(200, 200, 200);
         margin:2px;
-
+        font-size:20px;
+        width:50%;
     }
     .todoListEditContent{
         border-radius:8px;
@@ -82,18 +84,55 @@ const TodoProgressSytle=styled.div`
 
     }
     .hoverMoveTodoBtn{
-        
-        border-radius:8px;
-        backgroud-color:white;
-    }
-    .hoverMoveProgressBtn{
         display:none;
         border-radius:8px;
-        backgroud-color:white;
+        background-color:white;
+    }
+    .hoverMoveProgressBtn{
+        border-radius:8px;
+        backgroudn-color:white;
     }  
     .hoverMoveDoneBtn{
         border-radius:8px;
-        backgroud-color:white;
+        background-color:white;
+    }
+    .todoListRedBtn{
+        position:absolute;
+        border-radius:50%;
+        background-color:#D93535;
+        width:30px;
+        height:30px;
+        top:0px;
+        left:55%;
+        border:1px solid white;
+    }
+    .todoListBlueBtn{
+        position:absolute;
+        border-radius:50%;
+        background-color:#307FE2;
+        width:30px;
+        height:30px;
+        top:0px;
+        left:67%;
+        border:1px solid white;
+    } .todoListGreenBtn{
+        position:absolute;
+        border-radius:50%;
+        background-color:#00B294;
+        width:30px;
+        height:30px;
+        top:0px;
+        left:79%;
+        border:1px solid white;
+    } .todoListPurpleBtn{
+        position:absolute;
+        border-radius:50%;
+        background-color:#7678D1;
+        width:30px;
+        height:30px;
+        top:0px;
+        left:91%;
+        border:1px solid white;
     }
 `
 
