@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit }) => {
+const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress,onMoveDone,onMoveTodo }) => {
   const [isEditing, setIsEditing] = useState(isEdit);
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [updatedContent, setUpdatedContent] = useState(content);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleRemove = () => {
     onRemove();
@@ -16,9 +17,26 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit }) => {
     // 수정 모드 종료
     setIsEditing(false);
   };
-
+  const handleMoveProgress=()=>{
+    onMoveProgress();
+  }
+  const handleMoveDone=()=>{
+    onMoveDone();
+  }
+  const handleMoveTodo=()=>{
+    onMoveTodo();
+  }
   return (
-    <div className="todoListItem">
+    <div className="todoListItem" 
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}>
+      {isHovered && !isEditing && (
+        <div className="hoverButtons">
+          <button className="hoverMoveTodoBtn" onClick={handleMoveProgress}>Move To do 🐣</button>
+          <button className="hoverMoveProgressBtn" onClick={handleMoveProgress}>Move Progress 🐥</button>
+          <button className="hoverMoveDoneBtn" onClick={handleMoveDone}>Move Done 🕊</button>
+        </div>
+      )}
       {isEditing ? (
         // 수정 모드일 때
         <div className="todoListEditContainer">

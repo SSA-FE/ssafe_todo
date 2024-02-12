@@ -92,17 +92,10 @@ function TodoProgress(){
             const todoProgress = [
                 { title: '할일 1', content: '해야 할일 1' ,isEdit:false },
                 { title: '할일 2', content: '해야 할일 2' ,isEdit:false },
-                // 기본 데이터를 필요한 만큼 추가할 수 있습니다.
             ];
-            console.log(todoProgress);
-
-            // LocalStorage에 기본 데이터 저장
             localStorage.setItem('todoProgress', JSON.stringify(todoProgress));
-
-            // 상태 업데이트
             setProgress(todoProgress);
         } else {
-            // 가져온 데이터가 있다면 상태 업데이트
             setProgress(savedProgress);
         }
     }, []);
@@ -132,7 +125,7 @@ function TodoProgress(){
         <TodoProgressSytle>
             <div className="todoProgressContainer">
                 <div className="todoProgressTitle"> 
-                    In Progress
+                    In Progress 🐥
                 </div>
                 {todoProgress.map((todo, index) => (
                     <TodoListItem key={index} title={todo.title} content={todo.content}

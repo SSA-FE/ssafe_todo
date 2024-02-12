@@ -90,44 +90,44 @@ function TodoDone(){
         const savedDones = JSON.parse(localStorage.getItem('todoDone')) || [];
 
         if (savedDones.length === 0) {
-            const defaultTodos = [
+            const defaultDones = [
                 { title: '할일 1', content: '해야 할일 1' ,isEdit:false },
                 { title: '할일 1 2', content: '해야 할일 2' ,isEdit:false },
             ];
-            console.log(defaultTodos);
-            localStorage.setItem('todoDone', JSON.stringify(defaultTodos));
-            setDone(defaultTodos);
+            console.log(defaultDones);
+            localStorage.setItem('todoDone', JSON.stringify(defaultDones));
+            setDone(defaultDones);
         } else {
             setDone(savedDones);
         }
     }, []);
 
     const removeTodo = (index) => {
-        const updatedTodos = [...todoDone];
-        updatedTodos.splice(index, 1);
-        localStorage.setItem('todoDone', JSON.stringify(updatedTodos));
-        setDone(updatedTodos);
+        const updatedDones = [...todoDone];
+        updatedDones.splice(index, 1);
+        localStorage.setItem('todoDone', JSON.stringify(updatedDones));
+        setDone(updatedDones);
     };
     const updateTodo = (index, updatedTitle, updatedContent) => {
-        const updatedTodos = [...todoDone];
-        updatedTodos[index] = { title: updatedTitle, content: updatedContent ,isEdit:false};
+        const updatedDone = [...todoDone];
+        updatedDone[index] = { title: updatedTitle, content: updatedContent ,isEdit:false};
 
-        localStorage.setItem('todoDone', JSON.stringify(updatedTodos));
-        setDone(updatedTodos);
+        localStorage.setItem('todoDone', JSON.stringify(updatedDone));
+        setDone(updatedDone);
     };
     const addTodo = () => {
-        const newTodo = { title: '새로운 할일', content: '해야 할 일을 적어주세요' , isEdit:true};
-        const updatedTodos = [...todoDone, newTodo];
+        const newDone = { title: '새로운 할일', content: '해야 할 일을 적어주세요' , isEdit:true};
+        const updatedDones = [...todoDone, newDone];
 
-        localStorage.setItem('todoDone', JSON.stringify(updatedTodos));
-        setDone(updatedTodos);
+        localStorage.setItem('todoDone', JSON.stringify(updatedDones));
+        setDone(updatedDones);
         
     };
     return(
         <TodoDoneSytle>
             <div className="todoDoneContainer">
                 <div className="todoDoneTitle"> 
-                    Done
+                    Done 🕊
                 </div>
                 {todoDone.map((todo, index) => (
                     <TodoListItem key={index} title={todo.title} content={todo.content}
