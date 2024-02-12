@@ -114,7 +114,7 @@ function TodoProgress(){
         if(savedTodos.length>0){
             setTodos(savedTodos);
         }
-    }, []);
+    }, [todoProgress]);
 
     const removeTodo = (index) => {
         const updatedProgress = [...todoProgress];
@@ -128,6 +128,7 @@ function TodoProgress(){
 
         localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
         setProgress(updatedProgress);
+
     };
     const addTodo = () => {
         const newProgress = { title: '새로운 할일', content: '해야 할 일을 적어주세요' , isEdit:true};
@@ -135,6 +136,7 @@ function TodoProgress(){
 
         localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
         setProgress(updatedProgress);
+
         
     };
     const moveToDone=(index)=>{

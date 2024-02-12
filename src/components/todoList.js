@@ -89,7 +89,8 @@ const TodoListSytle = styled.div`
     .hoverMoveProgressBtn{
         border-radius:8px;
         backgroud-color:white;
-    }  .hoverMoveDoneBtn{
+    }  
+    .hoverMoveDoneBtn{
         border-radius:8px;
         backgroud-color:white;
     }
@@ -98,7 +99,7 @@ const TodoListSytle = styled.div`
 function TodoList() {
     const [todos, setTodos] = useState([]);
     const [todoDone, setDone] = useState([]);
-    const [todoProgress, setProgress] = useState([]);
+    const [todoProgress, setTodoProgress] = useState([]);
 
     useEffect(() => {
         const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -108,12 +109,12 @@ function TodoList() {
             setDone(savedDone)
         }
         if(savedProgress.length>0){
-            setProgress(savedProgress)
+            setTodoProgress(savedProgress)
         }
         if(savedTodos.length>0){
             setTodos(savedTodos);
         }
-    }, []);
+    }, [todos]);
 
     const removeTodo = (index) => {
         const updatedTodos = [...todos];
@@ -140,11 +141,12 @@ function TodoList() {
         const newProgress = { title: todos[index].title, content:todos[index].content , isEdit:false};
         const updatedProgress = [...todoProgress, newProgress];
         localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
-        setProgress(updatedProgress);
+        setTodoProgress(updatedProgress);
         const updatedTodos = [...todos];
         updatedTodos.splice(index, 1);
         localStorage.setItem('todos', JSON.stringify(updatedTodos));
         setTodos(updatedTodos);
+        
     };
     const moveToDone=(index)=>{
         const newDone = { title: todos[index].title, content:todos[index].content , isEdit:false};
@@ -155,7 +157,6 @@ function TodoList() {
         updatedTodos.splice(index, 1);
         localStorage.setItem('todos', JSON.stringify(updatedTodos));
         setTodos(updatedTodos);
-
     };
     return (
         <TodoListSytle>
@@ -163,7 +164,6 @@ function TodoList() {
                 <div className="todoListTitle">
                     To Do 🐣
                 </div>
-
                 {todos.map((todo, index) => (
                     <TodoListItem key={index} title={todo.title} content={todo.content}
                         onRemove={() => removeTodo(index)}
@@ -174,7 +174,7 @@ function TodoList() {
                 ))}
                 <button className="todoListPlus" onClick={addTodo}> +</button>
             </div>
-                            
+                    
         </TodoListSytle>
     )
 }

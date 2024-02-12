@@ -115,7 +115,7 @@ function TodoDone(){
         if(savedTodos.length>0){
             setTodos(savedTodos);
         }
-    }, []);
+    }, [todoDone]);
 
     const removeTodo = (index) => {
         const updatedDones = [...todoDone];
