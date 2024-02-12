@@ -10,5 +10,7 @@ html {
 }
 
 * {
+  margin: 0;
   box-sizing: inherit;
+  font-family: Inter;
 }
