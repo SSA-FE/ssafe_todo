@@ -3,17 +3,19 @@ import styled from "styled-components";
 import Form from "../Form/Form";
 import MoreViews from "../../assets/svg/button/MoreViews.svg";
 
-const Board = ({ category }) => {
+const Board = ({ category, forms }) => {
   return (
     <StyleBoard>
       <BoardTitle>{category}</BoardTitle>
       <FormBox>
-        <Form></Form>
-        <Form></Form>
-        <Form></Form>
-        <Form></Form>
-        <Form></Form>
-        <Form></Form>
+        {forms.map((form, index) => (
+          <Form
+            key={index}
+            formTitle={form.title}
+            formText={form.text}
+            color={form.color}
+          ></Form>
+        ))}
       </FormBox>
       <MoreViewsButton src={MoreViews}></MoreViewsButton>
     </StyleBoard>
@@ -24,8 +26,10 @@ const StyleBoard = styled.div`
   display: block;
   position: relative;
   width: 36.8rem;
+  height: 100%;
   max-height: 62rem;
-  margin: 3.2rem 6rem 0 0;
+  margin: 6rem 6rem 0 0;
+  padding-bottom: 1rem;
   background-color: #262626;
   border-radius: 1.6rem;
 `;
@@ -34,7 +38,7 @@ const BoardTitle = styled.h2`
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 9.2rem;
+  height: 8rem;
   top: 2.4rem;
   left: 2.4rem;
 
@@ -51,7 +55,7 @@ const FormBox = styled.div`
 
 const MoreViewsButton = styled.img`
   position: absolute;
-  bottom: -2%;
+  bottom: -1.4rem;
   left: 48%;
 
   width: 2.6rem;
