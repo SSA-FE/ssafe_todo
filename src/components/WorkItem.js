@@ -2,14 +2,17 @@ import '../scss/WorkItem.scss';
 import closeIcon from '../icon/close.svg';
 import editIcon from '../icon/edit.svg';
 
-const WorkItem = ({ work }) => {
+
+
+const WorkItem = ({ work ,handleCloseBtnClick,handleEditBtnClick }) => {
+  const id = work.id;
   return (
     <div className="WorkItem">
       <div className="workBtns">
-        <button>
+        <button onClick={()=>handleCloseBtnClick(id)}>
           <img src={closeIcon}></img>
         </button>
-        <button>
+        <button onClick={handleEditBtnClick}>
           <img src={editIcon}></img>
         </button>
       </div>
