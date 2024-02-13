@@ -19,10 +19,9 @@ const GlobalStyles = createGlobalStyle`
         vertical-align: baseline;
     }
     body{
-        line-height: 1;
         font-family: 'Noto Sans KR', sans-serif;
         background-color: #FFFFFF;
-        margin-bottom: 100px;
+        height: 100vh;
     }
     ol, ul{
         list-style: none;
