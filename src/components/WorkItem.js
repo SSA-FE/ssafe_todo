@@ -12,7 +12,7 @@ const WorkItem = ({ work ,handleCloseBtnClick,handleEditBtnClick }) => {
         <button onClick={()=>handleCloseBtnClick(id)}>
           <img src={closeIcon}></img>
         </button>
-        <button onClick={handleEditBtnClick}>
+        <button onClick={()=>handleEditBtnClick(id)}>
           <img src={editIcon}></img>
         </button>
       </div>

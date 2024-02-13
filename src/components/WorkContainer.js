@@ -2,6 +2,7 @@ import WorkItem from './WorkItem';
 import '../scss/WorkContainer.scss';
 import { useState } from 'react';
 import NewItemForm from './NewItemForm';
+import EditItemForm from './EditItemForm';
 import jsonLocalStorage from '../utils/jsonLocalStorage';
 
 const WorkContainer = ({ children, type }) => {
@@ -9,14 +10,15 @@ const WorkContainer = ({ children, type }) => {
   const [mode, setMode] = useState('');
   const [items, setItems] = useState(jsonLocalStorage.getItem(type) || []);
   const [id, setId] = useState(0);
-  let newItemForm = null;
+  const [editedItem,setEditedItem] = useState(null); 
+  let itemForm = null;
 
   const handlePlusBtnClick = () => {
     return setMode('create');
   };
 
   const handleCancelBtnClick = () => {
-    return setMode('');
+    return setMode('read');
   };
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ const WorkContainer = ({ children, type }) => {
     const _body = e.target.body.value;
     const newItem = { id: id, title: _title, body: _body };
     const nextItems = [...items, newItem];
+ 
     setItems(nextItems);
     for (let category of categories) {
       if (category === type) jsonLocalStorage.setItem(type, nextItems);
@@ -42,15 +45,28 @@ const WorkContainer = ({ children, type }) => {
     setItems(nextItems);
     
   }
-  const handleEditBtnClick = (id) => {
-    
+  const handleEditBtnClick = (itemId) => {
+    const selectedItem = items.find(item => item.id===itemId);
+    setMode('edit');
+    //edit버튼을 누르면 input태그창이 뜨면 될듯
+  }
+  const handleEditFormSubmit = () =>{
+
   }
 
   if (mode === 'create') {
-    newItemForm = (
+    itemForm = (
       <NewItemForm
         onCancelBtnClick={handleCancelBtnClick}
         onSubmit={handleFormSubmit}
+      />
+    );
+  }
+  if (mode==='edit'){
+    itemForm = (
+      <EditItemForm
+        onCancelBtnClick={handleCancelBtnClick}
+        onSubmit={handleEditFormSubmit}
       />
     );
   }
@@ -63,7 +79,7 @@ const WorkContainer = ({ children, type }) => {
           <WorkItem work={item} handleCloseBtnClick={handleCloseBtnClick} handleEditBtnClick={handleEditBtnClick}></WorkItem>
         ))}
       </div>
-      {newItemForm}
+      {itemForm}
       <button onClick={handlePlusBtnClick}>+</button>
     </div>
   );
