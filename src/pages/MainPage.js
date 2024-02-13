@@ -9,7 +9,7 @@ import MoonIcon from "../assets/svg/mode/Moon.svg";
 const MainPage = () => {
   const boardForms = [
     {
-      category: "To do",
+      category: "To do 🐣",
       forms: [
         { title: "Tablet view", text: "", color: "#D93535" },
         {
@@ -30,7 +30,7 @@ const MainPage = () => {
       ],
     },
     {
-      category: "In progress",
+      category: "In progress 🐥",
       forms: [
         {
           title: "Mobile view",
@@ -55,7 +55,7 @@ const MainPage = () => {
       ],
     },
     {
-      category: "Done",
+      category: "Done 🕊",
       forms: [
         {
           title: "Audio recording",

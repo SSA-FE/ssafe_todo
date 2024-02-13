@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import ReWrite from "../../assets/svg/button/ReWrite.svg";
+import Exit from "../../assets/svg/button/Exit.svg";
 
 const Form = ({ formTitle, formText, color }) => {
   return (
     <StyleForm color={color}>
+      <FormButton>
+        <ReWriteButton src={ReWrite}></ReWriteButton>
+        <ExitButton src={Exit}></ExitButton>
+      </FormButton>
+
       <FormTitle>{formTitle} </FormTitle>
       <FormText formText={formText}>{formText}</FormText>
     </StyleForm>
@@ -18,6 +25,23 @@ const StyleForm = styled.div`
 
   background-color: ${(props) => props.color || "#7678d1"};
   border-radius: 0.8rem;
+`;
+
+const FormButton = styled.div`
+  display: flex;
+  position: absolute;
+  left: 29rem;
+  margin-top: 1rem;
+`;
+
+const ReWriteButton = styled.img`
+  width: 1.2rem;
+  padding-top: 0.28rem;
+  margin-right: 1rem;
+`;
+
+const ExitButton = styled.img`
+  width: 1.8rem;
 `;
 
 const FormTitle = styled.h3`

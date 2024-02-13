@@ -55,8 +55,9 @@ const FormBox = styled.div`
 
 const MoreViewsButton = styled.img`
   position: absolute;
-  bottom: -1.4rem;
-  left: 48%;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   width: 2.6rem;
   height: 2.6rem;
