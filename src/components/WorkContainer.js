@@ -1,24 +1,24 @@
-import WorkItem from './WorkItem';
-import '../scss/WorkContainer.scss';
-import { useState } from 'react';
-import NewItemForm from './NewItemForm';
-import EditItemForm from './EditItemForm';
-import jsonLocalStorage from '../utils/jsonLocalStorage';
+import WorkItem from "./WorkItem";
+import "../scss/WorkContainer.scss";
+import { useState } from "react";
+import NewItemForm from "./NewItemForm";
+import EditItemForm from "./EditItemForm";
+import jsonLocalStorage from "../utils/jsonLocalStorage";
 
 const WorkContainer = ({ children, type }) => {
-  const categories = ['todos', 'progresses', 'completes'];
-  const [mode, setMode] = useState('');
+  const categories = ["todos", "progresses", "completes"];
+  const [mode, setMode] = useState("");
   const [items, setItems] = useState(jsonLocalStorage.getItem(type) || []);
   const [id, setId] = useState(0);
-  const [editedItem,setEditedItem] = useState(null); 
+  const [editedItem, setEditedItem] = useState(null);
   let itemForm = null;
 
   const handlePlusBtnClick = () => {
-    return setMode('create');
+    return setMode("create");
   };
 
   const handleCancelBtnClick = () => {
-    return setMode('read');
+    return setMode("read");
   };
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -26,35 +26,43 @@ const WorkContainer = ({ children, type }) => {
     const _body = e.target.body.value;
     const newItem = { id: id, title: _title, body: _body };
     const nextItems = [...items, newItem];
- 
+
     setItems(nextItems);
     for (let category of categories) {
       if (category === type) jsonLocalStorage.setItem(type, nextItems);
     }
     setId(id + 1);
-    
     //등록시 초기화 기능 생성
     //setValue해야함
   };
-  const handleCloseBtnClick = (itemId) => {
-    let nextItems = []; 
-    for(let item of items){
-      if(item.id!==itemId) nextItems.push(item);
+  const onUpdate = (_title, _body) => {
+    const nextItems = [];
+    for (let item of items) {
+      if (item.id !== editedItem.id) nextItems.push(item);
     }
-    jsonLocalStorage.setItem(type,nextItems);
+    const newItem = { id: editedItem.id, title: _title, body: _body };
+    nextItems.push(newItem);
+
     setItems(nextItems);
-    
-  }
+    jsonLocalStorage.setItem(type, nextItems);
+    setMode("read");
+  };
+  const handleCloseBtnClick = (itemId) => {
+    let nextItems = [];
+    for (let item of items) {
+      if (item.id !== itemId) nextItems.push(item);
+    }
+    jsonLocalStorage.setItem(type, nextItems);
+    setItems(nextItems);
+  };
   const handleEditBtnClick = (itemId) => {
-    const selectedItem = items.find(item => item.id===itemId);
-    setMode('edit');
-    //edit버튼을 누르면 input태그창이 뜨면 될듯
-  }
-  const handleEditFormSubmit = () =>{
+    const selectedItem = items.find((item) => item.id === itemId);
+    setMode("edit");
+    setEditedItem(selectedItem);
+  };
+  const handleEditFormSubmit = () => {};
 
-  }
-
-  if (mode === 'create') {
+  if (mode === "create") {
     itemForm = (
       <NewItemForm
         onCancelBtnClick={handleCancelBtnClick}
@@ -62,11 +70,13 @@ const WorkContainer = ({ children, type }) => {
       />
     );
   }
-  if (mode==='edit'){
+  if (mode === "edit") {
     itemForm = (
       <EditItemForm
         onCancelBtnClick={handleCancelBtnClick}
         onSubmit={handleEditFormSubmit}
+        editedItem={editedItem}
+        onUpdate={onUpdate}
       />
     );
   }
@@ -76,7 +86,11 @@ const WorkContainer = ({ children, type }) => {
       <h2 className="containerTitle">{children}</h2>
       <div className="containerContent">
         {items.map((item) => (
-          <WorkItem work={item} handleCloseBtnClick={handleCloseBtnClick} handleEditBtnClick={handleEditBtnClick}></WorkItem>
+          <WorkItem
+            work={item}
+            handleCloseBtnClick={handleCloseBtnClick}
+            handleEditBtnClick={handleEditBtnClick}
+          ></WorkItem>
         ))}
       </div>
       {itemForm}
