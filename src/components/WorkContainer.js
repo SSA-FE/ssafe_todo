@@ -39,7 +39,8 @@ const WorkContainer = ({ children, type }) => {
       if(item.id!==itemId) nextItems.push(item);
     }
     jsonLocalStorage.setItem(type,nextItems);
-    console.log(nextItems);
+    setItems(nextItems);
+    
   }
   const handleEditBtnClick = (id) => {
     
