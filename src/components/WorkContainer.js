@@ -11,11 +11,11 @@ const WorkContainer = ({ children, type }) => {
   const [id, setId] = useState(0);
   let newItemForm = null;
 
-  const onPlusBtnClick = () => {
+  const handlePlusBtnClick = () => {
     return setMode('create');
   };
 
-  const onCancelBtnClick = () => {
+  const handleCancelBtnClick = () => {
     return setMode('');
   };
   const handleFormSubmit = (e) => {
@@ -25,21 +25,30 @@ const WorkContainer = ({ children, type }) => {
     const newItem = { id: id, title: _title, body: _body };
     const nextItems = [...items, newItem];
     setItems(nextItems);
-    console.log(nextItems);
     for (let category of categories) {
       if (category === type) jsonLocalStorage.setItem(type, nextItems);
-      console.log(jsonLocalStorage.getItem(type));
     }
     setId(id + 1);
     
     //등록시 초기화 기능 생성
     //setValue해야함
   };
+  const handleCloseBtnClick = (itemId) => {
+    let nextItems = []; 
+    for(let item of items){
+      if(item.id!==itemId) nextItems.push(item);
+    }
+    jsonLocalStorage.setItem(type,nextItems);
+    console.log(nextItems);
+  }
+  const handleEditBtnClick = (id) => {
+    
+  }
 
   if (mode === 'create') {
     newItemForm = (
       <NewItemForm
-        onCancelBtnClick={onCancelBtnClick}
+        onCancelBtnClick={handleCancelBtnClick}
         onSubmit={handleFormSubmit}
       />
     );
@@ -50,11 +59,11 @@ const WorkContainer = ({ children, type }) => {
       <h2 className="containerTitle">{children}</h2>
       <div className="containerContent">
         {items.map((item) => (
-          <WorkItem work={item}></WorkItem>
+          <WorkItem work={item} handleCloseBtnClick={handleCloseBtnClick} handleEditBtnClick={handleEditBtnClick}></WorkItem>
         ))}
       </div>
       {newItemForm}
-      <button onClick={onPlusBtnClick}>+</button>
+      <button onClick={handlePlusBtnClick}>+</button>
     </div>
   );
 };
