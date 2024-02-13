@@ -26,11 +26,11 @@ const StyleBoard = styled.div`
   display: block;
   position: relative;
   width: 36.8rem;
-  height: 100%;
+  /* height: 100%; */
   max-height: 62rem;
   margin: 6rem 6rem 0 0;
   padding-bottom: 1rem;
-  background-color: #262626;
+  background-color: #0a1626;
   border-radius: 1.6rem;
 `;
 
@@ -45,7 +45,7 @@ const BoardTitle = styled.h2`
   font-size: 3.7rem;
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  color: #ffffff;
+  color: #d9deea;
 `;
 
 const FormBox = styled.div`
