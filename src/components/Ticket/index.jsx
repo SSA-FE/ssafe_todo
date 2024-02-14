@@ -2,21 +2,26 @@ import { useDispatch } from "react-redux"
 
 import classNames from "classnames"
 import { TicketContainer } from "../../layout/TicketContainer"
+import { useEffect } from "react";
 
-export const Ticket = ({todo}) => {
+export const Ticket = ({status, todo}) => {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        console.log(status, todo)
+    }, [])
+
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_TODO', id: todo.id })
+        dispatch({ type: `DELETE_${status}`, id: todo.id })
     }
 
     const handleEdit = () => {
-        dispatch({ type: 'UPDATE_TODO', id: todo.id, data: { title: '수정', content: '수정' } })
+        dispatch({ type: `UPDATE_${status}`, id: todo.id, data: { title: '수정', content: '수정' } })
     }
 
     return (
         <TicketContainer className={classNames(
-            'bg-theme-red',
+            `bg-${status}`,
 
             'py-2',
             'pl-6',
@@ -37,7 +42,6 @@ export const Ticket = ({todo}) => {
                     'mr-4',
 
                     'cursor-pointer',
-                    'hover:opacity-70'
                 )} onClick={handleEdit}/>
                 <img src="asset/icon/close.png" alt="del" className={classNames(
                     'w-4',

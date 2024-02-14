@@ -2,14 +2,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { BlackContainer } from "../../layout/BlackContainer"
 import { Ticket } from "../Ticket"
 import classNames from 'classnames';
+import { useEffect, useState } from "react";
 
+const MATCH_STATUS = {
+    'To do': 'TODO',
+    'In progress': 'PROGRESS',
+    'Done': 'DONE',
+}
 export const Container = (props) => {
     //Todo 받아오기
-    const todos = useSelector((state) => state.todos);
+    const { todos } = useSelector((state) => state.todos);
+    const { progress } = useSelector((state) => state.progress);
+    const { done } = useSelector((state) => state.done);
+
+    const [containerStatus, setContainerStatus] = useState('');
+
+    useEffect(() => {
+        setContainerStatus(MATCH_STATUS[props.status])
+    }, [])
+
     const dispatch = useDispatch();
 
     const handleAddTodo = () => {
-        dispatch({ type: 'ADD_TODO', data: { id: todos.length + 1, title: '제목', content: '내용' } })
+        dispatch({ type: `ADD_${containerStatus}`, data: { id: todos.length + 1, title: '제목', content: '내용' } })
     }
 
     return (
@@ -19,17 +34,17 @@ export const Container = (props) => {
             'py-4',
 
             'gap-y-4',
-
-            'flex',
-            'flex-col',
-            'items-center',
         )}>
             {/* wrapper */}
             <div className={classNames(
                 'w-full',
 
-                'overflow-y-scroll',
-                'overflow-x-hidden', // x축 스크롤 제거
+                'flex',
+                'flex-col',
+                'items-center',
+
+                // 'overflow-y-scroll',
+                // 'overflow-x-hidden', // x축 스크롤 제거
             )}>
                 <div className={classNames(
                     'w-full',
@@ -41,12 +56,17 @@ export const Container = (props) => {
                     <span>{props.status}</span>
                 </div>
 
-                {/* Todo */}
+                {/* 진행도 별 컨테이너 */}
                 {
-                    todos && todos.map((todo, index) => (
-                        <Ticket key={index} todo={todo} />
-                    ))
+                    containerStatus === 'TODO' ? todos.map((todo, index) => (
+                        <Ticket key={index} status={containerStatus} todo={todo}/>
+                    )) : containerStatus === 'PROGRESS' ? progress.map((progress, index) => (
+                        <Ticket key={index} status={containerStatus} todo={progress}/>
+                    )) : containerStatus === 'DONE' ? done.map((done, index) => (
+                        <Ticket key={index} status={containerStatus} todo={done}/>
+                    )) : <span>Loading ... </span>
                 }
+
             </div>
 
 
@@ -54,7 +74,7 @@ export const Container = (props) => {
             <div onClick={handleAddTodo} className={classNames(
                 'w-full',
                 'min-h-[32px]',
-            
+
                 'flex',
                 'justify-center',
                 'items-center',

@@ -4,8 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'theme-font' : '#6F6F6F',
-        'theme-red' : '#D93535',
+        'theme-font': '#6F6F6F',
+        'theme-red': '#D93535',
+      },
+
+      backgroundColor: {
+        'DONE': '#00FF00',
+        'PROGRESS': '#FFFF00',
+        'TODO': '#FF0000',
       }
     },
   },

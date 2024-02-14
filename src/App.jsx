@@ -49,11 +49,10 @@ function App() {
         'w-full',
         'flex',
         'justify-around',
-        'items-center',
 
         'max-sm:flex-col',
         'max-sm:justify-center',
-        'max-sm:gap-y-8', // 모바일에서만 적용되는 속성
+        'max-sm:gap-y-8'
       )}>
         {
           ["To do", "In progress", "Done"].map((status, index) => (
