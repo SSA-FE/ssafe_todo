@@ -154,7 +154,7 @@ const AddFormInputTitle = styled.input`
 
 const AddFormInputText = styled.textarea`
   position: relative;
-  top: 0.8rem;
+  top: 0.6rem;
   margin-left: 2.4rem;
   width: 27.2rem;
   height: 6.4rem;
@@ -182,7 +182,7 @@ const AddFormTextBox = styled.div`
   display: block;
   position: absolute;
   margin-left: 1.5rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
   bottom: 0;
   width: 29rem;
   height: 7.4rem;
