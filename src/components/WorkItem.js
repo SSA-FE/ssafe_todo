@@ -6,10 +6,10 @@ const WorkItem = ({
   work,
   handleCloseBtnClick,
   handleEditBtnClick,
-  handleMoveTodoBtn,
+  handleMoveBtn,
+  type,
 }) => {
   const id = work.id;
-  console.log("workItem 에서 받은 id: ", id);
   return (
     <div className="WorkItem">
       <div className="workBtns">
@@ -21,11 +21,24 @@ const WorkItem = ({
         </button>
       </div>
       <h3 className="workTitle">{work.title}</h3>
-      <div className="moveTodo" onClick={() => handleMoveTodoBtn(id)}>
+      <div
+        className="moveTodo"
+        onClick={() => handleMoveBtn(id, type, "todos")}
+      >
         🐣
       </div>
-      <div className="moveProgress">🐥</div>
-      <div className="moveDone">🦅</div>
+      <div
+        className="moveProgress"
+        onClick={() => handleMoveBtn(id, type, "progresses")}
+      >
+        🐥
+      </div>
+      <div
+        className="moveDone"
+        onClick={() => handleMoveBtn(id, type, "completes")}
+      >
+        🦅
+      </div>
 
       {work.body ? <div className="workBody">{work.body}</div> : null}
     </div>

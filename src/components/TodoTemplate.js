@@ -4,38 +4,36 @@ import WorkContainer from "./WorkContainer";
 import { useState } from "react";
 
 const TodoTemplate = ({ children }) => {
-  const [todos, setTodos] = useState(jsonLocalStorage.getItem("todos") || []);
-  const [progresses, setProgresses] = useState(
-    jsonLocalStorage.getItem("inprogresses") || []
-  );
-  const [completes, setCompletes] = useState(
-    jsonLocalStorage.getItem("completes") || []
-  );
+  const [startItems, setStartItems] = useState([]);
+  const [endItems, setEndItems] = useState([]);
 
-  const [movedItem, setMovedItem] = useState(null);
+  const handleMoveBtn = (id, start, end) => {
+    setStartItems(jsonLocalStorage.getItem(start));
 
-  const handleMoveTodoBtn = (id) => {
-    setCompletes(jsonLocalStorage.getItem("completes"));
-    console.log(completes);
+    const movedItem = jsonLocalStorage
+      .getItem(start)
+      .find((item) => item.id === id);
 
-    setMovedItem(completes.find((item) => item.id === id));
-    console.log(movedItem);
+    const newEndItems = [...endItems, movedItem];
+    setEndItems(newEndItems);
+    jsonLocalStorage.setItem(end, newEndItems);
 
-    const nextItems = [...todos, movedItem];
-    setTodos(nextItems);
-    jsonLocalStorage.setItem("todos", nextItems);
+    const newStartItems = startItems.filter((item) => item.id !== id);
+    setStartItems(newStartItems);
+    jsonLocalStorage.setItem(start, newStartItems);
   };
+
   return (
     <div className="TodoTemplate">
       <h1 className="title">RoadMap</h1>
       <div className="content">
-        <WorkContainer type="todos" handleMoveTodoBtn={handleMoveTodoBtn}>
+        <WorkContainer type="todos" handleMoveBtn={handleMoveBtn}>
           To do
         </WorkContainer>
-        <WorkContainer type="progresses" handleMoveTodoBtn={handleMoveTodoBtn}>
+        <WorkContainer type="progresses" handleMoveBtn={handleMoveBtn}>
           In Progress
         </WorkContainer>
-        <WorkContainer type="completes" handleMoveTodoBtn={handleMoveTodoBtn}>
+        <WorkContainer type="completes" handleMoveBtn={handleMoveBtn}>
           Done
         </WorkContainer>
       </div>

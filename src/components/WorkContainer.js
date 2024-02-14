@@ -5,8 +5,7 @@ import NewItemForm from "./NewItemForm";
 import EditItemForm from "./EditItemForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
-const WorkContainer = ({ children, type, handleMoveTodoBtn }) => {
-  const categories = ["todos", "progresses", "completes"];
+const WorkContainer = ({ children, type, handleMoveBtn }) => {
   const [mode, setMode] = useState("");
   const [items, setItems] = useState(jsonLocalStorage.getItem(type) || []);
   const [id, setId] = useState(0);
@@ -86,7 +85,8 @@ const WorkContainer = ({ children, type, handleMoveTodoBtn }) => {
             work={item}
             handleCloseBtnClick={handleCloseBtnClick}
             handleEditBtnClick={handleEditBtnClick}
-            handleMoveTodoBtn={handleMoveTodoBtn}
+            handleMoveBtn={handleMoveBtn}
+            type={type}
           ></WorkItem>
         ))}
       </div>
