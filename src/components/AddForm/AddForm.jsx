@@ -120,7 +120,7 @@ const Color1 = styled.button`
   }
 
   &:focus {
-    border: 0.2rem solid #ffffff;
+    border: 0.2rem dashed #ffffff;
   }
 `;
 
@@ -137,7 +137,7 @@ const Color2 = styled.button`
   }
 
   &:focus {
-    border: 0.2rem solid #ffffff;
+    border: 0.2rem dashed #ffffff;
   }
 `;
 
@@ -154,7 +154,7 @@ const Color3 = styled.button`
   }
 
   &:focus {
-    border: 0.2rem solid #ffffff;
+    border: 0.2rem dashed #ffffff;
   }
 `;
 
@@ -170,7 +170,7 @@ const Color4 = styled.button`
   }
 
   &:focus {
-    border: 0.2rem solid #ffffff;
+    border: 0.2rem dashed #ffffff;
   }
 `;
 

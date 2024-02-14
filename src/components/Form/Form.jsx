@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ReWrite from "../../assets/svg/button/ReWrite.svg";
 import Exit from "../../assets/svg/button/Exit.svg";
 
-const Form = ({ formTitle, formText, color = "#d4d4d4" }) => {
+const Form = ({ formTitle, formText, color }) => {
   return (
     <StyleForm color={color}>
       <FormButton>
@@ -23,7 +23,7 @@ const StyleForm = styled.div`
   max-height: 14rem;
   margin: 0 2.4rem 1.6rem 2.4rem;
 
-  background-color: ${(props) => props.color || "#7678d1"};
+  background-color: ${(props) => props.color || "#d4d4d4"};
   border-radius: 0.8rem;
 `;
 
