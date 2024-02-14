@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../Form/Form";
 import AddForm from "../AddForm/AddForm";
 import MoreViews from "../../assets/svg/button/MoreViews.svg";
 
 const Board = ({ category, forms }) => {
+  const [more, setMore] = useState(false);
+
+  const handleMoreViewsButton = () => {
+    setMore(true);
+  };
+
   return (
     <StyleBoard>
-      <BoardTitle>{category}</BoardTitle>
+      <BoardTitle>
+        {category === "ToDo" ? "To Do 🐣" : null}
+        {category === "InProgress" ? "In Progress 🐥" : null}
+        {category === "Done" ? "Done 🐔" : null}
+      </BoardTitle>
       <FormBox>
         {forms.map((form, index) => (
           <Form
@@ -17,9 +27,12 @@ const Board = ({ category, forms }) => {
             color={form.color}
           ></Form>
         ))}
-        <AddForm />
+        {more ? <AddForm category={category} /> : null}
       </FormBox>
-      <MoreViewsButton src={MoreViews}></MoreViewsButton>
+      <MoreViewsButton
+        src={MoreViews}
+        onClick={handleMoreViewsButton}
+      ></MoreViewsButton>
     </StyleBoard>
   );
 };
@@ -63,6 +76,10 @@ const MoreViewsButton = styled.img`
 
   width: 2.6rem;
   height: 2.6rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Board;

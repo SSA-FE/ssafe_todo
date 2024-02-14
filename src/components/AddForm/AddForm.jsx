@@ -1,29 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import useFormStore from "../../store/store";
 import Exit from "../../assets/svg/button/Exit.svg";
 
-const AddForm = () => {
+const AddForm = ({ category }) => {
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [color, setColor] = useState("");
+
+  const { addForm } = useFormStore();
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // 기본 제출 동작 방지
+    addForm({ title, text, color, category });
+    setTitle("");
+    setText("");
+    setColor("");
+  };
+
+  const handleColorClick = (color) => () => {
+    setColor(color);
+  };
+
   return (
-    <StyleAddForm>
-      <AddFormButton>
-        <CreateButton>Create</CreateButton>
-        <ExitButton src={Exit} />
-      </AddFormButton>
+    <form onSubmit={handleSubmit}>
+      <StyleAddForm>
+        <AddFormButton>
+          <CreateButton type="submit">Create</CreateButton>
+          <ExitButton src={Exit} />
+        </AddFormButton>
 
-      <ColorChart>
-        <Color1 />
-        <Color2 />
-        <Color3 />
-        <Color4 />
-      </ColorChart>
+        <ColorChart>
+          <Color1 type="button" onClick={handleColorClick("#c674ca")} />
+          <Color2 type="button" onClick={handleColorClick("#9ac9c4")} />
+          <Color3 type="button" onClick={handleColorClick("#94aaf8")} />
+          <Color4 type="button" onClick={handleColorClick("#e06d68")} />
+        </ColorChart>
 
-      <AddFormInputTitle
-        type="text"
-        placeholder="Title here ヾ(•ω•`)o"
-      ></AddFormInputTitle>
-      <AddFormInputText placeholder="Please type here"></AddFormInputText>
-      <AddFormTextBox />
-    </StyleAddForm>
+        <AddFormInputTitle
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title here ヾ(•ω•`)o"
+        />
+        <AddFormInputText
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Please type here"
+        />
+        <AddFormTextBox />
+      </StyleAddForm>
+    </form>
   );
 };
 
@@ -80,7 +107,7 @@ const ColorChart = styled.div`
   border-top-right-radius: 0.5rem;
 `;
 
-const Color1 = styled.div`
+const Color1 = styled.button`
   display: block;
   width: 2.8rem;
   height: 2.8rem;
@@ -91,9 +118,13 @@ const Color1 = styled.div`
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    border: 0.2rem solid #ffffff;
+  }
 `;
 
-const Color2 = styled.div`
+const Color2 = styled.button`
   display: block;
   width: 2.8rem;
   height: 2.8rem;
@@ -104,9 +135,13 @@ const Color2 = styled.div`
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    border: 0.2rem solid #ffffff;
+  }
 `;
 
-const Color3 = styled.div`
+const Color3 = styled.button`
   display: block;
   width: 2.8rem;
   height: 2.8rem;
@@ -117,9 +152,13 @@ const Color3 = styled.div`
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    border: 0.2rem solid #ffffff;
+  }
 `;
 
-const Color4 = styled.div`
+const Color4 = styled.button`
   display: block;
   width: 2.8rem;
   height: 2.8rem;
@@ -128,6 +167,10 @@ const Color4 = styled.div`
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:focus {
+    border: 0.2rem solid #ffffff;
   }
 `;
 

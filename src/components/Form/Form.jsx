@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ReWrite from "../../assets/svg/button/ReWrite.svg";
 import Exit from "../../assets/svg/button/Exit.svg";
 
-const Form = ({ formTitle, formText, color }) => {
+const Form = ({ formTitle, formText, color = "#d4d4d4" }) => {
   return (
     <StyleForm color={color}>
       <FormButton>

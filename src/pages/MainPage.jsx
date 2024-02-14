@@ -1,5 +1,5 @@
 import React from "react";
-// import useStore from "../store/store";
+import useFormStore from "../store/store";
 import Board from "../components/Board/Board";
 import styled from "styled-components";
 import MoonIcon from "../assets/svg/mode/Moon.svg";
@@ -7,60 +7,20 @@ import MoonIcon from "../assets/svg/mode/Moon.svg";
 // import AddForm from "../components/AddForm";
 
 const MainPage = () => {
+  const { forms } = useFormStore();
+
   const boardForms = [
     {
-      category: "To do 🐣",
-      forms: [
-        { title: "Tablet view", text: "", color: "#E06D68" },
-        { title: "Tablet view", text: "", color: "#E06D68" },
-        { title: "Tablet view", text: "", color: "#C674CA" },
-        { title: "Tablet view", text: "", color: "#E06D68" },
-      ],
+      category: "ToDo",
+      forms: forms.filter((form) => form.category === "ToDo"),
     },
     {
-      category: "In progress 🐥",
-      forms: [
-        {
-          title: "Mobile view",
-          text: "Functions for both web responsive and native apps. Note: Android and iOS will need unique share icons. ",
-          color: "#C674CA",
-        },
-        {
-          title: "Desktop viewDesktopDesktopDesktopDesktop",
-          text: "PWA for website and native apps. Note: Windows and Mac will need unique share icons.",
-          color: "#94AAF8",
-        },
-        {
-          title: "Formatting options",
-          text: "Mobile formatting bar expands and collapses when tapping the format icon.",
-          color: "#9AC9C4",
-        },
-        {
-          title: "Media in note",
-          text: "Image & video with player UI",
-          color: "#E06D68",
-        },
-      ],
+      category: "InProgress",
+      forms: forms.filter((form) => form.category === "InProgress"),
     },
     {
-      category: "Done 🐔",
-      forms: [
-        {
-          title: "Audio recording",
-          text: "Interface for when recording a new audio note",
-          color: "#9AC9C4",
-        },
-        {
-          title: "Bookmarking",
-          text: "Interface for when creating a new link note.",
-          color: "#9AC9C4",
-        },
-        {
-          title: "Mobile home screen",
-          text: "Folders, tags, and notes lists are sorted by recent.",
-          color: "#94AAF8",
-        },
-      ],
+      category: "Done",
+      forms: forms.filter((form) => form.category === "Done"),
     },
   ];
 

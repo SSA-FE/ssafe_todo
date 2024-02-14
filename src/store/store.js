@@ -1,18 +1,21 @@
 import { create } from "zustand";
-import  { createJSONStorage, persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-const useStore = create(
+const useFormStore = create(
   persist(
     (set) => ({
       forms: [],
-      addForm: (form) => set((state) => ({ forms: [...state.forms, 
-        {
-            
-        }] })),
-      removeForm: (id) =>
+      addForm: ({ title, text, color, category }) =>
         set((state) => ({
-          forms: state.forms.filter((form) => form.id !== id),
+          forms: [
+            ...state.forms,
+            { id: new Date().toLocaleString(), title, text, color, category },
+          ],
         })),
+      // removeForm: (id) =>
+      //   set((state) => ({
+      //     forms: state.forms.filter((form) => form.id !== id),
+      //   })),
     }),
 
     {
@@ -22,4 +25,4 @@ const useStore = create(
   )
 );
 
-export default useStore;
+export default useFormStore;
