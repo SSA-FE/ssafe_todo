@@ -12,6 +12,11 @@ import { IoMoon } from "react-icons/io5";
 
 // Q. 모든 박스마다 같은 위치에 같은 아이콘 넣으려면?
 
+const Full = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const Header = styled.div`
   height:90px;
 `
@@ -128,7 +133,7 @@ const IconAdd = styled.div`
 
 function App() {
   return (
-    <div className = "App">
+    <Full>
       <Header>
         <IconMoon />
       </Header>
@@ -202,7 +207,7 @@ function App() {
             </MenuOptions>
         </Board>
       </Boards>
-    </div>
+    </Full>
   );
 }
 
