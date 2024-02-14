@@ -7,8 +7,8 @@ const Form = ({ formTitle, formText, color }) => {
   return (
     <StyleForm color={color}>
       <FormButton>
-        <ReWriteButton src={ReWrite}></ReWriteButton>
-        <ExitButton src={Exit}></ExitButton>
+        <ReWriteButton src={ReWrite} />
+        <ExitButton src={Exit} />
       </FormButton>
 
       <FormTitle>{formTitle} </FormTitle>
@@ -38,34 +38,47 @@ const ReWriteButton = styled.img`
   width: 1.2rem;
   padding-top: 0.28rem;
   margin-right: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const ExitButton = styled.img`
   width: 1.8rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const FormTitle = styled.h3`
-  padding: 2.4rem 2.4rem 0 2.4rem;
-  max-width: 32rem;
+  padding: 2.4rem 0 0 2.4rem;
+  height: 4.2rem;
+  max-width: 25.9rem;
+  max-height: 4.2rem;
   font-size: 1.6rem;
   font-family: "Inter", sans-serif;
   font-weight: 600;
   color: #ffffff;
-  overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const FormText = styled.h3`
   position: relative;
   top: 0.8rem;
   padding: 0 2.4rem;
-  padding-bottom: ${(props) => (props.formText ? `3.2rem` : `2.4rem`)};
+  margin-bottom: ${(props) => (props.formText ? `3.2rem` : `2.4rem`)};
   max-width: 32rem;
+  max-height: 6.4rem;
   font-size: 1.4rem;
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #ffffff;
   line-height: 2rem;
   overflow-wrap: break-word;
+  overflow: hidden;
 `;
 
 export default Form;

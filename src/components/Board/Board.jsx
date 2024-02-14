@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Form from "../Form/Form";
+import AddForm from "../AddForm/AddForm"
 import MoreViews from "../../assets/svg/button/MoreViews.svg";
 
 const Board = ({ category, forms }) => {
@@ -16,6 +17,7 @@ const Board = ({ category, forms }) => {
             color={form.color}
           ></Form>
         ))}
+        <AddForm />
       </FormBox>
       <MoreViewsButton src={MoreViews}></MoreViewsButton>
     </StyleBoard>

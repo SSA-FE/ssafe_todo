@@ -1,10 +1,178 @@
-// import React, { useState } from "react";
-// // import useStore from "../store/store";
+import React from "react";
+import styled from "styled-components";
+import Exit from "../../assets/svg/button/Exit.svg";
 
-// // const AddForm = () => {
-// //   const [form, setForm] = useState("");
-// //   const [color, setColor] = useState("#efcfe3");
-// //   const [category, setCategory] = useState("todo");
+const AddForm = () => {
+  return (
+    <StyleAddForm>
+      <AddFormButton>
+        <CreateButton>Create</CreateButton>
+        <ExitButton src={Exit} />
+      </AddFormButton>
 
-// //   const addForm = useStore((state) => state.addForm);
-// // };
+      <ColorChart>
+        <Color1 />
+        <Color2 />
+        <Color3 />
+        <Color4 />
+      </ColorChart>
+
+      <AddFormTitle>Title here ヾ(•ω•`)o</AddFormTitle>
+      <AddFormText>
+        Please type here Please type herePlease type herePlease type herePlease
+        type herePlease type herePlease type herePlease type here
+      </AddFormText>
+      <AddFormTextBox />
+    </StyleAddForm>
+  );
+};
+
+const StyleAddForm = styled.div`
+  display: block;
+  position: relative;
+  width: 32rem;
+  height: 18.4rem;
+  margin: 0 2.4rem 1.6rem 2.4rem;
+
+  background-color: #d4d4d4;
+  border-radius: 0.8rem;
+`;
+
+const AddFormButton = styled.div`
+  display: flex;
+  position: absolute;
+  left: 23.3rem;
+  margin-top: 1rem;
+`;
+
+const CreateButton = styled.button`
+  height: 1.8rem;
+  border: 0.1rem solid #fff;
+  border-radius: 0.8rem;
+  margin-right: 1rem;
+
+  font-size: 1.1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: #fff;
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #fff;
+    color: #17233b;
+  }
+`;
+
+const ExitButton = styled.img`
+  width: 1.8rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const ColorChart = styled.div`
+  display: flex;
+  padding: 1.2rem 0 1.2rem 2rem;
+  background-color: #17233b;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+`;
+
+const Color1 = styled.div`
+  display: block;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: #c674ca;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Color2 = styled.div`
+  display: block;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: #9ac9c4;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Color3 = styled.div`
+  display: block;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: #94aaf8;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Color4 = styled.div`
+  display: block;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background-color: #e06d68;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const AddFormTitle = styled.h3`
+  margin-left: 2.4rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.7rem;
+  max-width: 25.9rem;
+  max-height: 4.2rem;
+  font-size: 1.6rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 0.2rem dashed #bcbcbc;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const AddFormText = styled.h3`
+  position: relative;
+  top: 0.8rem;
+  padding: 0 2.4rem;
+  max-width: 32rem;
+  max-height: 6.4rem;
+  font-size: 1.4rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 2rem;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+const AddFormTextBox = styled.div`
+  display: block;
+  position: absolute;
+  margin-left: 1.5rem;
+  margin-bottom: 1.2rem;
+  bottom: 0;
+  width: 29rem;
+  height: 7.4rem;
+  background-color: #bcbcbc;
+  border-radius: 0.8rem;
+`;
+
+export default AddForm;

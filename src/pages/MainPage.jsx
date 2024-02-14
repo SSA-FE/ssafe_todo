@@ -38,7 +38,7 @@ const MainPage = () => {
           color: "#C674CA",
         },
         {
-          title: "Desktop view",
+          title: "Desktop viewDesktopDesktopDesktopDesktop",
           text: "PWA for website and native apps. Note: Windows and Mac will need unique share icons.",
           color: "#94AAF8",
         },
