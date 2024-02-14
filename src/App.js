@@ -1,12 +1,15 @@
-import './App.css';
+import "./App.css";
 // import useStore from './store.js';
 import styled from "styled-components";
 import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
-//react-scripts 오류 https://thespoiler.tistory.com/21
+import Menu from "./components/Menu.jsx";
+import AddMenu from "./components/AddMenu.jsx";
+import { useState } from "react";
 
+//react-scripts 오류 https://thespoiler.tistory.com/21
 
 // https://html-css-js.com/html/character-codes/
 
@@ -15,11 +18,11 @@ import { IoMoon } from "react-icons/io5";
 const Full = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const Header = styled.div`
-  height:90px;
-`
+  height: 90px;
+`;
 
 const IconMoon = styled(IoMoon)`
   float: right;
@@ -27,10 +30,11 @@ const IconMoon = styled(IoMoon)`
   margin-top: 2%;
   margin-right: 2%;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #212121;
-    transition: background-color 1s;}
-`
+    transition: background-color 1s;
+  }
+`;
 
 const Boards = styled.div`
   padding-left: 20%;
@@ -38,7 +42,7 @@ const Boards = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-`
+`;
 // height flexible 적용되게 -> flex-start
 const Board = styled.div`
   display: inline-block;
@@ -51,17 +55,17 @@ const Board = styled.div`
   padding: 10px 24px 10px 24px;
   margin: 10px 10px;
   gap: 16px;
-`
+`;
 
 const Title = styled.h1`
   width: 320px;
   height: 44px;
   size: 37px;
   text-align: left;
-`
+`;
 
 // max-width로 가로 길이 고정
-const Menu = styled.div`
+const Menus = styled.div`
   max-width: 320px;
   color: white;
   border-radius: 8px;
@@ -69,69 +73,79 @@ const Menu = styled.div`
   padding: 2% 5% 7% 7%;
   margin-bottom: 20px;
   justify-content: space-between;
-`
+`;
 
-const MenuView = styled(Menu)`
+const MenuView = styled(Menus)`
   height: flexible;
-  background-color: #F8BBD0;
-`
-const MenuInNote = styled(Menu)`
+  background-color: #f8bbd0;
+`;
+const MenuInNote = styled(Menus)`
   height: 140px;
-  background-color: #B39DDB;
-`
-const MenuOptions = styled(Menu)`
+  background-color: #b39ddb;
+`;
+const MenuOptions = styled(Menus)`
   height: 140px;
-  background-color: #90CAF9;
-`
+  background-color: #90caf9;
+`;
 const MenuStoring = styled(Menu)`
   height: 140px;
-  background-color: #4DB6AC;
-`
+  background-color: #4db6ac;
+`;
 
-const MenuMod = styled(Menu)`
-  height: 112px;
-  background-color: #B0BEC5;
-  &:hover{
-    background-color : #607D8B};
-`
-    
-const ModHeader = styled.div`
-display: flex;
-width: 300px;
-`
+const AddButton = styled.button`
+  width: 30px;
+  border-radius: 40%;
+`;
 
-// 이거 왜 표시가 안되지
-const ModIcon = styled.div`
-display: flex;
-width: 50px;
-color: black;
-`
+// const MenuMod = styled(Menu)`
+//   height: 112px;
+//   background-color: #b0bec5;
+//   &:hover {
+//     background-color: #607d8b;
+//   }
+// `;
 
+// const ModHeader = styled.div`
+// display: flex;
+// width: 300px;
+// `
+
+// Icon 나오게 ...
+// const ModIcon = styled.div`
+// display: flex;
+// width: 50px;
+// color: black;
+// `
 
 // 사실상 바뀌는 게 color밖에 없음
 // menu 추가될 때마다 있어야하는 속성이니까 렌더링을 할 수는 있지만 ~ 적절하지 않을듯
-
-
 
 const IconClose = styled(IoMdClose)`
   cursor: pointer;
   float: right;
   margin-top: 7px;
-`
+`;
 const IconEdit = styled(FaRegEdit)`
   cursor: pointer;
   float: right;
   margin-right: 10px;
   margin-top: 7px;
-`
+`;
 
-const IconAdd = styled.div`
-  border-radius: 50%;
-  background-color: #D93535;
-`
+// const IconAdd = styled.div`
+//   border-radius: 50%;
+//   background-color: #d93535;
+// `;
 
+///App.js에 useEffect 쓰기
+///받은 다음 Menu에다가 props 전달
+/// 전달한 걸 바탕으로 title, contents 라는 이름으로 받은 다음
+/// {title} {contents} 보여줌
+/// useEffect 쓸 때 localstorage.getItem을 쓸것
 
 function App() {
+  const [isClicked, setIsClicked] = useState(false);
+
   return (
     <Full>
       <Header>
@@ -139,72 +153,88 @@ function App() {
       </Header>
       <Boards>
         <Board>
-          <Title>To do <span role="img" aria-label="chick">🐥</span></Title>
-
-          <MenuView><h3>Tablet view</h3></MenuView>
-
+          <Title>
+            To do{" "}
+            <span role="img" aria-label="chick">
+              🐥
+            </span>
+          </Title>
+          <MenuView>
+            <h3>Tablet view</h3>
+          </MenuView>
           <MenuInNote>
             <IconClose />
             <IconEdit />
             <h3>Audio recording in note</h3>
-          Show audio in a note and playback UI
+            Show audio in a note and playback UI
           </MenuInNote>
-
-          <MenuInNote><h3>Bookmark in note</h3>
-          Show rich link UI in a note, and feature to render website screenshot.
+          <MenuInNote>
+            <h3>Bookmark in note</h3>
+            Show rich link UI in a note, and feature to render website
+            screenshot.
           </MenuInNote>
-
-          <MenuInNote><h3>Image viewer</h3>
-          Opens when clicking on the thumbnail in the list or on the image in the note
+          <MenuInNote>
+            <h3>Image viewer</h3>
+            Opens when clicking on the thumbnail in the list or on the image in
+            the note
           </MenuInNote>
-
-          <MenuMod>
-            <ModHeader><h3>Add Element</h3>
-              <ModIcon>
-                <IconAdd />
-                <IconAdd />
-                <IconAdd />
-                <IconAdd />
-              </ModIcon>
-            </ModHeader>
-          Opens when clicking on the thumbnail in the list or on the image in the note
-          </MenuMod>
+          {/* <AddMenu /> */}
+          {isClicked ? <AddMenu /> : null}
+          <AddButton onClick={() => setIsClicked(true)}>+</AddButton>
         </Board>
 
-
         <Board>
-          <Title>In Progress <span role="img" aria-label="chick2">🐣</span></Title>
-            <MenuView><h3>Mobile view</h3>
-            Functions for both web responsive and native apps. Note: Android and iOS will need unique share icons.
-            </MenuView>
+          <Title>
+            In Progress{" "}
+            <span role="img" aria-label="chick2">
+              🐣
+            </span>
+          </Title>
+          <MenuView>
+            <h3>Mobile view</h3>
+            Functions for both web responsive and native apps. Note: Android and
+            iOS will need unique share icons.
+          </MenuView>
 
-            <MenuView><h3>Desktop view</h3>
-            PWA for website and native apps. Note: Windows and Mac will need unique share icons.
-            </MenuView>
+          <MenuView>
+            <h3>Desktop view</h3>
+            PWA for website and native apps. Note: Windows and Mac will need
+            unique share icons.
+          </MenuView>
 
-            <MenuOptions><h3>Formatting options</h3>
-            Mobile formatting bar expands and collapses when tapping the format icon.
-            </MenuOptions>
+          <MenuOptions>
+            <h3>Formatting options</h3>
+            Mobile formatting bar expands and collapses when tapping the format
+            icon.
+          </MenuOptions>
 
-            <MenuInNote><h3>Media in note</h3>
+          <MenuInNote>
+            <h3>Media in note</h3>
             Image & video with player UI
-            </MenuInNote>
+          </MenuInNote>
         </Board>
 
-
         <Board>
-          <Title>Done <span role="img" aria-label="dove">🕊️</span></Title>
-            <MenuStoring><h3>Audio recording</h3>
+          <Title>
+            Done{" "}
+            <span role="img" aria-label="dove">
+              🕊️
+            </span>
+          </Title>
+          <MenuStoring>
+            <h3>Audio recording</h3>
             Interface for when recording a new audio note
-            </MenuStoring>
+          </MenuStoring>
 
-            <MenuStoring><h3>Bookmarking</h3>
+          <MenuStoring>
+            <h3>Bookmarking</h3>
             Interface for when creating a new link note.
-            </MenuStoring>
+          </MenuStoring>
 
-            <MenuOptions><h3>Mobile home screen</h3>
+          <MenuOptions>
+            <h3>Mobile home screen</h3>
             Folders, tags, and notes lists are sorted by recent.
-            </MenuOptions>
+          </MenuOptions>
         </Board>
       </Boards>
     </Full>
