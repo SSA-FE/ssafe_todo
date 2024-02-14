@@ -12,21 +12,9 @@ const MainPage = () => {
       category: "To do 🐣",
       forms: [
         { title: "Tablet view", text: "", color: "#E06D68" },
-        {
-          title: "Audio recording in note ",
-          text: "Show audio in a note and playback UI",
-          color: "#C674CA",
-        },
-        {
-          title: "Bookmark in note",
-          text: "Show rich link UI in a note, and feature to render website screenshot.",
-          color: "#C674CA",
-        },
-        {
-          title: "Image viewer",
-          text: "Opens when clicking on the thumbnail in the list or on the image in the note",
-          color: "#C674CA",
-        },
+        { title: "Tablet view", text: "", color: "#E06D68" },
+        { title: "Tablet view", text: "", color: "#C674CA" },
+        { title: "Tablet view", text: "", color: "#E06D68" },
       ],
     },
     {

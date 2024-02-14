@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Form from "../Form/Form";
-import AddForm from "../AddForm/AddForm"
+import AddForm from "../AddForm/AddForm";
 import MoreViews from "../../assets/svg/button/MoreViews.svg";
 
 const Board = ({ category, forms }) => {
@@ -28,7 +28,7 @@ const StyleBoard = styled.div`
   display: block;
   position: relative;
   width: 36.8rem;
-  /* height: 100%; */
+  height: 100%;
   max-height: 62rem;
   margin: 6rem 6rem 0 0;
   padding-bottom: 1rem;

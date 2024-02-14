@@ -17,11 +17,11 @@ const AddForm = () => {
         <Color4 />
       </ColorChart>
 
-      <AddFormTitle>Title here ヾ(•ω•`)o</AddFormTitle>
-      <AddFormText>
-        Please type here Please type herePlease type herePlease type herePlease
-        type herePlease type herePlease type herePlease type here
-      </AddFormText>
+      <AddFormInputTitle
+        type="text"
+        placeholder="Title here ヾ(•ω•`)o"
+      ></AddFormInputTitle>
+      <AddFormInputText placeholder="Please type here"></AddFormInputText>
       <AddFormTextBox />
     </StyleAddForm>
   );
@@ -131,43 +131,58 @@ const Color4 = styled.div`
   }
 `;
 
-const AddFormTitle = styled.h3`
-  margin-left: 2.4rem;
-  margin-top: 1.2rem;
-  margin-bottom: 0.6rem;
-  padding-bottom: 0.7rem;
+const AddFormInputTitle = styled.input`
+  margin: 0.3rem 0 0.6rem 2.4rem;
+  width: 25.9rem;
+  height: 4rem;
   max-width: 25.9rem;
   max-height: 4.2rem;
+  background-color: #d4d4d4;
+  border: 0.2rem solid #d4d4d4;
+  border-bottom: 0.2rem dashed #bcbcbc;
+  outline: none;
+
   font-size: 1.6rem;
   font-family: "Inter", sans-serif;
   font-weight: 600;
   color: #ffffff;
-  border-bottom: 0.2rem dashed #bcbcbc;
-  white-space: nowrap;
-  overflow: hidden;
+
+  &::placeholder {
+    color: #ffffff;
+  }
 `;
 
-const AddFormText = styled.h3`
+const AddFormInputText = styled.textarea`
   position: relative;
   top: 0.8rem;
-  padding: 0 2.4rem;
-  max-width: 32rem;
+  margin-left: 2.4rem;
+  width: 27.2rem;
+  height: 6.4rem;
+  background-color: #bcbcbc;
+  border-color: #bcbcbc;
+  max-width: 27.2rem;
   max-height: 6.4rem;
   font-size: 1.4rem;
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  color: #ffffff;
+  color: #fff;
   line-height: 2rem;
+  outline: none;
+  resize: none;
   overflow-wrap: break-word;
   overflow: hidden;
   z-index: 1;
+
+  &::placeholder {
+    color: #ffffff;
+  }
 `;
 
 const AddFormTextBox = styled.div`
   display: block;
   position: absolute;
   margin-left: 1.5rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.6rem;
   bottom: 0;
   width: 29rem;
   height: 7.4rem;

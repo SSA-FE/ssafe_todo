@@ -7,9 +7,7 @@ const useStore = create(
       forms: [],
       addForm: (form) => set((state) => ({ forms: [...state.forms, 
         {
-            id: Date.toLocalTimeString(),
             
-
         }] })),
       removeForm: (id) =>
         set((state) => ({
