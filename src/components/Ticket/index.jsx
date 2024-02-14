@@ -1,14 +1,17 @@
+import { useDispatch } from "react-redux"
+
 import classNames from "classnames"
 import { TicketContainer } from "../../layout/TicketContainer"
 
 export const Ticket = ({todo}) => {
+    const dispatch = useDispatch();
 
     const handleDelete = () => {
-        console.log('삭제')
+        dispatch({ type: 'DELETE_TODO', id: todo.id })
     }
 
     const handleEdit = () => {
-        console.log('수정')
+        dispatch({ type: 'UPDATE_TODO', id: todo.id, data: { title: '수정', content: '수정' } })
     }
 
     return (
@@ -32,10 +35,16 @@ export const Ticket = ({todo}) => {
                     'w-4',
                     'h-4',
                     'mr-4',
+
+                    'cursor-pointer',
+                    'hover:opacity-70'
                 )} onClick={handleEdit}/>
                 <img src="asset/icon/close.png" alt="del" className={classNames(
                     'w-4',
                     'h-4',
+
+                    'cursor-pointer',
+                    'hover:opacity-70'
                 )} onClick={handleDelete}/>
             </div>
 
