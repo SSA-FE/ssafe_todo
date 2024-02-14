@@ -1,8 +1,13 @@
+import { useSelector } from "react-redux";
 import { BlackContainer } from "../../layout/BlackContainer"
 import { Ticket } from "../Ticket"
 import classNames from 'classnames';
+import { useEffect } from "react";
 
 export const Container = (props) => {
+    //Todo 받아오기
+    const todos = useSelector((state) => state.todos);
+    
     return (
         <BlackContainer className={classNames(
             'box-border',
@@ -24,8 +29,13 @@ export const Container = (props) => {
             )}>
                 <span>{props.status}</span>
             </div>
-
-            <Ticket />
+            
+            {/* Todo */}
+            {
+                todos && todos.map((todo, index) => (
+                    <Ticket key={index} todo={todo} />
+                ))
+            }
 
             {/* 추가 버튼 */}
             <div className={classNames(

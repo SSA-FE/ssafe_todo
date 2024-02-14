@@ -1,7 +1,16 @@
 import classNames from "classnames"
 import { TicketContainer } from "../../layout/TicketContainer"
 
-export const Ticket = () => {
+export const Ticket = ({todo}) => {
+
+    const handleDelete = () => {
+        console.log('삭제')
+    }
+
+    const handleEdit = () => {
+        console.log('수정')
+    }
+
     return (
         <TicketContainer className={classNames(
             'bg-theme-red',
@@ -9,6 +18,8 @@ export const Ticket = () => {
             'py-2',
             'pl-6',
             'pr-4',
+
+            'mb-4',
         )}>
             <div className={classNames(
                 'w-full',
@@ -21,11 +32,11 @@ export const Ticket = () => {
                     'w-4',
                     'h-4',
                     'mr-4',
-                )}/>
+                )} onClick={handleEdit}/>
                 <img src="asset/icon/close.png" alt="del" className={classNames(
                     'w-4',
                     'h-4',
-                )}/>
+                )} onClick={handleDelete}/>
             </div>
 
             {/* 제목 */}
@@ -35,7 +46,7 @@ export const Ticket = () => {
                 'font-bold',
                 'text-xl',
             )}>
-                Text Title
+                {todo.title}
             </div>
 
             {/* 내용 */}
@@ -45,7 +56,7 @@ export const Ticket = () => {
                 'font-light',
                 'text-[0.875rem]',
             )}>
-                Text Content
+                {todo.content}
             </div>
         </TicketContainer>
     )

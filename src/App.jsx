@@ -26,6 +26,9 @@ function App() {
         'flex',
         'justify-between',
         'items-center',
+
+        'max-sm:flex-col',
+        'max-sm:justify-center',
       )}>
         <span>Roadmap</span>
 
@@ -47,6 +50,10 @@ function App() {
         'flex',
         'justify-around',
         'items-center',
+
+        'max-sm:flex-col',
+        'max-sm:justify-center',
+        'max-sm:gap-y-8', // 모바일에서만 적용되는 속성
       )}>
         {
           ["To do", "In progress", "Done"].map((status, index) => (
