@@ -29,16 +29,16 @@ const TodoTemplate = ({ children }) => {
       <h1 className="title">RoadMap</h1>
       <div className="content">
         <WorkContainer type="todos" handleMoveBtnClick={handleMoveBtnClick}>
-          To do
+          To do 🐣
         </WorkContainer>
         <WorkContainer
           type="progresses"
           handleMoveBtnClick={handleMoveBtnClick}
         >
-          In Progress
+          In Progress 🐥
         </WorkContainer>
         <WorkContainer type="completes" handleMoveBtnClick={handleMoveBtnClick}>
-          Done
+          Done 🦅
         </WorkContainer>
       </div>
     </div>
