@@ -7,8 +7,9 @@ const TodoTemplate = ({ children }) => {
   const [startItems, setStartItems] = useState([]);
   const [endItems, setEndItems] = useState([]);
 
-  const handleMoveBtn = (id, start, end) => {
+  const handleMoveBtnClick = (id, start, end) => {
     setStartItems(jsonLocalStorage.getItem(start));
+    setEndItems(jsonLocalStorage.getItem(end));
 
     const movedItem = jsonLocalStorage
       .getItem(start)
@@ -27,13 +28,16 @@ const TodoTemplate = ({ children }) => {
     <div className="TodoTemplate">
       <h1 className="title">RoadMap</h1>
       <div className="content">
-        <WorkContainer type="todos" handleMoveBtn={handleMoveBtn}>
+        <WorkContainer type="todos" handleMoveBtnClick={handleMoveBtnClick}>
           To do
         </WorkContainer>
-        <WorkContainer type="progresses" handleMoveBtn={handleMoveBtn}>
+        <WorkContainer
+          type="progresses"
+          handleMoveBtnClick={handleMoveBtnClick}
+        >
           In Progress
         </WorkContainer>
-        <WorkContainer type="completes" handleMoveBtn={handleMoveBtn}>
+        <WorkContainer type="completes" handleMoveBtnClick={handleMoveBtnClick}>
           Done
         </WorkContainer>
       </div>

@@ -6,10 +6,16 @@ const WorkItem = ({
   work,
   handleCloseBtnClick,
   handleEditBtnClick,
-  handleMoveBtn,
+  handleMoveBtnClick,
   type,
+  // handleLocalStorageChange,
 }) => {
   const id = work.id;
+  // const handleBtn = (id, type, str) => {
+  //   handleLocalStorageChange();
+  //   handleMoveBtnClick(id, type, str);
+  // };
+
   return (
     <div className="WorkItem">
       <div className="workBtns">
@@ -23,19 +29,19 @@ const WorkItem = ({
       <h3 className="workTitle">{work.title}</h3>
       <div
         className="moveTodo"
-        onClick={() => handleMoveBtn(id, type, "todos")}
+        onClick={() => handleMoveBtnClick(id, type, "todos")}
       >
         🐣
       </div>
       <div
         className="moveProgress"
-        onClick={() => handleMoveBtn(id, type, "progresses")}
+        onClick={() => handleMoveBtnClick(id, type, "progresses")}
       >
         🐥
       </div>
       <div
         className="moveDone"
-        onClick={() => handleMoveBtn(id, type, "completes")}
+        onClick={() => handleMoveBtnClick(id, type, "dones")}
       >
         🦅
       </div>

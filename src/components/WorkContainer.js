@@ -5,12 +5,16 @@ import NewItemForm from "./NewItemForm";
 import EditItemForm from "./EditItemForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
-const WorkContainer = ({ children, type, handleMoveBtn }) => {
+const WorkContainer = ({ children, type, handleMoveBtnClick }) => {
   const [mode, setMode] = useState("");
   const [items, setItems] = useState(jsonLocalStorage.getItem(type) || []);
   const [id, setId] = useState(0);
   const [editedItem, setEditedItem] = useState(null);
   let itemForm = null;
+
+  const handleLocalStorageChange = () => {
+    setItems(jsonLocalStorage.getItem(type) || []);
+  };
 
   const handlePlusBtnClick = () => {
     return setMode("create");
@@ -85,8 +89,9 @@ const WorkContainer = ({ children, type, handleMoveBtn }) => {
             work={item}
             handleCloseBtnClick={handleCloseBtnClick}
             handleEditBtnClick={handleEditBtnClick}
-            handleMoveBtn={handleMoveBtn}
+            handleMoveBtnClick={handleMoveBtnClick}
             type={type}
+            handleLocalStorageChange={handleLocalStorageChange}
           ></WorkItem>
         ))}
       </div>
