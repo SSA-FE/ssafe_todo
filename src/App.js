@@ -5,12 +5,36 @@ import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
+//react-scripts 오류 https://thespoiler.tistory.com/21
+
 
 // https://html-css-js.com/html/character-codes/
 
-// Q. 모든 박스마다 아이콘 넣으려면?
-// Q. 박스가 위로 정렬된 채로 고정되려면?
+// Q. 모든 박스마다 같은 위치에 같은 아이콘 넣으려면?
 
+const Header = styled.div`
+  height:90px;
+`
+
+const IconMoon = styled(IoMoon)`
+  float: right;
+  font-size: 40px;
+  margin-top: 2%;
+  margin-right: 2%;
+  cursor: pointer;
+  &:hover{
+    background-color: #212121;
+    transition: background-color 1s;}
+`
+
+const Boards = styled.div`
+  padding-left: 20%;
+  padding-right: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+`
+// height flexible 적용되게 -> flex-start
 const Board = styled.div`
   display: inline-block;
   color: white;
@@ -31,7 +55,7 @@ const Title = styled.h1`
   text-align: left;
 `
 
-
+// max-width로 가로 길이 고정
 const Menu = styled.div`
   max-width: 320px;
   color: white;
@@ -42,12 +66,10 @@ const Menu = styled.div`
   justify-content: space-between;
 `
 
-// height 글자에 맞춰서 flexible하게 할 수 있을 것 같음
 const MenuView = styled(Menu)`
   height: flexible;
   background-color: #F8BBD0;
 `
-// width 고정. 320px fixed 뭐 이렇게 안되나?
 const MenuInNote = styled(Menu)`
   height: 140px;
   background-color: #B39DDB;
@@ -60,14 +82,29 @@ const MenuStoring = styled(Menu)`
   height: 140px;
   background-color: #4DB6AC;
 `
+
 const MenuMod = styled(Menu)`
   height: 112px;
   background-color: #B0BEC5;
   &:hover{
-    background-color : #607D8B;
+    background-color : #607D8B};
+`
+    
+const ModHeader = styled.div`
+display: flex;
+width: 300px;
 `
 
-// 사실상 바뀌는 게 color밖에 없는데. menu 추가될 때마다 있어야하는 속성이니까 렌더링을 할 수는 있지만 ~ 적절하지 않을듯
+// 이거 왜 표시가 안되지
+const ModIcon = styled.div`
+display: flex;
+width: 50px;
+color: black;
+`
+
+
+// 사실상 바뀌는 게 color밖에 없음
+// menu 추가될 때마다 있어야하는 속성이니까 렌더링을 할 수는 있지만 ~ 적절하지 않을듯
 
 
 
@@ -85,30 +122,17 @@ const IconEdit = styled(FaRegEdit)`
 
 const IconAdd = styled.div`
   border-radius: 50%;
-  background-color: #D93535; 
+  background-color: #D93535;
 `
 
-// Add Element 옆 동그라미 아이콘들 넣으려다가,,~
-
-const IconMoon = styled(IoMoon)`
-  float: right;
-  font-size: 40px;
-  margin-top: 1%;
-  margin-right: 1%;
-  cursor: pointer;
-  &:hover{
-    background-color: #212121;
-    transition: background-color 1s;}
-`
-
-//Board 전체 묶어서 옮겨다니게 해야하나?
 
 function App() {
   return (
     <div className = "App">
-      <IconMoon />
-      <div></div> 
-      <div className="Boards">
+      <Header>
+        <IconMoon />
+      </Header>
+      <Boards>
         <Board>
           <Title>To do <span role="img" aria-label="chick">🐥</span></Title>
 
@@ -130,8 +154,14 @@ function App() {
           </MenuInNote>
 
           <MenuMod>
-            <IconAdd />
-            <h3>Add Element</h3>
+            <ModHeader><h3>Add Element</h3>
+              <ModIcon>
+                <IconAdd />
+                <IconAdd />
+                <IconAdd />
+                <IconAdd />
+              </ModIcon>
+            </ModHeader>
           Opens when clicking on the thumbnail in the list or on the image in the note
           </MenuMod>
         </Board>
@@ -171,7 +201,7 @@ function App() {
             Folders, tags, and notes lists are sorted by recent.
             </MenuOptions>
         </Board>
-      </div>
+      </Boards>
     </div>
   );
 }
