@@ -5,7 +5,7 @@ import NewItemForm from "./NewItemForm";
 import EditItemForm from "./EditItemForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
-const WorkContainer = ({ children, type }) => {
+const WorkContainer = ({ children, type, handleMoveTodoBtn }) => {
   const categories = ["todos", "progresses", "completes"];
   const [mode, setMode] = useState("");
   const [items, setItems] = useState(jsonLocalStorage.getItem(type) || []);
@@ -28,13 +28,10 @@ const WorkContainer = ({ children, type }) => {
     const nextItems = [...items, newItem];
 
     setItems(nextItems);
-    for (let category of categories) {
-      if (category === type) jsonLocalStorage.setItem(type, nextItems);
-    }
+    jsonLocalStorage.setItem(type, nextItems);
     setId(id + 1);
-    //등록시 초기화 기능 생성
-    //setValue해야함
   };
+
   const onUpdate = (_title, _body) => {
     const nextItems = [];
     for (let item of items) {
@@ -60,7 +57,6 @@ const WorkContainer = ({ children, type }) => {
     setMode("edit");
     setEditedItem(selectedItem);
   };
-  const handleEditFormSubmit = () => {};
 
   if (mode === "create") {
     itemForm = (
@@ -74,7 +70,6 @@ const WorkContainer = ({ children, type }) => {
     itemForm = (
       <EditItemForm
         onCancelBtnClick={handleCancelBtnClick}
-        onSubmit={handleEditFormSubmit}
         editedItem={editedItem}
         onUpdate={onUpdate}
       />
@@ -87,9 +82,11 @@ const WorkContainer = ({ children, type }) => {
       <div className="containerContent">
         {items.map((item) => (
           <WorkItem
+            id={item.id}
             work={item}
             handleCloseBtnClick={handleCloseBtnClick}
             handleEditBtnClick={handleEditBtnClick}
+            handleMoveTodoBtn={handleMoveTodoBtn}
           ></WorkItem>
         ))}
       </div>
