@@ -187,6 +187,7 @@ const AddFormInputTitle = styled.input`
 
   font-size: 1.6rem;
   font-family: "Inter", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
   color: #ffffff;
 
@@ -207,6 +208,7 @@ const AddFormInputText = styled.textarea`
   max-height: 6.4rem;
   font-size: 1.4rem;
   font-family: "Inter", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 400;
   color: #fff;
   line-height: 2rem;

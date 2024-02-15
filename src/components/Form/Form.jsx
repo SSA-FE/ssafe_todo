@@ -59,6 +59,7 @@ const FormTitle = styled.h3`
   max-height: 4.2rem;
   font-size: 1.6rem;
   font-family: "Inter", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
   color: #ffffff;
   white-space: nowrap;
@@ -74,6 +75,7 @@ const FormText = styled.h3`
   max-height: 6.4rem;
   font-size: 1.4rem;
   font-family: "Inter", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 400;
   color: #ffffff;
   line-height: 2rem;
