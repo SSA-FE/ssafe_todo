@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../Form/Form";
+import ReWriteForm from "../Form/ReWriteForm";
 import AddForm from "../Form/AddForm";
-import MoreViews from "../../assets/svg/button/MoreViews.svg";
+import MoreViews from "../../assets/button/MoreViews.svg";
 
 const Board = ({ category, forms }) => {
   const [more, setMore] = useState(false);
+  const [rewrite, setRewrite] = useState("");
+  const [retitle, setReTitle] = useState("");
+  const [retext, setReText] = useState("");
 
   const handleMoreViewsButton = () => {
     setMore(true);
@@ -14,9 +18,9 @@ const Board = ({ category, forms }) => {
   return (
     <StyleBoard>
       <BoardTitle>
-        {category === "ToDo" ? "To Do 🐣" : null}
-        {category === "InProgress" ? "In Progress 🐥" : null}
-        {category === "Done" ? "Done 🐔" : null}
+        {category === "ToDo" ? "To Do 🎠" : null}
+        {category === "InProgress" ? "In Progress 🎡" : null}
+        {category === "Done" ? "Done 🎆" : null}
       </BoardTitle>
       <FormBox>
         {forms.map((form, index) => (
@@ -26,9 +30,13 @@ const Board = ({ category, forms }) => {
             formText={form.text}
             color={form.color}
             id={form.id}
+            setRewrite={setRewrite}
+            setReTitle={setReTitle}
+            setReText={setReText}
           ></Form>
         ))}
         {more ? <AddForm category={category} setMore={setMore} /> : null}
+        {rewrite ? <ReWriteForm  category={category} rewrite={rewrite} retitle={retitle} retext={retext} setRewrite={setRewrite}/> : null}
       </FormBox>
       <MoreViewsButton
         src={MoreViews}

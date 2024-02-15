@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import useFormStore from "../../store/store";
-import Exit from "../../assets/svg/button/Exit.svg";
+import Exit from "../../assets/button/Exit.svg";
 
 const AddForm = ({ category, setMore }) => {
   const [title, setTitle] = useState("");
@@ -23,6 +23,10 @@ const AddForm = ({ category, setMore }) => {
     setColor(color);
   };
 
+  const handleExitButton = () => {
+    setMore(false);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <StyleAddForm>
@@ -30,7 +34,7 @@ const AddForm = ({ category, setMore }) => {
           <CreateButton type="submit" disabled={!title && !text}>
             Create
           </CreateButton>
-          <ExitButton src={Exit} />
+          <ExitButton type="button" onClick={handleExitButton} src={Exit} />
         </AddFormButton>
 
         <ColorChart>

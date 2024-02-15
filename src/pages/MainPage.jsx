@@ -2,7 +2,7 @@ import React from "react";
 import useFormStore from "../store/store";
 import Board from "../components/Board/Board";
 import styled from "styled-components";
-import MoonIcon from "../assets/svg/mode/Moon.svg";
+import MoonIcon from "../assets/mode/Moon.svg";
 // import Modal from '../components/Modal/Modal';
 // import AddForm from "../components/AddForm";
 

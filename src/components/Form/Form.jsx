@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import useFormStore from "../../store/store";
-import ReWrite from "../../assets/svg/button/ReWrite.svg";
-import Exit from "../../assets/svg/button/Exit.svg";
+import ReWrite from "../../assets/button/ReWrite.svg";
+import Exit from "../../assets/button/Exit.svg";
 
-const Form = ({ formTitle, formText, color, id }) => {
+const Form = ({ formTitle, formText, color, id, setRewrite, setReTitle, setReText }) => {
   const { removeForm } = useFormStore();
 
   const handleExitButton = (e) => {
@@ -13,13 +13,19 @@ const Form = ({ formTitle, formText, color, id }) => {
   };
 
   const handleRewriteButton = () => {
-    
+    setRewrite(id);
+    setReTitle(formTitle);
+    setReText(formText);
   };
 
   return (
     <StyleForm color={color}>
       <FormButton>
-        <ReWriteButton type="button" onClick={handleRewriteButton} src={ReWrite} />
+        <ReWriteButton
+          type="button"
+          onClick={handleRewriteButton}
+          src={ReWrite}
+        />
         <ExitButton type="button" onClick={handleExitButton} src={Exit} />
       </FormButton>
 
