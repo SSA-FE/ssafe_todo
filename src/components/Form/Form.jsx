@@ -37,7 +37,9 @@ const Form = ({
         <ExitButton type="button" onClick={handleExitButton} src={Exit} />
       </FormButton>
 
-      <FormTitle><span>✿</span> {formTitle}</FormTitle>
+      <FormTitle>
+        <span>✿</span> {formTitle}
+      </FormTitle>
       <FormText formText={formText}>{formText}</FormText>
     </StyleForm>
   );
