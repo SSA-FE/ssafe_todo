@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../Form/Form";
-import AddForm from "../AddForm/AddForm";
+import AddForm from "../Form/AddForm";
 import MoreViews from "../../assets/svg/button/MoreViews.svg";
 
 const Board = ({ category, forms }) => {

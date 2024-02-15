@@ -7,19 +7,23 @@ import Exit from "../../assets/svg/button/Exit.svg";
 const Form = ({ formTitle, formText, color, id }) => {
   const { removeForm } = useFormStore();
 
-  const handleExitSubmit = (e) => {
+  const handleExitButton = (e) => {
     e.preventDefault(); // 기본 제출 동작 방지
     removeForm(id);
+  };
+
+  const handleRewriteButton = () => {
+    
   };
 
   return (
     <StyleForm color={color}>
       <FormButton>
-        <ReWriteButton type="button" src={ReWrite} />
-        <ExitButton type="button" onClick={handleExitSubmit} src={Exit} />
+        <ReWriteButton type="button" onClick={handleRewriteButton} src={ReWrite} />
+        <ExitButton type="button" onClick={handleExitButton} src={Exit} />
       </FormButton>
 
-      <FormTitle>✨{formTitle}</FormTitle>
+      <FormTitle>✿ {formTitle}</FormTitle>
       <FormText formText={formText}>{formText}</FormText>
     </StyleForm>
   );
