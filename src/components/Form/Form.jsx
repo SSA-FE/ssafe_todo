@@ -4,7 +4,15 @@ import useFormStore from "../../store/store";
 import ReWrite from "../../assets/button/ReWrite.svg";
 import Exit from "../../assets/button/Exit.svg";
 
-const Form = ({ formTitle, formText, color, id, setRewrite, setReTitle, setReText }) => {
+const Form = ({
+  formTitle,
+  formText,
+  color,
+  id,
+  setRewrite,
+  setReTitle,
+  setReText,
+}) => {
   const { removeForm } = useFormStore();
 
   const handleExitButton = (e) => {
@@ -29,7 +37,7 @@ const Form = ({ formTitle, formText, color, id, setRewrite, setReTitle, setReTex
         <ExitButton type="button" onClick={handleExitButton} src={Exit} />
       </FormButton>
 
-      <FormTitle>✿ {formTitle}</FormTitle>
+      <FormTitle><span>✿</span> {formTitle}</FormTitle>
       <FormText formText={formText}>{formText}</FormText>
     </StyleForm>
   );
@@ -82,9 +90,14 @@ const FormTitle = styled.h3`
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
   color: #ffffff;
-  border-bottom: 0.1rem dashed #ffffff;
+  border-bottom: 0.2rem dashed rgba(255, 255, 255, 0.3);
   white-space: nowrap;
   overflow: hidden;
+
+  span {
+    font-size: 1.6rem;
+    opacity: 0.6;
+  }
 `;
 
 const FormText = styled.h3`

@@ -35,8 +35,16 @@ const Board = ({ category, forms }) => {
             setReText={setReText}
           ></Form>
         ))}
+        {rewrite ? (
+          <ReWriteForm
+            category={category}
+            rewrite={rewrite}
+            retitle={retitle}
+            retext={retext}
+            setRewrite={setRewrite}
+          />
+        ) : null}
         {more ? <AddForm category={category} setMore={setMore} /> : null}
-        {rewrite ? <ReWriteForm  category={category} rewrite={rewrite} retitle={retitle} retext={retext} setRewrite={setRewrite}/> : null}
       </FormBox>
       <MoreViewsButton
         src={MoreViews}
@@ -56,6 +64,8 @@ const StyleBoard = styled.div`
   padding-bottom: 1rem;
   background-color: #0a1626;
   border-radius: 1.6rem;
+
+  transition: all 1s;
 `;
 
 const BoardTitle = styled.h2`

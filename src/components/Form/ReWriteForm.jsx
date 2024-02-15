@@ -82,6 +82,7 @@ const AddFormButton = styled.div`
 `;
 
 const ReWriteButton = styled.button`
+  width: 4.9rem;
   height: 1.8rem;
   border: 0.1rem solid #fff;
   border-radius: 0.8rem;
