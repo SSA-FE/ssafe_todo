@@ -15,7 +15,7 @@ const Form = ({ formTitle, formText, color, id }) => {
   return (
     <StyleForm color={color}>
       <FormButton>
-        <ReWriteButton src={ReWrite} />
+        <ReWriteButton type="button" src={ReWrite} />
         <ExitButton type="button" onClick={handleExitSubmit} src={Exit} />
       </FormButton>
 
@@ -72,7 +72,7 @@ const FormTitle = styled.h3`
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
   color: #ffffff;
-  border-bottom: 0.2rem dashed #ffffff;
+  border-bottom: 0.1rem dashed #ffffff;
   white-space: nowrap;
   overflow: hidden;
 `;

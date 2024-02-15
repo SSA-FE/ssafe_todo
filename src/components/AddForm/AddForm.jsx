@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useFormStore from "../../store/store";
 import Exit from "../../assets/svg/button/Exit.svg";
 
-const AddForm = ({ category }) => {
+const AddForm = ({ category, setMore }) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [color, setColor] = useState("");
@@ -16,6 +16,7 @@ const AddForm = ({ category }) => {
     setTitle("");
     setText("");
     setColor("");
+    setMore(false);
   };
 
   const handleColorClick = (color) => () => {
@@ -26,7 +27,9 @@ const AddForm = ({ category }) => {
     <form onSubmit={handleSubmit}>
       <StyleAddForm>
         <AddFormButton>
-          <CreateButton type="submit">Create</CreateButton>
+          <CreateButton type="submit" disabled={!title && !text}>
+            Create
+          </CreateButton>
           <ExitButton src={Exit} />
         </AddFormButton>
 
