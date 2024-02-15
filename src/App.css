@@ -26,7 +26,7 @@
 
 .App-link {
   color: #61dafb;
-  color:rgb(250, 70, 70);
+  color:rgb(139, 60, 60);
 
   border-radius: 25%;
   text-align: left;
@@ -39,4 +39,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+@font-face {
+  font-family: 'Interop';
+  src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Regular.woff2')
+      format('woff2'),
+    url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Regular.woff')
+      format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }

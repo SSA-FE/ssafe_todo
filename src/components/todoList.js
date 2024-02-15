@@ -18,10 +18,11 @@ const TodoListSytle = styled.div`
       
     }
 
-
     .todoListTitle{
         color:white;
         font-size:37px;
+        font-weight:700;
+
         text-align: left;
         width:90%;
     }

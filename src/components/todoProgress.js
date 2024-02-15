@@ -17,6 +17,8 @@ const TodoProgressSytle=styled.div`
     }
     .todoProgressTitle{
         color:white;
+        font-weight:700;
+
         font-size:37px;
         text-align: left;
         width:90%;
@@ -84,11 +86,11 @@ const TodoProgressSytle=styled.div`
 
     }
     .hoverMoveTodoBtn{
-        display:none;
         border-radius:8px;
         background-color:white;
     }
     .hoverMoveProgressBtn{
+        display:none;
         border-radius:8px;
         backgroudn-color:white;
     }  

@@ -13,6 +13,7 @@ const TodoTopStyle=styled.div`
         width:230px;
         height:60px;
         font-size:50px;
+        font-weight:700;
 
     }
     .todoTopDark{

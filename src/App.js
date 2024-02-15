@@ -1,6 +1,5 @@
-import logo from './logo.svg';
+
 import './App.css';
-import { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import TodoTop from './components/todoTop.js';
 import TodoList from './components/todoList.js'
@@ -37,6 +36,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   background-color:#e9ecef;
 	line-height: 1;
+  font-family:Interop;
 }
 ol, ul {
 	list-style: none;

@@ -18,6 +18,8 @@ const TodoDoneSytle=styled.div`
     .todoDoneTitle{
         color:white;
         font-size:37px;
+        font-weight:700;
+
         text-align: left;
         width:90%;
 
@@ -84,7 +86,6 @@ const TodoDoneSytle=styled.div`
 
     }
     .hoverMoveTodoBtn{
-        display:none;
         border-radius:8px;
         background-color:white;
     }
@@ -93,6 +94,7 @@ const TodoDoneSytle=styled.div`
         backgroudn-color:white;
     }  
     .hoverMoveDoneBtn{
+        display:none;
         border-radius:8px;
         background-color:white;
     }
