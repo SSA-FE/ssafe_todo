@@ -114,13 +114,15 @@ const Color1 = styled.button`
   margin-right: 1rem;
   border-radius: 50%;
   background-color: #c674ca;
+  border: 0.4rem outset #c59dc7;
 
   &:hover {
     cursor: pointer;
   }
 
   &:focus {
-    border: 0.2rem dashed #ffffff;
+    border: 0.4rem inset #b068b4;
+    background-color: #905493;
   }
 `;
 
@@ -131,13 +133,15 @@ const Color2 = styled.button`
   margin-right: 1rem;
   border-radius: 50%;
   background-color: #9ac9c4;
+  border: 0.4rem outset #ccdad9;
 
   &:hover {
     cursor: pointer;
   }
 
   &:focus {
-    border: 0.2rem dashed #ffffff;
+    border: 0.4rem inset #b1c7c6;
+    background-color: #769a96;
   }
 `;
 
@@ -148,13 +152,15 @@ const Color3 = styled.button`
   margin-right: 1rem;
   border-radius: 50%;
   background-color: #94aaf8;
+  border: 0.4rem outset #bcc8f5;
 
   &:hover {
     cursor: pointer;
   }
 
   &:focus {
-    border: 0.2rem dashed #ffffff;
+    border: 0.4rem inset #7f92d4;
+    background-color: #6e7eb6;
   }
 `;
 
@@ -164,13 +170,15 @@ const Color4 = styled.button`
   height: 2.8rem;
   border-radius: 50%;
   background-color: #e06d68;
+  border: 0.4rem outset #db9794;
 
   &:hover {
     cursor: pointer;
   }
 
   &:focus {
-    border: 0.2rem dashed #ffffff;
+    border: 0.4rem inset #d36863;
+    background-color: #c3615c;
   }
 `;
 

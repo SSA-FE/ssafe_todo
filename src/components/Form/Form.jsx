@@ -19,7 +19,7 @@ const Form = ({ formTitle, formText, color, id }) => {
         <ExitButton type="button" onClick={handleExitSubmit} src={Exit} />
       </FormButton>
 
-      <FormTitle>{formTitle} </FormTitle>
+      <FormTitle>✨{formTitle}</FormTitle>
       <FormText formText={formText}>{formText}</FormText>
     </StyleForm>
   );
@@ -61,15 +61,18 @@ const ExitButton = styled.img`
 `;
 
 const FormTitle = styled.h3`
-  padding: 2.4rem 0 0 2.4rem;
-  height: 4.2rem;
+  padding-top: 1.7rem;
+  padding-bottom: 0.7rem;
+  margin-left: 2.4rem;
+  height: 4.3rem;
   max-width: 25.9rem;
-  max-height: 4.2rem;
+  max-height: 4.3rem;
   font-size: 1.6rem;
   font-family: "Inter", sans-serif;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
   color: #ffffff;
+  border-bottom: 0.2rem dashed #ffffff;
   white-space: nowrap;
   overflow: hidden;
 `;

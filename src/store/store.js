@@ -12,7 +12,7 @@ const useFormStore = create(
             { id: new Date().toLocaleString(), title, text, color, category },
           ],
         })),
-        
+
       removeForm: (id) =>
         set((state) => ({
           forms: state.forms.filter((form) => form.id !== id),
