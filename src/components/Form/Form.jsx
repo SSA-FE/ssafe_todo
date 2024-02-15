@@ -1,14 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import useFormStore from "../../store/store";
 import ReWrite from "../../assets/svg/button/ReWrite.svg";
 import Exit from "../../assets/svg/button/Exit.svg";
 
-const Form = ({ formTitle, formText, color }) => {
+const Form = ({ formTitle, formText, color, id }) => {
+  const { removeForm } = useFormStore();
+
+  const handleExitSubmit = (e) => {
+    e.preventDefault(); // 기본 제출 동작 방지
+    removeForm(id);
+  };
+
   return (
     <StyleForm color={color}>
       <FormButton>
         <ReWriteButton src={ReWrite} />
-        <ExitButton src={Exit} />
+        <ExitButton type="button" onClick={handleExitSubmit} src={Exit} />
       </FormButton>
 
       <FormTitle>{formTitle} </FormTitle>

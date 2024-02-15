@@ -25,6 +25,7 @@ const Board = ({ category, forms }) => {
             formTitle={form.title}
             formText={form.text}
             color={form.color}
+            id ={form.id}
           ></Form>
         ))}
         {more ? <AddForm category={category} /> : null}
