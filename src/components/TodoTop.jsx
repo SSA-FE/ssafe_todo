@@ -10,10 +10,12 @@ const TodoTopStyle=styled.div`
         align-items:center;
     }
     .todoTopTitle{
-        width:230px;
-        height:60px;
-        font-size:50px;
-        font-weight:700;
+      color:white;
+      font-size:37px;
+      font-weight:700;
+      text-align: left;
+      width:90%;
+      margin-bottom:20px;
 
     }
     .todoTopDark{

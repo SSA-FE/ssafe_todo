@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 
 const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress,onMoveDone,onMoveTodo }) => {
   const [isEditing, setIsEditing] = useState(isEdit);
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [updatedContent, setUpdatedContent] = useState(content);
   const [isHovered, setIsHovered] = useState(false);
-
+ 
   const handleRemove = () => {
     onRemove();
-  };
+  }; 
 
   const handleUpdate = () => {
     onUpdate(updatedTitle, updatedContent);
     setIsEditing(false);
+    setIsHovered(false);
+    
   };
   const handleMoveProgress=()=>{
     onMoveProgress();
@@ -39,14 +41,22 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
         <div className="todoListEditContainer">
           <input
             className="todoListEditTitle"
+            placeholder="Edit Title"
             type="text"
             value={updatedTitle}
             onChange={(e) => setUpdatedTitle(e.target.value)}
           />
           <textarea
             className="todoListEditContent"
+            placeholder="Edit Content"
             value={updatedContent}
             onChange={(e) => setUpdatedContent(e.target.value)}
+          />
+           <img
+            className="todoListItemXBtn"
+            src="res/iconX.png"
+            alt="X Button"
+            onClick={handleRemove}
           />
           <button className="todoListEditBtn" onClick={handleUpdate}>저장</button>
           <button className="todoListRedBtn"></button>

@@ -1,10 +1,10 @@
 
 import './App.css';
 import { createGlobalStyle } from 'styled-components';
-import TodoTop from './components/todoTop.js';
-import TodoList from './components/todoList.js'
-import TodoDone from './components/todoDone.js'
-import TodoProgress from './components/todoProgress.js';
+import TodoTop from './components/TodoTop.jsx';
+import TodoList from './components/TodoList.jsx'
+import TodoDone from './components/TodoDone.jsx'
+import TodoProgress from './components/TodoProgress.jsx';
 import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
