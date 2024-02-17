@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
+import { v4 as uuidv4 } from 'uuid';
 
 const TodoDoneStyle=styled.div`
     position:relative;
@@ -73,7 +74,7 @@ const TodoDoneStyle=styled.div`
         }
     }
     .todoListItemTitle{
-        margin:10px;
+        margin:30px 10px 10px 10px;
     }
     .todoListItemContent{
         margin:10px;
@@ -135,7 +136,7 @@ const TodoDoneStyle=styled.div`
 
     }
     .hoverMoveTodoBtn{
-        top:-20px;
+        top:5px;
         position:absolute;
         border-radius:8px;
         background-color:white;
@@ -143,14 +144,16 @@ const TodoDoneStyle=styled.div`
     .hoverMoveProgressBtn{
         border-radius:8px;
         position:absolute;
-        top:-20px;
-        left:50%;
+        top:5px;
+        left:120px;
         background-color:white;
     }  
     .hoverMoveDoneBtn{
         display:none;
         border-radius:8px;
         position:absolute;
+        top:5px;
+      
         background-color:white;
     }
     
@@ -220,23 +223,21 @@ function TodoDone(){
         localStorage.setItem('todoDone', JSON.stringify(updatedDones));
         setDone(updatedDones);
     };
-    const updateTodo = (index, updatedTitle, updatedContent) => {
+    const updateTodo = (index, updatedTitle, updatedContent,updatedColor) => {
         const updatedDone = [...todoDone];
-        updatedDone[index] = { title: updatedTitle, content: updatedContent ,isEdit:false};
-
+        updatedDone[index] = {id:todoDone[index].id, title: updatedTitle, content: updatedContent ,isEdit:false,color:updatedColor};
         localStorage.setItem('todoDone', JSON.stringify(updatedDone));
         setDone(updatedDone);
     };
     const addTodo = () => {
-        const newDone = { title: '새로운 할일', content: '해야 할 일을 적어주세요' , isEdit:true};
+        const newDone = {id: uuidv4(), title: '', content: '' , isEdit:true,color:'red'};
         const updatedDones = [...todoDone, newDone];
-
         localStorage.setItem('todoDone', JSON.stringify(updatedDones));
         setDone(updatedDones);
         
     };
     const moveToProgress=(index)=>{
-        const newProgress = { title: todoDone[index].title, content:todoDone[index].content , isEdit:false};
+        const newProgress = {id:todoDone[index].id, title: todoDone[index].title, content:todoDone[index].content , isEdit:false,color:todoDone[index].color};
         const updatedProgress = [...todoProgress, newProgress];
         localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
         setProgress(updatedProgress);
@@ -247,7 +248,7 @@ function TodoDone(){
   
     };
     const moveToTodo=(index)=>{
-        const newTodo = { title: todoDone[index].title, content:todoDone[index].content , isEdit:false};
+        const newTodo = {id:todoDone[index].id, title: todoDone[index].title, content:todoDone[index].content , isEdit:false,color:todoDone[index].color};
         const updatedTodo = [...todos, newTodo];
         localStorage.setItem('todos', JSON.stringify(updatedTodo));
         setDone(updatedTodo);
@@ -264,12 +265,13 @@ function TodoDone(){
                     Done 🕊
                 </div>
                 {todoDone.map((todo, index) => (
-                    <TodoListItem key={index} title={todo.title} content={todo.content}
+                    <TodoListItem  key={todo.id} id={todo.id} title={todo.title} content={todo.content}
                         onRemove={() => removeTodo(index)}
-                        onUpdate={(updatedTitle, updatedContent) => updateTodo(index, updatedTitle, updatedContent)
+                        onUpdate={(updatedTitle, updatedContent,updatedColor) => updateTodo(index, updatedTitle, updatedContent,updatedColor)
                         }isEdit={todo.isEdit}
                         onMoveTodo={()=>moveToTodo(index)}
-                        onMoveProgress={()=>moveToProgress(index)} />
+                        onMoveProgress={()=>moveToProgress(index)}
+                        color={todo.color} />
                 ))}
             </div>
             <button className="todoListPlus" onClick={addTodo}> +</button>

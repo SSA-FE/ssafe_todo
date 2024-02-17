@@ -56,14 +56,13 @@ table {
 `;
 
 const FlexStyle = styled.div`
-  .appContainer{
     display:flex;
     flex-direction:row;
     justify-content:center;
     flex:1;
     padding:20px;
     align-items:center;
-  }
+
   
 `;
 
@@ -72,14 +71,13 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <TodoTop></TodoTop>
+      <TodoTop/>
       <FlexStyle>
-        <div className="appContainer">
-          <TodoList></TodoList>
-          <TodoProgress></TodoProgress>
-          <TodoDone></TodoDone>
+          <TodoList/>
+          <TodoProgress/>
+          <TodoDone/>
 
-        </div>
+
       </FlexStyle>
 
     </>

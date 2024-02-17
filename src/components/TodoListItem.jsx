@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-const TodoListItem = ({ title, content, onRemove, onUpdate, isEdit, onMoveProgress, onMoveDone, onMoveTodo }) => {
+const TodoListItem = ({ id,title, content, onRemove, onUpdate, isEdit, onMoveProgress, onMoveDone, onMoveTodo,color }) => {
   const [isEditing, setIsEditing] = useState(isEdit);
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [updatedContent, setUpdatedContent] = useState(content);
   const [isHovered, setIsHovered] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(color);
 
+  useEffect(() => {
+    
+}, []);
   const handleRemove = () => {
     onRemove();
   };
 
   const handleUpdate = () => {
-    onUpdate(updatedTitle, updatedContent);
+    onUpdate(updatedTitle, updatedContent,selectedColor);
     setIsEditing(false);
     setIsHovered(false);
+    setSelectedColor(selectedColor);
+
   };
 
   const handleMoveProgress = () => {
@@ -31,11 +36,10 @@ const TodoListItem = ({ title, content, onRemove, onUpdate, isEdit, onMoveProgre
 
   const handleColorButtonClick = (color) => {
     setSelectedColor(color);
-    console.log(color)
   };
 
   return (
-    <div className={`todoListItem${selectedColor ? ` ${selectedColor}` : ''}`}
+    <div key={id} className={`todoListItem${selectedColor ? ` ${selectedColor}` : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
       {isHovered && !isEditing && (

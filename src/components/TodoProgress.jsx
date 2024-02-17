@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
+import { v4 as uuidv4 } from 'uuid';
 
 const TodoProgressStyle=styled.div`
 position:relative;
@@ -73,7 +74,7 @@ position:relative;
         }
     }
     .todoListItemTitle{
-        margin:10px;
+        margin:30px 10px 10px 10px;
     }
     .todoListItemContent{
         margin:10px;
@@ -135,7 +136,7 @@ position:relative;
 
     }
     .hoverMoveTodoBtn{
-        top:-20px;
+        top:5px;
         position:absolute;
         border-radius:8px;
         background-color:white;
@@ -144,14 +145,14 @@ position:relative;
         display:none;
         border-radius:8px;
         position:absolute;
-        top:-20px;
+        top:5px;
         background-color:white;
     }  
     .hoverMoveDoneBtn{
         border-radius:8px;
         position:absolute;
-        top:-20px;
-        left:50%;
+        top:5px;
+        left:120px;
         background-color:white;
     }
     
@@ -215,30 +216,30 @@ function TodoProgress(){
     }, [todoProgress]);
 
     const removeTodo = (index) => {
-        const updatedProgress = [...todoProgress];
-        updatedProgress.splice(index, 1);
-        localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
-        setProgress(updatedProgress);
+        const removeProgress = [...todoProgress];
+        removeProgress.splice(index, 1);
+        localStorage.setItem('todoProgress', JSON.stringify(removeProgress));
+        setProgress(removeProgress);
     };
-    const updateTodo = (index, updatedTitle, updatedContent) => {
+    const updateTodo = (index, updatedTitle, updatedContent,updatedColor) => {
         const updatedProgress = [...todoProgress];
-        updatedProgress[index] = { title: updatedTitle, content: updatedContent ,isEdit:false};
+        updatedProgress[index] = {id:todoProgress[index].id, title:updatedTitle, content:updatedContent , isEdit:false,color:updatedColor};
 
         localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
         setProgress(updatedProgress);
 
     };
     const addTodo = () => {
-        const newProgress = { title: '새로운 할일', content: '해야 할 일을 적어주세요' , isEdit:true};
-        const updatedProgress = [...todoProgress, newProgress];
+        const newProgress ={ id: uuidv4(),title: '', content: '' , isEdit:true , color:'red'};
+        const AddProgress = [...todoProgress, newProgress];
 
-        localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
-        setProgress(updatedProgress);
+        localStorage.setItem('todoProgress', JSON.stringify(AddProgress));
+        setProgress(AddProgress);
 
         
     };
     const moveToDone=(index)=>{
-        const newDone = { title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false};
+        const newDone = {id:todoProgress[index].id, title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false,color:todoProgress[index].color};
         const updatedDone = [...todoDone, newDone];
         localStorage.setItem('todoDone', JSON.stringify(updatedDone));
         setDone(updatedDone);
@@ -248,7 +249,7 @@ function TodoProgress(){
         setProgress(updatedProgress);
     };
     const moveToTodo=(index)=>{
-        const newTodo = { title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false};
+        const newTodo = {id:todoProgress[index].id, title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false,color:todoProgress[index].color};
         const updatedTodo = [...todos, newTodo];
         localStorage.setItem('todos', JSON.stringify(updatedTodo));
         setDone(updatedTodo);
@@ -265,12 +266,13 @@ function TodoProgress(){
                     In Progress 🐥
                 </div>
                 {todoProgress.map((todo, index) => (
-                    <TodoListItem key={index} title={todo.title} content={todo.content}
+                    <TodoListItem key={todo.id} id={todo.id} title={todo.title} content={todo.content}
                         onRemove={() => removeTodo(index)}
-                        onUpdate={(updatedTitle, updatedContent) => updateTodo(index, updatedTitle, updatedContent)
+                        onUpdate={(updatedTitle, updatedContent,updatedColor) => updateTodo(index, updatedTitle, updatedContent,updatedColor)
                         }isEdit={todo.isEdit}
                         onMoveTodo={()=>moveToTodo(index)}
-                        onMoveDone={()=>moveToDone(index)} />
+                        onMoveDone={()=>moveToDone(index)}
+                        color={todo.color} />
                 ))}
 
             </div>
