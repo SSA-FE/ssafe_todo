@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 const TodoProgressStyle=styled.div`
 position:relative;
     .todoProgressContainer{
+        border:1px solid white;
+
         position:relative;
         background-color: #262626;
         border-radius: 8px;
@@ -213,7 +215,7 @@ function TodoProgress(){
         if(savedTodos.length>0){
             setTodos(savedTodos);
         }
-    }, [todoProgress]);
+    },[todos,todoDone,todoProgress]);
 
     const removeTodo = (index) => {
         const removeProgress = [...todoProgress];
@@ -252,7 +254,7 @@ function TodoProgress(){
         const newTodo = {id:todoProgress[index].id, title: todoProgress[index].title, content:todoProgress[index].content , isEdit:false,color:todoProgress[index].color};
         const updatedTodo = [...todos, newTodo];
         localStorage.setItem('todos', JSON.stringify(updatedTodo));
-        setDone(updatedTodo);
+        setTodos(updatedTodo);
         const updatedProgress = [...todoProgress];
         updatedProgress.splice(index, 1);
         localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));

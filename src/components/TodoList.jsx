@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const TodoListStyle = styled.div`
     position:relative;
     .todoListContainer{
+        border:1px solid white;
         position:relative;
         background-color: #262626;
         border-radius: 8px;
@@ -219,7 +220,7 @@ function TodoList() {
         if(savedTodos.length>0){
             setTodos(savedTodos);
         }
-    }, [todos]);
+    }, [todos,todoDone,todoProgress]);
     const addTodo = () => {
         const newTodo = { id: uuidv4(),title: '', content: '' , isEdit:true , color:'red'};
         const AddTodos = [...todos, newTodo];

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const TodoDoneStyle=styled.div`
     position:relative;
     .todoDoneContainer{
+        border:1px solid white;
         position:relative;
         background-color: #262626;
         border-radius: 8px;
@@ -215,7 +216,7 @@ function TodoDone(){
         if(savedTodos.length>0){
             setTodos(savedTodos);
         }
-    }, [todoDone]);
+    }, [todos,todoDone,todoProgress]);
 
     const removeTodo = (index) => {
         const updatedDones = [...todoDone];
@@ -251,7 +252,7 @@ function TodoDone(){
         const newTodo = {id:todoDone[index].id, title: todoDone[index].title, content:todoDone[index].content , isEdit:false,color:todoDone[index].color};
         const updatedTodo = [...todos, newTodo];
         localStorage.setItem('todos', JSON.stringify(updatedTodo));
-        setDone(updatedTodo);
+        setTodos(updatedTodo);
         const updatedDones = [...todoDone];
         updatedDones.splice(index, 1);
         localStorage.setItem('todoDone', JSON.stringify(updatedDones));
