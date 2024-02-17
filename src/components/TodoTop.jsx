@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const TodoTopStyle=styled.div`
+  position:relative;
     .todoTopContainer{
         display:flex;
         flex-direction:row;
@@ -10,12 +11,10 @@ const TodoTopStyle=styled.div`
         align-items:center;
     }
     .todoTopTitle{
-      color:white;
-      font-size:37px;
-      font-weight:700;
-      text-align: left;
-      width:90%;
-      margin-bottom:20px;
+        width:230px;
+        height:60px;
+        font-size:50px;
+        font-weight:700;
 
     }
     .todoTopDark{

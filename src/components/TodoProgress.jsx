@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TodoListItem from './TodoListItem';
 
 const TodoProgressSytle=styled.div`
+position:relative;
     .todoProgressContainer{
         position:relative;
         background-color: #262626;
@@ -40,7 +41,7 @@ const TodoProgressSytle=styled.div`
         height:26px;
         backgroud-color:white;
         left:50%;
-        bottom:-13px;
+        bottom:5px;
         border-radius:50%;
 
     }
@@ -255,9 +256,10 @@ function TodoProgress(){
                         onMoveTodo={()=>moveToTodo(index)}
                         onMoveDone={()=>moveToDone(index)} />
                 ))}
-                <button className="todoListPlus" onClick={addTodo}> +</button>
 
             </div>
+            <button className="todoListPlus" onClick={addTodo}> +</button>
+
         </TodoProgressSytle>
     )
 }

@@ -5,6 +5,8 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [updatedContent, setUpdatedContent] = useState(content);
   const [isHovered, setIsHovered] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(null);
+
  
   const handleRemove = () => {
     onRemove();
@@ -25,8 +27,11 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
   const handleMoveTodo=()=>{
     onMoveTodo();
   }
+  const handleColorButtonClick = (color) => {
+    setSelectedColor(color);
+  };
   return (
-    <div className="todoListItem" 
+    <div className={`todoListItem${selectedColor ? ` ${selectedColor}` : ''}`} 
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}>
       {isHovered && !isEditing && (
@@ -59,10 +64,10 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
             onClick={handleRemove}
           />
           <button className="todoListEditBtn" onClick={handleUpdate}>저장</button>
-          <button className="todoListRedBtn"></button>
-          <button className="todoListBlueBtn"></button>
-          <button className="todoListGreenBtn"></button>
-          <button className="todoListPurpleBtn"></button>
+          <button className="todoListRedBtn" onClick={() => handleColorButtonClick('red')}></button>
+          <button className="todoListBlueBtn" onClick={() => handleColorButtonClick('blue')}></button>
+          <button className="todoListGreenBtn" onClick={() => handleColorButtonClick('green')}></button>
+          <button className="todoListPurpleBtn" onClick={() => handleColorButtonClick('purple')}></button>
 
         </div>
       ) : (

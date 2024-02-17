@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
 
-
+// const TodoListItemStyle=styled.div`
+// `
 const TodoListSytle = styled.div`
+    position:relative;
     .todoListContainer{
         position:relative;
         background-color: #262626;
@@ -42,7 +44,7 @@ const TodoListSytle = styled.div`
         height:26px;
         background-color:white;
         left:50%;
-        bottom:-13px;
+        bottom:5px;
         border-radius:50%;
     
     }
@@ -256,9 +258,9 @@ function TodoList() {
                         onMoveProgress={()=>moveToProgress(index)}
                         onMoveDone={()=>moveToDone(index)} />
                 ))}
-                <button className="todoListPlus" onClick={addTodo}> +</button>
+                
             </div>
-                    
+            <button className="todoListPlus" onClick={addTodo}> +</button>      
         </TodoListSytle>
     )
 }
