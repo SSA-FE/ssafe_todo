@@ -1,39 +1,43 @@
-import React, { useState,useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress,onMoveDone,onMoveTodo }) => {
+const TodoListItem = ({ title, content, onRemove, onUpdate, isEdit, onMoveProgress, onMoveDone, onMoveTodo }) => {
   const [isEditing, setIsEditing] = useState(isEdit);
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [updatedContent, setUpdatedContent] = useState(content);
   const [isHovered, setIsHovered] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
 
- 
   const handleRemove = () => {
     onRemove();
-  }; 
+  };
 
   const handleUpdate = () => {
     onUpdate(updatedTitle, updatedContent);
     setIsEditing(false);
     setIsHovered(false);
-    
   };
-  const handleMoveProgress=()=>{
+
+  const handleMoveProgress = () => {
     onMoveProgress();
-  }
-  const handleMoveDone=()=>{
+  };
+
+  const handleMoveDone = () => {
     onMoveDone();
-  }
-  const handleMoveTodo=()=>{
+  };
+
+  const handleMoveTodo = () => {
     onMoveTodo();
-  }
+  };
+
   const handleColorButtonClick = (color) => {
     setSelectedColor(color);
+    console.log(color)
   };
+
   return (
-    <div className={`todoListItem${selectedColor ? ` ${selectedColor}` : ''}`} 
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}>
+    <div className={`todoListItem${selectedColor ? ` ${selectedColor}` : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}>
       {isHovered && !isEditing && (
         <div className="hoverButtons">
           <button className="hoverMoveTodoBtn" onClick={handleMoveTodo}>Move To do 🐣</button>
@@ -42,8 +46,7 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
         </div>
       )}
       {isEditing ? (
-        // 수정 모드일 때
-        <div className="todoListEditContainer">
+        <div className={`todoListEditContainer${selectedColor ? ` ${selectedColor}` : ''}`}>
           <input
             className="todoListEditTitle"
             placeholder="Edit Title"
@@ -57,7 +60,7 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
             value={updatedContent}
             onChange={(e) => setUpdatedContent(e.target.value)}
           />
-           <img
+          <img
             className="todoListItemXBtn"
             src="res/iconX.png"
             alt="X Button"
@@ -68,13 +71,11 @@ const TodoListItem = ({ title, content, onRemove, onUpdate,isEdit,onMoveProgress
           <button className="todoListBlueBtn" onClick={() => handleColorButtonClick('blue')}></button>
           <button className="todoListGreenBtn" onClick={() => handleColorButtonClick('green')}></button>
           <button className="todoListPurpleBtn" onClick={() => handleColorButtonClick('purple')}></button>
-
         </div>
       ) : (
-        // 일반 모드일 때
         <div>
-          <div className="todoListItemTitle">{title}</div>
-          <div className="todoListItemContent">{content}</div>
+          <div className={`todoListItemTitle${selectedColor ? ` ${selectedColor}` : ''}`}>{title}</div>
+          <div className={`todoListItemContent${selectedColor ? ` ${selectedColor}` : ''}`}>{content}</div>
           <img
             className="todoListItemWriteBtn"
             src="res/iconWrite.svg"

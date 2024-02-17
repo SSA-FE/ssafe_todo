@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
 
-const TodoDoneSytle=styled.div`
+const TodoDoneStyle=styled.div`
     position:relative;
     .todoDoneContainer{
         position:relative;
@@ -39,7 +39,8 @@ const TodoDoneSytle=styled.div`
         position:absolute;
         width:26px;
         height:26px;
-        backgroud-color:white;
+        background-color:white;
+        transform:translate(-50%,0%);
         left:50%;
         bottom:5px;
         border-radius:50%;
@@ -55,7 +56,21 @@ const TodoDoneSytle=styled.div`
         background-color:#D93535;
         width:90%;
         color:white;
-        
+        &.red {
+            background-color: #D93535;
+        }
+
+        &.blue {
+            background-color: #307FE2;
+        }
+
+        &.green {
+            background-color: #00B294;
+        }
+
+        &.purple {
+            background-color: #7678D1;
+        }
     }
     .todoListItemTitle{
         margin:10px;
@@ -130,7 +145,7 @@ const TodoDoneSytle=styled.div`
         position:absolute;
         top:-20px;
         left:50%;
-        backgroudn-color:white;
+        background-color:white;
     }  
     .hoverMoveDoneBtn{
         display:none;
@@ -243,7 +258,7 @@ function TodoDone(){
 
     };
     return(
-        <TodoDoneSytle>
+        <TodoDoneStyle>
             <div className="todoDoneContainer">
                 <div className="todoDoneTitle"> 
                     Done 🕊
@@ -259,7 +274,7 @@ function TodoDone(){
             </div>
             <button className="todoListPlus" onClick={addTodo}> +</button>
 
-        </TodoDoneSytle>
+        </TodoDoneStyle>
     )
 }
 export default TodoDone;

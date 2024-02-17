@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
 
-// const TodoListItemStyle=styled.div`
-// `
-const TodoListSytle = styled.div`
+
+const TodoListStyle = styled.div`
     position:relative;
     .todoListContainer{
         position:relative;
@@ -43,6 +42,7 @@ const TodoListSytle = styled.div`
         width:26px;
         height:26px;
         background-color:white;
+        transform:translate(-50%,0%);
         left:50%;
         bottom:5px;
         border-radius:50%;
@@ -58,7 +58,21 @@ const TodoListSytle = styled.div`
         background-color:#D93535;
         width:90%;
         color:white;
+        &.red {
+            background-color: #D93535;
+        }
 
+        &.blue {
+            background-color: #307FE2;
+        }
+
+        &.green {
+            background-color: #00B294;
+        }
+
+        &.purple {
+            background-color: #7678D1;
+        }
     }
     .todoListItemTitle{
         margin:10px;
@@ -74,7 +88,7 @@ const TodoListSytle = styled.div`
         right:10px;
         text-align:center;
     }
-
+    
     .todoListItemWriteBtn{
         position:absolute;
         right:35px;
@@ -89,7 +103,7 @@ const TodoListSytle = styled.div`
         position:relative;
     }
     
-
+    
     .todoListEditTitle{
         border-radius:8px;
         border:1px white solid;
@@ -113,7 +127,7 @@ const TodoListSytle = styled.div`
     }
     .todoListEditContent::placeholder{
         color:white;
-
+    
     }
     .todoListEditBtn{
         border-radius:8px;
@@ -122,7 +136,7 @@ const TodoListSytle = styled.div`
         margin:2px;
         width:50%;
         color:white;
-
+    
     }
     .hoverMoveTodoBtn{
         display:none;
@@ -134,7 +148,7 @@ const TodoListSytle = styled.div`
         border-radius:8px;
         position:absolute;
         top:-20px;
-        backgroudn-color:white;
+        background-color:white;
     }  
     .hoverMoveDoneBtn{
         border-radius:8px;
@@ -245,7 +259,7 @@ function TodoList() {
         setTodos(updatedTodos);
     };
     return (
-        <TodoListSytle>
+        <TodoListStyle>
             <div className="todoListContainer">
                 <div className="todoListTitle">
                     To Do 🐣
@@ -258,10 +272,10 @@ function TodoList() {
                         onMoveProgress={()=>moveToProgress(index)}
                         onMoveDone={()=>moveToDone(index)} />
                 ))}
-                
+
             </div>
             <button className="todoListPlus" onClick={addTodo}> +</button>      
-        </TodoListSytle>
+        </TodoListStyle>
     )
 }
 

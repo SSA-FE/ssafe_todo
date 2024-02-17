@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
 
-const TodoProgressSytle=styled.div`
+const TodoProgressStyle=styled.div`
 position:relative;
     .todoProgressContainer{
         position:relative;
@@ -39,7 +39,8 @@ position:relative;
         position:absolute;
         width:26px;
         height:26px;
-        backgroud-color:white;
+        background-color:white;
+        transform:translate(-50%,0%);
         left:50%;
         bottom:5px;
         border-radius:50%;
@@ -55,6 +56,21 @@ position:relative;
         background-color:#D93535;
         width:90%;
         color:white;
+        &.red {
+            background-color: #D93535;
+        }
+
+        &.blue {
+            background-color: #307FE2;
+        }
+
+        &.green {
+            background-color: #00B294;
+        }
+
+        &.purple {
+            background-color: #7678D1;
+        }
     }
     .todoListItemTitle{
         margin:10px;
@@ -129,7 +145,7 @@ position:relative;
         border-radius:8px;
         position:absolute;
         top:-20px;
-        backgroudn-color:white;
+        background-color:white;
     }  
     .hoverMoveDoneBtn{
         border-radius:8px;
@@ -243,7 +259,7 @@ function TodoProgress(){
 
     };
     return(
-        <TodoProgressSytle>
+        <TodoProgressStyle>
             <div className="todoProgressContainer">
                 <div className="todoProgressTitle"> 
                     In Progress 🐥
@@ -260,7 +276,7 @@ function TodoProgress(){
             </div>
             <button className="todoListPlus" onClick={addTodo}> +</button>
 
-        </TodoProgressSytle>
+        </TodoProgressStyle>
     )
 }
 
