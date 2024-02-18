@@ -19,7 +19,6 @@ const TodoListStyle = styled.div`
         margin:20px;
         height:800px;
         overflow-y:auto;
-      
     }
     .todoListContainer::-webkit-scrollbar {
         display: none;
@@ -157,43 +156,36 @@ const TodoListStyle = styled.div`
         left:150px;
         background-color:white;
     }
-    
+    .todoListBtnContainer{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+    }
     .todoListRedBtn{
-        position:absolute;
         border-radius:50%;
         background-color:#D93535;
         width:30px;
         height:30px;
-        bottom:-5px;
-        left:55%;
         border:1px solid white;
     }
     .todoListBlueBtn{
-        position:absolute;
         border-radius:50%;
         background-color:#307FE2;
         width:30px;
         height:30px;
-        bottom:-5px;
-        left:67%;
         border:1px solid white;
     } .todoListGreenBtn{
-        position:absolute;
         border-radius:50%;
         background-color:#00B294;
         width:30px;
         height:30px;
-        bottom:-5px;
-        left:79%;
         border:1px solid white;
     } .todoListPurpleBtn{
-        position:absolute;
         border-radius:50%;
         background-color:#7678D1;
         width:30px;
         height:30px;
-        bottom:-5px;
-        left:91%;
         border:1px solid white;
     }
 `

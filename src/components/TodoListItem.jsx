@@ -70,11 +70,13 @@ const TodoListItem = ({ id,title, content, onRemove, onUpdate, isEdit, onMovePro
             alt="X Button"
             onClick={handleRemove}
           />
+          <div className="todoListBtnContainer">
           <button className="todoListEditBtn" onClick={handleUpdate}>저장</button>
           <button className="todoListRedBtn" onClick={() => handleColorButtonClick('red')}></button>
           <button className="todoListBlueBtn" onClick={() => handleColorButtonClick('blue')}></button>
           <button className="todoListGreenBtn" onClick={() => handleColorButtonClick('green')}></button>
           <button className="todoListPurpleBtn" onClick={() => handleColorButtonClick('purple')}></button>
+          </div>
         </div>
       ) : (
         <div>
