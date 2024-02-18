@@ -6,6 +6,7 @@ import TodoList from './components/TodoList.jsx'
 import TodoDone from './components/TodoDone.jsx'
 import TodoProgress from './components/TodoProgress.jsx';
 import styled from "styled-components";
+import { TodoProvider } from './components/TodoContext.jsx';
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -73,10 +74,11 @@ function App() {
       <GlobalStyle />
       <TodoTop/>
       <FlexStyle>
+        <TodoProvider>
           <TodoList/>
           <TodoProgress/>
           <TodoDone/>
-
+        </TodoProvider>
 
       </FlexStyle>
 

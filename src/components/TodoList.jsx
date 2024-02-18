@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
 import { v4 as uuidv4 } from 'uuid';
+import { useTodoContext } from './TodoContext';
 
 
 const TodoListStyle = styled.div`
@@ -203,66 +204,7 @@ const TodoListStyle = styled.div`
 `
 
 function TodoList() {
-    const [todos, setTodos] = useState([]);
-    const [todoDone, setDone] = useState([]);
-    const [todoProgress, setTodoProgress] = useState([]);
-
-    useEffect(() => {
-        const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-        const savedDone = JSON.parse(localStorage.getItem('todoDone')) || [];
-        const savedProgress = JSON.parse(localStorage.getItem('todoProgress')) || [];
-        if(savedDone.length>0){
-            setDone(savedDone)
-        }
-        if(savedProgress.length>0){
-            setTodoProgress(savedProgress)
-        }
-        if(savedTodos.length>0){
-            setTodos(savedTodos);
-        }
-    }, [todos,todoDone,todoProgress]);
-    const addTodo = () => {
-        const newTodo = { id: uuidv4(),title: '', content: '' , isEdit:true , color:'red'};
-        const AddTodos = [...todos, newTodo];
-        localStorage.setItem('todos', JSON.stringify(AddTodos));
-        setTodos(AddTodos);
-    };
-    const removeTodo = (index) => {
-        const removeTodos = [...todos];
-        removeTodos.splice(index, 1);
-        localStorage.setItem('todos', JSON.stringify(removeTodos));
-        setTodos(removeTodos);
-       
-    };
-    const updateTodo = (index, updatedTitle, updatedContent,updatedColor) => {
-        const updatedTodos = [...todos];
-        updatedTodos[index] =  {id:todos[index].id, title:updatedTitle, content:updatedContent , isEdit:false,color:updatedColor};
-
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
-        setTodos(updatedTodos);
-    };
-  
-    const moveToProgress=(index)=>{
-        const newProgress = {id:todos[index].id, title: todos[index].title, content:todos[index].content , isEdit:false,color:todos[index].color};
-        const updatedProgress = [...todoProgress, newProgress];
-        localStorage.setItem('todoProgress', JSON.stringify(updatedProgress));
-        setTodoProgress(updatedProgress);
-        const updatedTodos = [...todos];
-        updatedTodos.splice(index, 1);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
-        setTodos(updatedTodos);
-        
-    };
-    const moveToDone=(index)=>{
-        const newDone =  {id:todos[index].id, title: todos[index].title, content:todos[index].content , isEdit:false,color:todos[index].color};
-        const updatedDone = [...todoDone, newDone];
-        localStorage.setItem('todoDone', JSON.stringify(updatedDone));
-        setDone(updatedDone);
-        const updatedTodos = [...todos];
-        updatedTodos.splice(index, 1);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
-        setTodos(updatedTodos);
-    };
+    const{todos,addTodo,removeTodo,updateTodo,moveTodoToProgress,moveTodoToDone}=useTodoContext();
     return (
         <TodoListStyle>
             <div className="todoListContainer">
@@ -274,8 +216,8 @@ function TodoList() {
                         onRemove={() => removeTodo(index)}
                         onUpdate={(updatedTitle, updatedContent,updatedColor) => updateTodo(index, updatedTitle, updatedContent,updatedColor)
                         }isEdit={todo.isEdit} 
-                        onMoveProgress={()=>moveToProgress(index)}
-                        onMoveDone={()=>moveToDone(index)}
+                        onMoveProgress={()=>moveTodoToProgress(index)}
+                        onMoveDone={()=>moveTodoToDone(index)}
                         color={todo.color} />
                 ))}
 
