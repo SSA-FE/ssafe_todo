@@ -29,19 +29,19 @@ const Card= ({
       <h3 className="cardTitle">{work.title}</h3>
       <div
         className="moveTodo"
-        onClick={() => handleMoveBtnClick(id, type, "todos")}
+        onClick={() => handleMoveBtnClick(id, type, "toDo")}
       >
         🐣
       </div>
       <div
         className="moveProgress"
-        onClick={() => handleMoveBtnClick(id, type, "progresses")}
+        onClick={() => handleMoveBtnClick(id, type, "inProgress")}
       >
         🐥
       </div>
       <div
         className="moveDone"
-        onClick={() => handleMoveBtnClick(id, type, "dones")}
+        onClick={() => handleMoveBtnClick(id, type, "done")}
       >
         🦅
       </div>
