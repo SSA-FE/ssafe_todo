@@ -36,17 +36,13 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
   };
 
   const onUpdate = (_title, _body) => {
-    const newCards = [];
-    for (let card of cards) {
-      if (card.id !== editedCard.id) newCards.push(card);
-    }
-    const newCard = { id: editedCard.id, title: _title, body: _body };
-    newCards.push(newCard);
-
-    setCards(newCards);
-    jsonLocalStorage.setItem(type, newCards);
+    let nextCards = cards.filter(card=>card.id!==editedCard.id);
+    nextCards = nextCards.concat({ id: editedCard.id, title: _title, body: _body })
+    setCards(nextCards);
+    jsonLocalStorage.setItem(type, nextCards);
     setMode("read");
   };
+
   const handleCloseBtnClick = (cardId) => {
     let newtCards = [];
     for (let card of cards) {
