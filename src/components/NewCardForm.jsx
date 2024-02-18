@@ -1,8 +1,8 @@
-import '../scss/NewItemForm.scss';
+import '../scss/NewCardForm.scss';
 
-const NewItemForm = ({ onSubmit, onCancelBtnClick }) => {
+const NewCardForm = ({ onSubmit, onCancelBtnClick }) => {
   return (
-    <form className="newItemForm" onSubmit={onSubmit}>
+    <form className="newCardForm" onSubmit={onSubmit}>
       <div className="colors">
         <div></div>
       </div>
@@ -22,4 +22,4 @@ const NewItemForm = ({ onSubmit, onCancelBtnClick }) => {
   );
 };
 
-export default NewItemForm;
+export default NewCardForm;

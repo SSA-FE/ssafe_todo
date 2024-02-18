@@ -1,11 +1,16 @@
-import "../scss/TodoTemplate.scss";
+import "../scss/Template.scss";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
-import WorkContainer from "./WorkContainer";
+import Board from "./Board";
 import { useState } from "react";
 
-const TodoTemplate = ({ children }) => {
+const Template = ({ children }) => {
   const [startItems, setStartItems] = useState([]);
   const [endItems, setEndItems] = useState([]);
+  const boards = [
+    {title:"To do 🐣",type:"toDo"},
+    {title:"In Progress 🐥",type:"inProgress"},
+    {title:"Done 🦅",type:"done"},
+  ];
 
   const handleMoveBtnClick = (id, start, end) => {
     setStartItems(jsonLocalStorage.getItem(start));
@@ -25,24 +30,13 @@ const TodoTemplate = ({ children }) => {
   };
 
   return (
-    <div className="TodoTemplate">
+    <div className="template">
       <h1 className="title">RoadMap</h1>
       <div className="content">
-        <WorkContainer type="todos" handleMoveBtnClick={handleMoveBtnClick}>
-          To do 🐣
-        </WorkContainer>
-        <WorkContainer
-          type="progresses"
-          handleMoveBtnClick={handleMoveBtnClick}
-        >
-          In Progress 🐥
-        </WorkContainer>
-        <WorkContainer type="completes" handleMoveBtnClick={handleMoveBtnClick}>
-          Done 🦅
-        </WorkContainer>
+        {boards.map(board=><Board type={board.type} handleMoveBtnClick={handleMoveBtnClick}>{board.title}</Board>)}
       </div>
     </div>
   );
 };
 
-export default TodoTemplate;
+export default Template;

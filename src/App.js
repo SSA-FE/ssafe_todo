@@ -1,12 +1,7 @@
-import TodoTemplate from "./components/TodoTemplate";
-import WorkContainer from "./components/WorkContainer";
+import Template from "./components/Template";
 
 function App() {
-  return (
-    <TodoTemplate>
-      <WorkContainer></WorkContainer>
-    </TodoTemplate>
-  );
+  return <Template />;
 }
 
 export default App;
