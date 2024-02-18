@@ -50,6 +50,4 @@
   font-style: normal;
   font-display: block;
 }
-.scroll::-webkit-scrollbar {
-  display: none;
-}
+
