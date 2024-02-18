@@ -71,7 +71,7 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
             handleEditBtnClick={handleEditBtnClick}
             handleMoveBtnClick={handleMoveBtnClick}
             type={type}
-          ></Card>
+          />
         ))}
       </div>
       {cardForm}

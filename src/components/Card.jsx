@@ -1,6 +1,6 @@
 import "../scss/Card.scss";
-import closeIcon from "../icon/close.svg";
-import editIcon from "../icon/edit.svg";
+import closeIcon from "../assets/close.svg";
+import editIcon from "../assets/edit.svg";
 
 const Card= ({
   work,
@@ -19,11 +19,11 @@ const Card= ({
   return (
     <div className="card">
       <div className="cardBtns">
-        <button onClick={() => handleCloseBtnClick(id)}>
-          <img src={closeIcon}></img>
+      <button onClick={() => handleEditBtnClick(id)}>
+          <img src={editIcon} alt="X"></img>
         </button>
-        <button onClick={() => handleEditBtnClick(id)}>
-          <img src={editIcon}></img>
+        <button onClick={() => handleCloseBtnClick(id)}>
+          <img src={closeIcon} alt="X"></img>
         </button>
       </div>
       <h3 className="cardTitle">{work.title}</h3>
