@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoListItem from './TodoListItem';
-import { v4 as uuidv4 } from 'uuid';
 import { useTodoContext } from './TodoContext';
-
 
 const TodoListStyle = styled.div`
     position:relative;
@@ -64,20 +62,18 @@ const TodoListStyle = styled.div`
         &.red {
             background-color: #D93535;
         }
-
         &.blue {
             background-color: #307FE2;
         }
-
         &.green {
             background-color: #00B294;
         }
-
         &.purple {
             background-color: #7678D1;
         }
     }
     .todoListItemTitle{
+        font-size:20px;
         margin:30px 10px 10px 10px;
     }
     .todoListItemContent{
@@ -105,7 +101,6 @@ const TodoListStyle = styled.div`
         flex-direction:column;
         position:relative;
     }
-    
     
     .todoListEditTitle{
         border-radius:8px;

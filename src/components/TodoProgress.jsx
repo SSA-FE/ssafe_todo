@@ -75,6 +75,8 @@ position:relative;
         }
     }
     .todoListItemTitle{
+        font-size:20px;
+
         margin:30px 10px 10px 10px;
     }
     .todoListItemContent{
