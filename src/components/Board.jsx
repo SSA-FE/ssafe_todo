@@ -17,12 +17,13 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
   };
 
   const handlePlusBtnClick = () => {
-    return setMode("create");
+    setMode("create");
   };
 
   const handleCancelBtnClick = () => {
-    return setMode("read");
+    setMode("read");
   };
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const _title = e.target.title.value;
@@ -44,13 +45,11 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
   };
 
   const handleCloseBtnClick = (cardId) => {
-    let newtCards = [];
-    for (let card of cards) {
-      if (card.id !== cardId) newtCards.push(card);
-    }
-    jsonLocalStorage.setItem(type, newtCards);
-    setCards(newtCards);
+    const nextCards = cards.filter(card=>card.id !==cardId);
+    setCards(nextCards);
+    jsonLocalStorage.setItem(type, nextCards);
   };
+
   const handleEditBtnClick = (cardId) => {
     const selectedCard = cards.find((card) => card.id === cardId);
     setMode("edit");
