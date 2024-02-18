@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const TodoTopStyle=styled.div`
-  position:relative;
+
     .todoTopContainer{
         display:flex;
         flex-direction:row;
@@ -47,7 +47,7 @@ function TodoTop(){
           src={darkMode ? "res/iconLight.svg" : "res/iconDark.svg"}
           alt="Dark mode"
           onClick={handleDarkMode}
-        ></img>
+        />
       </div>
     </TodoTopStyle>
   );
