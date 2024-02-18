@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../scss/EditCardForm.scss";
-const EditCardForm = ({ onSubmit, onCancelBtnClick, editedCard, onUpdate }) => {
+const EditCardForm = ({onCancelBtnClick, editedCard, onUpdate }) => {
   const [title, setTitle] = useState(editedCard.title);
   const [body, setBody] = useState(editedCard.body);
 

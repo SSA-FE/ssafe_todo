@@ -6,22 +6,20 @@ import EditCardForm from "./EditCardForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
 const Board = ({ children, type, handleMoveBtnClick }) => {
-  const [mode, setMode] = useState("");
+  const [cardForm, setCardForm] = useState("");
   const [cards, setCards] = useState(jsonLocalStorage.getItem(type) || []);
   const [id, setId] = useState(0);
   const [editedCard, setEditedCard] = useState(null);
-  let cardForm = null;
-
-  const handleLocalStorageChange = () => {
-    setCards(jsonLocalStorage.getItem(type) || []);
-  };
 
   const handlePlusBtnClick = () => {
-    setMode("create");
+    setCardForm(<NewCardForm
+      onCancelBtnClick={handleCancelBtnClick}
+      onSubmit={handleFormSubmit}
+    />);
   };
 
   const handleCancelBtnClick = () => {
-    setMode("read");
+    setCardForm(null);
   };
   
   const handleFormSubmit = (e) => {
@@ -41,7 +39,7 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
     nextCards = nextCards.concat({ id: editedCard.id, title: _title, body: _body })
     setCards(nextCards);
     jsonLocalStorage.setItem(type, nextCards);
-    setMode("read");
+    setCardForm(null);
   };
 
   const handleCloseBtnClick = (cardId) => {
@@ -52,27 +50,14 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
 
   const handleEditBtnClick = (cardId) => {
     const selectedCard = cards.find((card) => card.id === cardId);
-    setMode("edit");
+    setCardForm(<EditCardForm
+      onCancelBtnClick={handleCancelBtnClick}
+      editedCard={editedCard}
+      onUpdate={onUpdate}
+    />);
     setEditedCard(selectedCard);
   };
 
-  if (mode === "create") {
-    cardForm = (
-      <NewCardForm
-        onCancelBtnClick={handleCancelBtnClick}
-        onSubmit={handleFormSubmit}
-      />
-    );
-  }
-  if (mode === "edit") {
-    cardForm = (
-      <EditCardForm
-        onCancelBtnClick={handleCancelBtnClick}
-        editedCard={editedCard}
-        onUpdate={onUpdate}
-      />
-    );
-  }
 
   return (
     <div className="board">
@@ -86,7 +71,6 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
             handleEditBtnClick={handleEditBtnClick}
             handleMoveBtnClick={handleMoveBtnClick}
             type={type}
-            handleLocalStorageChange={handleLocalStorageChange}
           ></Card>
         ))}
       </div>
