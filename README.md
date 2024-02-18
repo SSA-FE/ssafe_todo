@@ -17,7 +17,8 @@ hover 시 버튼을 absolute 형태로 고정해서 Item div 의 크기가 바�
 편집 모드시 X 버튼 추가 및 Place holder 적용
 ## 6. 추가 기능 구현
 추가 및 편집 시 ItemList 색상을 원하는 색상을 설정 할 수 있도록 수정
+## 7. Context 활용
+Context 를 활용해서 값 변경 시 컴포넌트 렌더링
 
-# Todo 해아할 일
-context api 를 활용한 형제 컴포넌트 리렌더링
+
    
