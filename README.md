@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Todo_SSAFE 과제 리팩토링 목록
+## 1. 불필요한 파일 제거
+불필요한 CRA 파일 제거
+## 2. 파일 네이밍 컨벤션 수정
+기존 파일 첫글자 대문자로 수정
+## 3. TodoItem Container UI 수정
+height 설정 및 overflow 를 활용한 스크롤 설정 , add 버튼 스크롤 시 움직이는 오류 수정
+## 4. Delete 시 생기는 오류 수정
+uuid 를 활용한 id 를 부여해서 제대로 삭제되도록 수정
+## 5. 전체적인 UI 수정
+Night Mode 시 border 값을 통해 영역 분리가 확실히 보이도록 수정
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+hover 시 버튼을 absolute 형태로 고정해서 Item div 의 크기가 바뀌지 않도록 수정
 
-## Available Scripts
+전체 글꼴 폰트 값 변경 및 색상 변경
 
-In the project directory, you can run:
+편집 모드시 X 버튼 추가 및 Place holder 적용
+## 6. 추가 기능 구현
+추가 및 편집 시 ItemList 색상을 원하는 색상을 설정 할 수 있도록 수정
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Todo 해아할 일
+context api 를 활용한 형제 컴포넌트 리렌더링
+   
