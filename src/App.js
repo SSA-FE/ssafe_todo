@@ -87,7 +87,7 @@ const MenuOptions = styled(Menus)`
   height: 140px;
   background-color: #90caf9;
 `;
-const MenuStoring = styled(Menu)`
+const MenuStoring = styled(Menus)`
   height: 140px;
   background-color: #4db6ac;
 `;
