@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "../scss/EditItemForm.scss";
-const EditItemForm = ({ onSubmit, onCancelBtnClick, editedItem, onUpdate }) => {
-  const [title, setTitle] = useState(editedItem.title);
-  const [body, setBody] = useState(editedItem.body);
+import "../scss/EditCardForm.scss";
+const EditCardForm = ({ onSubmit, onCancelBtnClick, editedCard, onUpdate }) => {
+  const [title, setTitle] = useState(editedCard.title);
+  const [body, setBody] = useState(editedCard.body);
 
   const handleSubmitBtn = (e) => {
     e.preventDefault();
@@ -10,7 +10,7 @@ const EditItemForm = ({ onSubmit, onCancelBtnClick, editedItem, onUpdate }) => {
   };
 
   return (
-    <form className="EditItemForm" onSubmit={handleSubmitBtn}>
+    <form className="editCardForm" onSubmit={handleSubmitBtn}>
       <div className="colors">
         <div></div>
       </div>
@@ -38,4 +38,4 @@ const EditItemForm = ({ onSubmit, onCancelBtnClick, editedItem, onUpdate }) => {
   );
 };
 
-export default EditItemForm;
+export default EditCardForm;

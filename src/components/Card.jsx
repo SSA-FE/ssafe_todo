@@ -1,8 +1,8 @@
-import "../scss/WorkItem.scss";
+import "../scss/Card.scss";
 import closeIcon from "../icon/close.svg";
 import editIcon from "../icon/edit.svg";
 
-const WorkItem = ({
+const Card= ({
   work,
   handleCloseBtnClick,
   handleEditBtnClick,
@@ -17,8 +17,8 @@ const WorkItem = ({
   // };
 
   return (
-    <div className="WorkItem">
-      <div className="workBtns">
+    <div className="card">
+      <div className="cardBtns">
         <button onClick={() => handleCloseBtnClick(id)}>
           <img src={closeIcon}></img>
         </button>
@@ -26,7 +26,7 @@ const WorkItem = ({
           <img src={editIcon}></img>
         </button>
       </div>
-      <h3 className="workTitle">{work.title}</h3>
+      <h3 className="cardTitle">{work.title}</h3>
       <div
         className="moveTodo"
         onClick={() => handleMoveBtnClick(id, type, "todos")}
@@ -46,9 +46,9 @@ const WorkItem = ({
         🦅
       </div>
 
-      {work.body ? <div className="workBody">{work.body}</div> : null}
+      {work.body ? <div className="cardBody">{work.body}</div> : null}
     </div>
   );
 };
 
-export default WorkItem;
+export default Card;

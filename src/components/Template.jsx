@@ -1,9 +1,9 @@
-import "../scss/TodoTemplate.scss";
+import "../scss/Template.scss";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
-import WorkContainer from "./WorkContainer";
+import Board from "./Board";
 import { useState } from "react";
 
-const TodoTemplate = ({ children }) => {
+const Template = ({ children }) => {
   const [startItems, setStartItems] = useState([]);
   const [endItems, setEndItems] = useState([]);
 
@@ -25,24 +25,24 @@ const TodoTemplate = ({ children }) => {
   };
 
   return (
-    <div className="TodoTemplate">
+    <div className="template">
       <h1 className="title">RoadMap</h1>
       <div className="content">
-        <WorkContainer type="todos" handleMoveBtnClick={handleMoveBtnClick}>
+        <Board type="todos" handleMoveBtnClick={handleMoveBtnClick}>
           To do 🐣
-        </WorkContainer>
-        <WorkContainer
+        </Board>
+        <Board
           type="progresses"
           handleMoveBtnClick={handleMoveBtnClick}
         >
           In Progress 🐥
-        </WorkContainer>
-        <WorkContainer type="completes" handleMoveBtnClick={handleMoveBtnClick}>
+        </Board>
+        <Board type="completes" handleMoveBtnClick={handleMoveBtnClick}>
           Done 🦅
-        </WorkContainer>
+        </Board>
       </div>
     </div>
   );
 };
 
-export default TodoTemplate;
+export default Template;

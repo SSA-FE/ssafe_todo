@@ -1,4 +1,4 @@
-.EditItemForm{
+.editCardForm{
     position:relative;
     width: 320px;
     top: 25px;
@@ -29,12 +29,12 @@
     // color:rgba(255, 255, 255, 0.75);
 }
 
-.EditItemForm>input,textarea{
+.editCardForm>input,textarea{
     background: rgba(212, 212, 212, 1);
     outline:none;
     border:none;
 }
-.EditItemForm>button{
+.editCardForm>button{
     background: rgba(181, 181, 181, 1);
     min-width:60px;
     height:30px;
