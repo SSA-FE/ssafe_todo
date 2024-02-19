@@ -23,8 +23,9 @@ export const Container = (props) => {
 
     const dispatch = useDispatch();
 
-    const handleAddTodo = () => {
-        dispatch({ type: `ADD_${containerStatus}`, data: { id: todos.length + 1, title: '제목', content: '내용' } })
+    const handleAddTicket = () => {
+        const data = containerStatus === 'TODO' ? todos : containerStatus === 'PROGRESS' ? progress : done;
+        dispatch({ type: `ADD_${containerStatus}`, data: { id: data.length + 1, title: '제목', content: '내용' } })
     }
 
     return (
@@ -34,7 +35,20 @@ export const Container = (props) => {
             'py-4',
 
             'gap-y-4',
+
+            
         )}>
+            <div className={classNames(
+                'hover: visible',
+                'w-full',
+                'h-full',
+                'hidden',
+
+                'bg-red-500',
+
+            )}>
+                테스트
+            </div>
             {/* wrapper */}
             <div className={classNames(
                 'w-full',
@@ -71,7 +85,7 @@ export const Container = (props) => {
 
 
             {/* 추가 버튼 */}
-            <div onClick={handleAddTodo} className={classNames(
+            <div onClick={handleAddTicket} className={classNames(
                 'w-full',
                 'min-h-[32px]',
 

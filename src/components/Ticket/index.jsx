@@ -7,10 +7,6 @@ import { useEffect } from "react";
 export const Ticket = ({status, todo}) => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log(status, todo)
-    }, [])
-
     const handleDelete = () => {
         dispatch({ type: `DELETE_${status}`, id: todo.id })
     }
@@ -21,7 +17,9 @@ export const Ticket = ({status, todo}) => {
 
     return (
         <TicketContainer className={classNames(
-            `bg-${status}`,
+            { 'bg-DONE': status === 'DONE', 
+              'bg-PROGRESS': status === 'PROGRESS', 
+              'bg-TODO': status === 'TODO'},
 
             'py-2',
             'pl-6',
