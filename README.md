@@ -1,5 +1,7 @@
 # React To Do List
 
+<br>
+
 **언어 및 라이브러리**
 <div style="display:flex; margin-bottom:20px;">
 
@@ -20,6 +22,8 @@
 
 
 </div>
+
+<br><br>
 
 ## ⚙ 기능
 **보드(Board)** : 일정을 올려둘 보드 (TO DO / IN PROGRESS / DONE)
