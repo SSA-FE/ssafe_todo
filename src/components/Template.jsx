@@ -1,27 +1,30 @@
 import "../scss/Template.scss";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 import Board from "./Board";
-import { useRef } from "react";
+import { useRef,useState } from "react";
 
 const Template = () => {
   const cardId = useRef(0);
-  const boards = [
-    {title:"To do 🐣",type:"toDo"},
-    {title:"In Progress 🐥",type:"inProgress"},
-    {title:"Done 🦅",type:"done"},
-  ];
+  const category =[
+    {type:"todo", title:"To do 🐣"},
+    {type:"inProgress", title:"InProgress 🐥"},
+    {type:"done", title:"Done 🦅"}
+  ]
+  const [boards,setBoards] = useState([
+    {type:"todo", cards:[]},
+    {type:"inProgress", cards:[]},
+    {type:"done", cards:[]}
+  ]);
 
   const updateCardId = () => {
     cardId.current++;
   }
 
-
-
   return (
     <div className="template">
       <h1 className="title">RoadMap</h1>
       <div className="content">
-        {boards.map((board,idx)=><Board key={idx} type={board.type} cardId={cardId} updateCardId={updateCardId}>{board.title}</Board>)}
+        {category.map((e,idx)=><Board key={idx} type={e.type} cardId={cardId} updateCardId={updateCardId} boards={boards} setBoards={setBoards}>{e.title}</Board>)}
       </div>
     </div>
   );
