@@ -1,12 +1,13 @@
-import "./App.css";
 // import useStore from './store.js';
 import styled from "styled-components";
 import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
-import Menu from "./components/Menu.jsx";
-import AddMenu from "./components/AddMenu.jsx";
+import CardEx from './components/Card/CardEx.jsx'
+import Home from './components/Header/Home.jsx';
+import Menu from "./components/Card/Menu.jsx";
+import AddMenu from "./components/Edit/AddMenu.jsx";
 import { useState } from "react";
 
 //react-scripts 오류 https://thespoiler.tistory.com/21
@@ -137,7 +138,7 @@ const IconEdit = styled(FaRegEdit)`
 //   background-color: #d93535;
 // `;
 
-///App.js에 useEffect 쓰기
+///App.js에 useEffect 쓰기   
 ///받은 다음 Menu에다가 props 전달
 /// 전달한 걸 바탕으로 title, contents 라는 이름으로 받은 다음
 /// {title} {contents} 보여줌
@@ -159,6 +160,7 @@ function App() {
               🐥
             </span>
           </Title>
+          <CardEx />
           <MenuView>
             <h3>Tablet view</h3>
           </MenuView>

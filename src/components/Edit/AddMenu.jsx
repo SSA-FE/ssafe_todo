@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useState } from "react";
 
 const Menus = styled.div`
   max-width: 320px;
@@ -22,7 +21,7 @@ const MenuAdd = styled(Menus)`
 const TextTitle = styled.textarea`
   font-size: 19px;
   font-weight: bold;
-  width: 320px;
+  width: 200px;
   max-height: 30px;
   color: white;
   background-color: transparent;
@@ -55,8 +54,14 @@ const StoreButton = styled.button`
 
 // 로컬 스토리지에 저장
 
-/////// ///////
+// useState 사용
+// 1. 버튼 만들고
+// 누르면 작성창 뜨게 (useState False->True , , 조건부 렌더링(버튼누르면))
 
+// 2. 작성창은 title, contents
+// 3. 작성한 내용이 useState에 담기게 . (typing할 때마다 )
+// 4. useState [title, settitle]
+// 5. useState [contents, setcontents]
 
 function AddMenu() {
   const [title, setTitle] = useState("");
@@ -73,7 +78,7 @@ function AddMenu() {
     }
   };
 
-  const [isClicked, setIsClicked] = useState(false);
+  // const [isClicked, setIsClicked] = useState(false);
 
   const storeText = () => {
     localStorage.setItem("title", title);
