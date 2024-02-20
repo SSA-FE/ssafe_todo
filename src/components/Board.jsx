@@ -5,41 +5,33 @@ import NewCardForm from "./NewCardForm";
 import EditCardForm from "./EditCardForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
-const Board = ({ children, type, handleMoveBtnClick }) => {
-  const [cardForm, setCardForm] = useState("");
+const Board = ({ children, cardId,updateCardId,type }) => {
+  const [createMode, setCreateMode] = useState(false);
   const [cards, setCards] = useState(jsonLocalStorage.getItem(type) || []);
-  const [id, setId] = useState(0);
   const [editedCard, setEditedCard] = useState(null);
-
-  const handlePlusBtnClick = () => {
-    setCardForm(<NewCardForm
-      onCancelBtnClick={handleCancelBtnClick}
-      onSubmit={handleFormSubmit}
-    />);
-  };
-
   const handleCancelBtnClick = () => {
-    setCardForm(null);
-  };
+    setCreateMode(false);
+  }; 
   
+  const handlePlusBtnClick = () => {
+    setCreateMode(true);
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const _title = e.target.title.value;
-    const _body = e.target.body.value;
-    const newCard = { id: id, title: _title, body: _body };
-    const nextCards = [...cards, newCard];
-
+    const nextCards = [...cards, { id: cardId.current, title: e.target.title.value, body: e.target.body.value}];
     setCards(nextCards);
     jsonLocalStorage.setItem(type, nextCards);
-    setId(id + 1);
+    updateCardId();
   };
-
+  
+ 
   const onUpdate = (_title, _body) => {
     let nextCards = cards.filter(card=>card.id!==editedCard.id);
     nextCards = nextCards.concat({ id: editedCard.id, title: _title, body: _body })
     setCards(nextCards);
     jsonLocalStorage.setItem(type, nextCards);
-    setCardForm(null);
+    // setCardForm(null);
   };
 
   const handleCloseBtnClick = (cardId) => {
@@ -50,31 +42,37 @@ const Board = ({ children, type, handleMoveBtnClick }) => {
 
   const handleEditBtnClick = (cardId) => {
     const selectedCard = cards.find((card) => card.id === cardId);
-    setCardForm(<EditCardForm
-      onCancelBtnClick={handleCancelBtnClick}
-      editedCard={editedCard}
-      onUpdate={onUpdate}
-    />);
+    // setCardForm(<EditCardForm
+    //   onCancelBtnClick={handleCancelBtnClick}
+    //   editedCard={editedCard}
+    //   onUpdate={onUpdate}
+    // />);
     setEditedCard(selectedCard);
   };
 
-
+ 
   return (
     <div className="board">
       <h2 className="boardTitle">{children}</h2>
       <div>
-        {cards.map((card) => (
+        {cards.map((card,idx) => (
           <Card
-            id={card.id}
+            key={idx}
             work={card}
             handleCloseBtnClick={handleCloseBtnClick}
             handleEditBtnClick={handleEditBtnClick}
-            handleMoveBtnClick={handleMoveBtnClick}
+            // handleMoveBtnClick={handleMoveBtnClick}
             type={type}
+            cards={cards} 
+            setCards={setCards}
           />
         ))}
       </div>
-      {cardForm}
+      {createMode&&(<NewCardForm
+      onCancelBtnClick={handleCancelBtnClick}
+      handleFormSubmit={handleFormSubmit}
+    />)}
+    
       <button onClick={handlePlusBtnClick}>+</button>
     </div>
   );

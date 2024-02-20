@@ -1,39 +1,27 @@
 import "../scss/Template.scss";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 import Board from "./Board";
-import { useState } from "react";
+import { useRef } from "react";
 
-const Template = ({ children }) => {
-  const [startItems, setStartItems] = useState([]);
-  const [endItems, setEndItems] = useState([]);
+const Template = () => {
+  const cardId = useRef(0);
   const boards = [
     {title:"To do 🐣",type:"toDo"},
     {title:"In Progress 🐥",type:"inProgress"},
     {title:"Done 🦅",type:"done"},
   ];
 
-  const handleMoveBtnClick = (id, start, end) => {
-    setStartItems(jsonLocalStorage.getItem(start));
-    setEndItems(jsonLocalStorage.getItem(end));
+  const updateCardId = () => {
+    cardId.current++;
+  }
 
-    const movedItem = jsonLocalStorage
-      .getItem(start)
-      .find((item) => item.id === id);
 
-    const newEndItems = [...endItems, movedItem];
-    setEndItems(newEndItems);
-    jsonLocalStorage.setItem(end, newEndItems);
-
-    const newStartItems = startItems.filter((item) => item.id !== id);
-    setStartItems(newStartItems);
-    jsonLocalStorage.setItem(start, newStartItems);
-  };
 
   return (
     <div className="template">
       <h1 className="title">RoadMap</h1>
       <div className="content">
-        {boards.map(board=><Board type={board.type} handleMoveBtnClick={handleMoveBtnClick}>{board.title}</Board>)}
+        {boards.map((board,idx)=><Board key={idx} type={board.type} cardId={cardId} updateCardId={updateCardId}>{board.title}</Board>)}
       </div>
     </div>
   );

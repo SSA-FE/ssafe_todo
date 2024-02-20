@@ -1,8 +1,9 @@
 import '../scss/NewCardForm.scss';
 
-const NewCardForm = ({ onSubmit, onCancelBtnClick }) => {
+const NewCardForm = ({ onCancelBtnClick,handleFormSubmit,type }) => {
+
   return (
-    <form className="newCardForm" onSubmit={onSubmit}>
+    <form className="newCardForm" onSubmit={handleFormSubmit}>
       <div className="colors">
         <div></div>
       </div>
