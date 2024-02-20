@@ -1,6 +1,6 @@
 import '../scss/NewCardForm.scss';
 
-const NewCardForm = ({ onCancelBtnClick,handleFormSubmit,type }) => {
+const NewCardForm = ({ onCancelBtnClick,handleFormSubmit}) => {
 
   return (
     <form className="newCardForm" onSubmit={handleFormSubmit}>

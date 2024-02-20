@@ -6,15 +6,15 @@ import EditCardForm from "./EditCardForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
 const Board = ({ children, cardId,updateCardId,type }) => {
-  const [createMode, setCreateMode] = useState(false);
+  const [isCreate, setIsCreate] = useState(false);
   const [cards, setCards] = useState(jsonLocalStorage.getItem(type) || []);
-  const [editedCard, setEditedCard] = useState(null);
+
   const handleCancelBtnClick = () => {
-    setCreateMode(false);
+    setIsCreate(false);
   }; 
   
   const handlePlusBtnClick = () => {
-    setCreateMode(true);
+    setIsCreate(true);
   };
 
   const handleFormSubmit = (e) => {
@@ -26,17 +26,10 @@ const Board = ({ children, cardId,updateCardId,type }) => {
   };
   
  
-  const onUpdate = (_title, _body) => {
-    let nextCards = cards.filter(card=>card.id!==editedCard.id);
-    nextCards = nextCards.concat({ id: editedCard.id, title: _title, body: _body })
-    setCards(nextCards);
-    jsonLocalStorage.setItem(type, nextCards);
-  };
- 
   return (
     <div className="board">
       <h2 className="boardTitle">{children}</h2>
-      <div>
+ 
         {cards.map((card,idx) => (
           <Card
             key={idx}
@@ -46,8 +39,8 @@ const Board = ({ children, cardId,updateCardId,type }) => {
             setCards={setCards}
           />
         ))}
-      </div>
-      {createMode&&(<NewCardForm
+
+      {isCreate&&(<NewCardForm
       onCancelBtnClick={handleCancelBtnClick}
       handleFormSubmit={handleFormSubmit}
     />)}
