@@ -1,6 +1,6 @@
 import Card from "./Card";
 import "../scss/Board.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import NewCardForm from "./NewCardForm";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 
@@ -8,6 +8,9 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
   const [isCreate, setIsCreate] = useState(false);
   const [cards, setCards] = useState(jsonLocalStorage.getItem(type) || []);
 
+  useEffect(()=>{
+    setCards(jsonLocalStorage.getItem(type)||[]);
+  },[boards])
   const handleCancelBtnClick = () => {
     setIsCreate(false);
   }; 

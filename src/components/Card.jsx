@@ -25,7 +25,7 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
     const handleEditSubmit = (e) => {
       e.preventDefault();
       let nextCards = cards.filter(e=>e.cardId !==card.cardId);
-      nextCards = nextCards.concat({ cardId: card.cardid, title: title, body: body })
+      nextCards = nextCards.concat({ cardId: card.cardId, title: title, body: body })
       setCards(nextCards);
       jsonLocalStorage.setItem(type, nextCards);
       setIsEdit(false);
@@ -44,6 +44,29 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
     const handleEditCancelBtnClick = () => {
       setIsEdit(false);
     }; 
+
+    const handleMoveBtnClick = (end) => {
+      //현재 배열에서 삭제
+      const movedCard = cards.find((e)=>e.cardId===card.cardId);
+      const nextStartCards = cards.filter(e=>e.cardId !==card.cardId);
+      setCards(nextStartCards);
+      jsonLocalStorage.setItem(type, nextStartCards);
+
+      //도착 배열에서 이 배열을 추가.
+      const endBoard = boards.find((e)=>e.type===end);
+      const nextEndCards = [...endBoard.cards,movedCard];
+      jsonLocalStorage.setItem(end, nextEndCards);
+
+      //Boards에서 변경
+      const nextStartBoard = boards.find((e)=>e.type===type);
+      nextStartBoard.cards=nextStartCards;
+      const nextEndBoard = boards.find((e)=>e.type===end);
+      nextEndBoard.cards=nextEndCards;
+
+      const nextBoards = boards.filter((e)=>e.type!==type && e.type!==end);
+      setBoards([...nextBoards,nextStartBoard,nextEndBoard]);
+      console.log(boards);
+    }
 
   return <>
   {isEdit?
@@ -84,19 +107,19 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
       <h3 className="cardTitle">{card.title}</h3>
       <div
         className="moveTodo"
-        // onClick={() => handleMoveBtnClick(id, type, "toDo")}
+        onClick={() => handleMoveBtnClick("todo")}
       >
         🐣
       </div>
       <div
         className="moveProgress"
-        // onClick={() => handleMoveBtnClick(id, type, "inProgress")}
+        onClick={() => handleMoveBtnClick("inProgress")}
       >
         🐥
       </div>
       <div
         className="moveDone"
-        // onClick={() => handleMoveBtnClick(id, type, "done")}
+        onClick={() => handleMoveBtnClick("done")}
       >
         🦅
       </div>

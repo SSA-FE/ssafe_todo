@@ -1,5 +1,4 @@
 import "../scss/Template.scss";
-import jsonLocalStorage from "../utils/jsonLocalStorage";
 import Board from "./Board";
 import { useRef,useState } from "react";
 
