@@ -4,11 +4,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
-import CardEx from './components/Card/CardEx.jsx'
-import Home from './components/Header/Home.jsx';
+import Home from "./components/Board/BoardToDo.jsx";
 import Menu from "./components/Card/Menu.jsx";
 import AddMenu from "./components/Edit/AddMenu.jsx";
 import { useState } from "react";
+import { AppContextProvider } from "./context/AppContext.jsx";
+import BoardToDo from "./components/Board/BoardToDo.jsx";
 
 //react-scripts 오류 https://thespoiler.tistory.com/21
 
@@ -138,7 +139,7 @@ const IconEdit = styled(FaRegEdit)`
 //   background-color: #d93535;
 // `;
 
-///App.js에 useEffect 쓰기   
+///App.js에 useEffect 쓰기
 ///받은 다음 Menu에다가 props 전달
 /// 전달한 걸 바탕으로 title, contents 라는 이름으로 받은 다음
 /// {title} {contents} 보여줌
@@ -148,98 +149,41 @@ function App() {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <Full>
-      <Header>
-        <IconMoon />
-      </Header>
-      <Boards>
-        <Board>
-          <Title>
-            To do{" "}
-            <span role="img" aria-label="chick">
-              🐥
-            </span>
-          </Title>
-          <CardEx />
-          <MenuView>
-            <h3>Tablet view</h3>
-          </MenuView>
-          <MenuInNote>
-            <IconClose />
-            <IconEdit />
-            <h3>Audio recording in note</h3>
-            Show audio in a note and playback UI
-          </MenuInNote>
-          <MenuInNote>
-            <h3>Bookmark in note</h3>
-            Show rich link UI in a note, and feature to render website
-            screenshot.
-          </MenuInNote>
-          <MenuInNote>
-            <h3>Image viewer</h3>
-            Opens when clicking on the thumbnail in the list or on the image in
-            the note
-          </MenuInNote>
-          {/* <AddMenu /> */}
-          {isClicked ? <AddMenu /> : null}
-          <AddButton onClick={() => setIsClicked(true)}>+</AddButton>
-        </Board>
+    <AppContextProvider>
+      <Full>
+        <Header>
+          <IconMoon />
+        </Header>
+        <Boards>
+          <Board>
+            <Title>
+              To do{" "}
+              <span role="img" aria-label="chick">
+                🐥
+              </span>
+            </Title>
+            <BoardToDo />
+          </Board>
+          <Board>
+            <Title>
+              In Progress{" "}
+              <span role="img" aria-label="chick2">
+                🐣
+              </span>
+            </Title>
+          </Board>
 
-        <Board>
-          <Title>
-            In Progress{" "}
-            <span role="img" aria-label="chick2">
-              🐣
-            </span>
-          </Title>
-          <MenuView>
-            <h3>Mobile view</h3>
-            Functions for both web responsive and native apps. Note: Android and
-            iOS will need unique share icons.
-          </MenuView>
-
-          <MenuView>
-            <h3>Desktop view</h3>
-            PWA for website and native apps. Note: Windows and Mac will need
-            unique share icons.
-          </MenuView>
-
-          <MenuOptions>
-            <h3>Formatting options</h3>
-            Mobile formatting bar expands and collapses when tapping the format
-            icon.
-          </MenuOptions>
-
-          <MenuInNote>
-            <h3>Media in note</h3>
-            Image & video with player UI
-          </MenuInNote>
-        </Board>
-
-        <Board>
-          <Title>
-            Done{" "}
-            <span role="img" aria-label="dove">
-              🕊️
-            </span>
-          </Title>
-          <MenuStoring>
-            <h3>Audio recording</h3>
-            Interface for when recording a new audio note
-          </MenuStoring>
-
-          <MenuStoring>
-            <h3>Bookmarking</h3>
-            Interface for when creating a new link note.
-          </MenuStoring>
-
-          <MenuOptions>
-            <h3>Mobile home screen</h3>
-            Folders, tags, and notes lists are sorted by recent.
-          </MenuOptions>
-        </Board>
-      </Boards>
-    </Full>
+          <Board>
+            <Title>
+              Done{" "}
+              <span role="img" aria-label="dove">
+                🕊️
+              </span>
+            </Title>
+          </Board>
+        </Boards>
+      </Full>
+    </AppContextProvider>
   );
 }
 

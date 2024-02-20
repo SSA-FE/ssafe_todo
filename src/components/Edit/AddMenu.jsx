@@ -83,6 +83,8 @@ function AddMenu() {
   const storeText = () => {
     localStorage.setItem("title", title);
     localStorage.setItem("contents", contents);
+    setTitle("");
+    setContents("");
   };
 
   return (
