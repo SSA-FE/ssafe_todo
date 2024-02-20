@@ -5,7 +5,7 @@ import editIcon from "../assets/edit.svg";
 import jsonLocalStorage from "../utils/jsonLocalStorage";
 import { useState } from "react";
 
-const Card= ({card,cards,setCards,type}) => {
+const Card= ({card,cards,setCards,type,boards,setBoards}) => {
     const [isEdit,setIsEdit] = useState(false);
     const [title, setTitle] = useState(card.title);
     const [body, setBody] = useState(card.body);
@@ -14,6 +14,12 @@ const Card= ({card,cards,setCards,type}) => {
       const nextCards = cards.filter(e=>e.cardId !==card.cardId);
       setCards(nextCards);
       jsonLocalStorage.setItem(type, nextCards);
+
+      const board = boards.find((e)=>e.type===type);
+      board.cards=nextCards;
+      const nextBoards = boards.filter((e)=>e.type!==type);
+      setBoards([...nextBoards,board]);
+      console.log(boards);
     };
 
     const handleEditSubmit = (e) => {
@@ -23,6 +29,12 @@ const Card= ({card,cards,setCards,type}) => {
       setCards(nextCards);
       jsonLocalStorage.setItem(type, nextCards);
       setIsEdit(false);
+
+      const board = boards.find((e)=>e.type===type);
+      board.cards=nextCards;
+      const nextBoards = boards.filter((e)=>e.type!==type);
+      setBoards([...nextBoards,board]);
+      console.log(boards);
     };
 
     const handleEditBtnClick = () => {

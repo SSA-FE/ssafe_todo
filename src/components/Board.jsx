@@ -6,9 +6,7 @@ import jsonLocalStorage from "../utils/jsonLocalStorage";
 
 const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
   const [isCreate, setIsCreate] = useState(false);
-
   const [cards, setCards] = useState(jsonLocalStorage.getItem(type) || []);
-  // const [cards, setCards] = useState(board.cards||[]);
 
   const handleCancelBtnClick = () => {
     setIsCreate(false);
@@ -27,7 +25,6 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
     jsonLocalStorage.setItem(type, nextCards);
 
     const board = boards.find((e)=>e.type===type);
-    console.log("현재보드:",board);
     board.cards=nextCards;
     const nextBoards = boards.filter((e)=>e.type!==type);
     setBoards([...nextBoards,board]);
@@ -46,6 +43,8 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
             type={type}
             cards={cards} 
             setCards={setCards}
+            boards ={boards}
+            setBoards = {setBoards}
           />
         ))}
 
