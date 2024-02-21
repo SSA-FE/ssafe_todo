@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-export const InputModal = ({ closeModal, status }) => {
+export const AddTicketModal = ({ closeModal, status }) => {
     const { todos } = useSelector((state) => state.todos);
     const { progress } = useSelector((state) => state.progress);
     const { done } = useSelector((state) => state.done);

@@ -2,23 +2,27 @@ import { useDispatch } from 'react-redux';
 
 import classNames from 'classnames';
 import { TicketContainer } from '../../layout/TicketContainer';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { TicketMoveToggle } from './TicketMoveToggle';
+import { UpdateTicketModal } from '../Modal/UpdateTicketModal';
 
 export const Ticket = ({ status, todo }) => {
   const [isTicketHover, setIsTicketHover] = useState(false);
+  const [isEditModal, setIsEditModal] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch({ type: `DELETE_${status}`, id: todo.id });
+    window.confirm('할 일을 삭제하시겠습니까?') &&
+      dispatch({ type: `DELETE_${status}`, id: todo.id });
   };
 
-  const handleEdit = () => {
-    dispatch({
-      type: `UPDATE_${status}`,
-      id: todo.id,
-      data: { title: '수정', content: '수정' },
-    });
+  const openEditModal = () => {
+    setIsEditModal(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModal(false);
   };
 
   const handleMoustIn = () => {
@@ -30,117 +34,140 @@ export const Ticket = ({ status, todo }) => {
   };
 
   return (
-    <TicketContainer
-      className={classNames(
-        {
-          'bg-DONE': status === 'DONE',
-          'bg-PROGRESS': status === 'PROGRESS',
-          'bg-TODO': status === 'TODO',
-        },
+    <Fragment>
+      <TicketContainer
+        className={classNames(
+          {
+            'bg-DONE': status === 'DONE',
+            'bg-PROGRESS': status === 'PROGRESS',
+            'bg-TODO': status === 'TODO',
+          },
 
-        'py-2',
+          'py-2',
 
-        'box-border',
+          'box-border',
 
-        'mb-4',
+          'mb-4',
 
-        'relative'
-      )}
-      onMouseOver={handleMoustIn}
-      onMouseOut={handleMoustOut}
-    >
-      {isTicketHover && (
+          'relative'
+        )}
+        onMouseOver={handleMoustIn}
+        onMouseOut={handleMoustOut}
+      >
+        {isTicketHover && (
+          <div
+            className={classNames(
+              'w-full',
+
+              'box-border',
+
+              'absolute',
+              'bottom-8',
+
+              'flex',
+
+              'justify-center',
+              'items-center'
+            )}
+          >
+            {status === 'TODO' ? (
+              <TicketMoveToggle move="PROGRESS" status={status} todo={todo} />
+            ) : status === 'PROGRESS' ? (
+              <>
+                <TicketMoveToggle move="TODO" status={status} todo={todo} />
+                <TicketMoveToggle move="DONE" status={status} todo={todo} />
+              </>
+            ) : (
+              <TicketMoveToggle move="PROGRESS" status={status} todo={todo} />
+            )}
+          </div>
+        )}
         <div
           className={classNames(
             'w-full',
-
-            'box-border',
-
-            'absolute',
-            'bottom-8',
+            'pl-6',
+            'pr-4',
 
             'flex',
-
-            'justify-center',
+            'justify-end',
             'items-center'
           )}
         >
-          {status === 'TODO' ? (
-            <TicketMoveToggle move="PROGRESS" status={status} todo={todo} />
-          ) : status === 'PROGRESS' ? (
-            <>
-              <TicketMoveToggle move="TODO" status={status} todo={todo} />
-              <TicketMoveToggle move="DONE" status={status} todo={todo} />
-            </>
-          ) : (
-            <TicketMoveToggle move="PROGRESS" status={status} todo={todo} />
-          )}
+          <img
+            src="asset/icon/edit.png"
+            alt="edit"
+            className={classNames(
+              'w-4',
+              'h-4',
+              'mr-4',
+
+              'cursor-pointer'
+            )}
+            onClick={openEditModal}
+          />
+          <img
+            src="asset/icon/close.png"
+            alt="del"
+            className={classNames(
+              'w-4',
+              'h-4',
+
+              'cursor-pointer',
+              'hover:opacity-70'
+            )}
+            onClick={handleDelete}
+          />
         </div>
-      )}
-      <div
-        className={classNames(
+
+        {/* 제목 */}
+        <div
+          className={classNames(
+            'py-2',
+            'pl-6',
+            'pr-4',
+
+            'font-bold',
+            'text-xl'
+          )}
+        >
+          {todo.title}
+        </div>
+
+        {/* 내용 */}
+        <div
+          className={classNames(
+            'pb-2',
+            'pl-6',
+            'pr-4',
+
+            'font-light',
+            'text-[0.875rem]'
+          )}
+        >
+          {todo.content}
+        </div>
+      </TicketContainer>
+      {isEditModal && (
+        <div className={classNames(
           'w-full',
-          'pl-6',
-          'pr-4',
+          'h-full',
 
-          'flex',
-          'justify-end',
-          'items-center'
-        )}
-      >
-        <img
-          src="asset/icon/edit.png"
-          alt="edit"
-          className={classNames(
-            'w-4',
-            'h-4',
-            'mr-4',
+          'absolute',
+          'top-0',
+          'left-0',
 
-            'cursor-pointer'
-          )}
-          onClick={handleEdit}
-        />
-        <img
-          src="asset/icon/close.png"
-          alt="del"
-          className={classNames(
-            'w-4',
-            'h-4',
+          'bg-black',
+          'bg-opacity-50',
 
-            'cursor-pointer',
-            'hover:opacity-70'
-          )}
-          onClick={handleDelete}
-        />
-      </div>
+          'cursor-pointer',
+          
+          'z-40'
+        )} onClick={closeEditModal}/>
+      )}
+      {isEditModal && (
+        <UpdateTicketModal closeModal={closeEditModal} status={status} todo={todo}/>
+      )}
+    </Fragment>
 
-      {/* 제목 */}
-      <div
-        className={classNames(
-          'py-2',
-          'pl-6',
-          'pr-4',
-
-          'font-bold',
-          'text-xl'
-        )}
-      >
-        {todo.title}
-      </div>
-
-      {/* 내용 */}
-      <div
-        className={classNames(
-          'pb-2',
-          'pl-6',
-          'pr-4',
-
-          'font-light',
-          'text-[0.875rem]'
-        )}
-      >
-        {todo.content}
-      </div>
-    </TicketContainer>
   );
 };

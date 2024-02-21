@@ -51,7 +51,7 @@ function App() {
         'justify-around',
 
         'max-sm:flex-col',
-        'max-sm:justify-center',
+        'max-sm:items-center',
         'max-sm:gap-y-8'
       )}>
         {

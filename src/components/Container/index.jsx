@@ -1,9 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { BlackContainer } from "../../layout/BlackContainer"
 import { Ticket } from "../Ticket"
 import classNames from 'classnames';
 import { Fragment, useEffect, useState } from "react";
-import { InputModal } from "../InputModal";
+import { AddTicketModal } from "../Modal/AddTicketModal";
 
 const MATCH_STATUS = {
     'To do': 'TODO',
@@ -20,14 +20,15 @@ export const Container = (props) => {
     const [isAddModal, setIsAddModal] = useState(false);
 
     useEffect(() => {
-        setContainerStatus(MATCH_STATUS[props.status])
-    }, [])
+        const status = props.status;
+        setContainerStatus(MATCH_STATUS[status])
+    }, [props.status])
 
-    const openModal = () => {
+    const openAddModal = () => {
         setIsAddModal(true);
     }
 
-    const closeModal = () => {
+    const closeAddModal = () => {
         setIsAddModal(false);
     }
 
@@ -74,7 +75,7 @@ export const Container = (props) => {
 
                 </div>
 
-                <div onClick={openModal} className={classNames(
+                <div onClick={openAddModal} className={classNames(
                     'w-full',
                     'min-h-[32px]',
 
@@ -114,9 +115,9 @@ export const Container = (props) => {
                     'cursor-pointer',
 
                     'z-40'
-                )} onClick={closeModal}/>
+                )} onClick={closeAddModal}/>
             )}
-            {isAddModal && <InputModal closeModal={closeModal} status={containerStatus}/>}
+            {isAddModal && <AddTicketModal closeModal={closeAddModal} status={containerStatus}/>}
         </Fragment>
 
     )
