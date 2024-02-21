@@ -1,18 +1,19 @@
 import "../scss/Template.scss";
+import jsonLocalStorage from "../utils/jsonLocalStorage";
 import Board from "./Board";
 import { useRef,useState } from "react";
 
 const Template = () => {
-  const cardId = useRef(0);
+  const cardId = useRef(jsonLocalStorage.getItem("cardId")||0);
   const category =[
     {type:"todo", title:"To do 🐣"},
     {type:"inProgress", title:"InProgress 🐥"},
     {type:"done", title:"Done 🦅"}
   ]
   const [boards,setBoards] = useState([
-    {type:"todo", cards:[]},
-    {type:"inProgress", cards:[]},
-    {type:"done", cards:[]}
+    {type:"todo", cards:jsonLocalStorage.getItem("todo")||[]},
+    {type:"inProgress", cards:jsonLocalStorage.getItem("inProgress")||[]},
+    {type:"done", cards:jsonLocalStorage.getItem("done")||[]}
   ]);
 
   const updateCardId = () => {

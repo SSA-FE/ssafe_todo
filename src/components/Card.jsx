@@ -6,7 +6,12 @@ import jsonLocalStorage from "../utils/jsonLocalStorage";
 import { useState } from "react";
 import EditCardForm from "./EditCardForm";
 
-const Card= ({card,cards,setCards,type,boards,setBoards}) => {
+const Card= ({card,cards,setCards,type,boards,setBoards,setIsCreate}) => {
+  const btnCategory =[
+    {type:"todo", title:"🐣"},
+    {type:"inProgress", title:"🐥"},
+    {type:"done", title:"🦅"}
+  ]
     const [isEdit,setIsEdit] = useState(false);
 
     const handleRemoveBtnClick = () => {
@@ -22,18 +27,19 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
 
     const handleEditBtnClick = () => {
       setIsEdit(true);
+      setIsCreate(false);
     };
 
     const handleMoveBtnClick = (end) => {
       //현재 배열에서 삭제
       const movedCard = cards.find((e)=>e.cardId===card.cardId);
-      const nextStartCards = cards.filter(e=>e.cardId !==card.cardId);
+      const nextStartCards = cards.filter(e=>e.cardId !==card.cardId).sort((a, b) =>(a.cardId - b.cardId));
       setCards(nextStartCards);
       jsonLocalStorage.setItem(type, nextStartCards);
 
       //도착 배열에서 이 배열을 추가.
       const endBoard = boards.find((e)=>e.type===end);
-      const nextEndCards = [...endBoard.cards,movedCard];
+      const nextEndCards = [...endBoard.cards,movedCard].sort((a, b) =>(a.cardId - b.cardId));
       jsonLocalStorage.setItem(end, nextEndCards);
 
       //Boards에서 변경
@@ -52,35 +58,16 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
   :
     <div className="card" style={{backgroundColor:card.color}}>
       <div className="cardBtns">
-      <button onClick={handleEditBtnClick}>
-          <img src={editIcon} alt="X"></img>
+        {btnCategory.filter(e=>e.type!==type).map((e, idx) => (<div key={idx} onClick={() => handleMoveBtnClick(e.type)}>{e.title}</div>))}
+        <button onClick={handleEditBtnClick}>
+            <img src={editIcon} alt="X"></img>
         </button>
         <button onClick={handleRemoveBtnClick}>
           <img src={closeIcon} alt="X"></img>
         </button>
-      </div>
+      </div>  
       <h3 className="cardTitle">{card.title}</h3>
-      {/* 맵처리 가능할 듯 */}
-      <div
-        className="moveTodo"
-        onClick={() => handleMoveBtnClick("todo")}
-      >
-        🐣
-      </div>
-      <div
-        className="moveProgress"
-        onClick={() => handleMoveBtnClick("inProgress")}
-      >
-        🐥
-      </div>
-      <div
-        className="moveDone"
-        onClick={() => handleMoveBtnClick("done")}
-      >
-        🦅
-      </div>
-
-      {card.body ? <div className="cardBody">{card.body}</div> : null}
+      {card.body && <div className="cardBody">{card.body}</div>}
     </div>}
     </>
 };

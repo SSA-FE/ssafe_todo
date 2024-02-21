@@ -17,13 +17,12 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
     setIsCreate(true);
   };
 
-
   return (
     <div className="board">
       <h2 className="boardTitle">{children}</h2>
- 
         {cards.map((card,idx) => (
           <Card
+            setIsCreate={setIsCreate}
             key={idx}
             card={card}
             type={type}
@@ -44,9 +43,9 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
       setCards={setCards}
       setBoards ={setBoards}
     />)}
-    
-      <button onClick={handlePlusBtnClick}>+</button>
+     <button className="plusBtn" onClick={handlePlusBtnClick}>+</button>
     </div>
+   
   );
 };
 

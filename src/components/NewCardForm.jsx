@@ -18,12 +18,12 @@ const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,board
 
   const handleFormSubmit = (e) => {
   e.preventDefault();
-  const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value, color:color}];
+  const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value, color:color}].sort((a, b) =>a.cardId - b.cardId);
   setCards(nextCards);
   
   updateCardId();
   jsonLocalStorage.setItem(type, nextCards);
-
+  jsonLocalStorage.setItem("cardId",cardId.current);
   const board = boards.find((e)=>e.type===type);
   board.cards=nextCards;
   const nextBoards = boards.filter((e)=>e.type!==type);
