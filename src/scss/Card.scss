@@ -1,6 +1,5 @@
 .card{
     position:relative;
-    background: rgba(118, 120, 209, 1);
     width: 320px;
     padding:24px;
     margin-top:16px;
@@ -26,26 +25,27 @@
     min-height:68px;
     color:rgba(255, 255, 255, 0.75);
 }
-.cardBtns{
+.cardBtns {
     position:absolute;
     text-align: right;
     top: 14px;
     left:270px;
+    button{
+        background-color: transparent;
+        padding:0;
+        text-align: center;
+        border:none;
+        cursor: pointer;
+        width: 15px;
+        text-align: center;
+        margin-right: 8px;
+        img{
+            width: 100%;
+            vertical-align: middle;
+        }
+    }
 }
-.cardBtns > button{
-    background-color: transparent;
-    padding:0;
-    text-align: center;
-    border:none;
-    cursor: pointer;
-    width: 15px;
-    text-align: center;
-    margin-right: 8px;
-}
-.cardBtns > button >img{
-    width: 100%;
-    vertical-align: middle;
-}
+
 .moveTodo, .moveProgress, .moveDone{
     display:inline;
     margin-left:10px;
