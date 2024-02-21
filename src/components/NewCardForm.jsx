@@ -23,7 +23,7 @@ const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,board
   
   updateCardId();
   jsonLocalStorage.setItem(type, nextCards);
-
+  jsonLocalStorage.setItem("cardId",cardId.current);
   const board = boards.find((e)=>e.type===type);
   board.cards=nextCards;
   const nextBoards = boards.filter((e)=>e.type!==type);
