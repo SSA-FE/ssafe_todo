@@ -11,3 +11,14 @@ html {
     --webkit-font-smoothing: antialiased;
     --moz-osx-font-smoothing: grayscale;
 }
+
+.scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+

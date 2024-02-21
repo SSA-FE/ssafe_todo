@@ -42,26 +42,26 @@ export const Container = (props) => {
                 'gap-y-4',
 
 
+            )}>                    <div className={classNames(
+                'w-full',
+                'text-[2.3rem]',
+                'font-bold',
+
+                'mb-2'
             )}>
+                    <span>{props.status}</span>
+                </div>
                 <div className={classNames(
                     'w-full',
+                    'max-h-[500px]',
 
                     'flex',
                     'flex-col',
                     'items-center',
 
-                    // 'overflow-y-scroll',
-                    // 'overflow-x-hidden', // x축 스크롤 제거
+                    'scroll'
                 )}>
-                    <div className={classNames(
-                        'w-full',
-                        'text-[2.3rem]',
-                        'font-bold',
 
-                        'mb-2'
-                    )}>
-                        <span>{props.status}</span>
-                    </div>
 
                     {
                         containerStatus === 'TODO' ? todos.map((todo, index) => (
@@ -115,9 +115,9 @@ export const Container = (props) => {
                     'cursor-pointer',
 
                     'z-40'
-                )} onClick={closeAddModal}/>
+                )} onClick={closeAddModal} />
             )}
-            {isAddModal && <AddTicketModal closeModal={closeAddModal} status={containerStatus}/>}
+            {isAddModal && <AddTicketModal closeModal={closeAddModal} status={containerStatus} />}
         </Fragment>
 
     )
