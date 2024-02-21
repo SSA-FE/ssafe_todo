@@ -66,14 +66,14 @@ export const Ticket = ({ status, todo }) => {
           )}
         >
           {status === 'TODO' ? (
-            <TicketMoveToggle status="PROGRESS" todo={todo} />
+            <TicketMoveToggle move="PROGRESS" status={status} todo={todo} />
           ) : status === 'PROGRESS' ? (
             <>
-              <TicketMoveToggle status="TODO" todo={todo} />
-              <TicketMoveToggle status="DONE" todo={todo} />
+              <TicketMoveToggle move="TODO" status={status} todo={todo} />
+              <TicketMoveToggle move="DONE" status={status} todo={todo} />
             </>
           ) : (
-            <TicketMoveToggle status="PROGRESS" todo={todo} />
+            <TicketMoveToggle move="PROGRESS" status={status} todo={todo} />
           )}
         </div>
       )}

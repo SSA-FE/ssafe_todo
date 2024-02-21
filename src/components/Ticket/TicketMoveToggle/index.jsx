@@ -1,11 +1,19 @@
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-export const TicketMoveToggle = ({ status, todo }) => {
+export const TicketMoveToggle = ({ move, status, todo }) => {
   const dispatch = useDispatch();
 
-  const handleMove = (status) => {
-    dispatch({ type: `MOVE_${status}`, id: todo.id });
+  const handleMove = () => {
+    dispatch({
+      type: `DELETE_${status}`,
+      id: todo.id,
+    });
+
+    dispatch({
+      type: `ADD_${move}`,
+      data: todo,
+    });
   };
 
   return (
@@ -28,9 +36,9 @@ export const TicketMoveToggle = ({ status, todo }) => {
 
         'cursor-pointer'
       )}
-      onClick={() => handleMove(status)}
+      onClick={() => handleMove()}
     >
-      {status}
+      {move}
     </div>
   );
 };
