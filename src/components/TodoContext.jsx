@@ -10,17 +10,12 @@ export const TodoProvider = ({ children }) => {
 
   useEffect(() => {
     const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-      setTodos(savedTodos);
   }, [todos]);
   useEffect(() => {
     const savedDone = JSON.parse(localStorage.getItem('todoDone')) || [];
-      setDone(savedDone); 
-  
   }, [todoDone]);
   useEffect(() => {
-    const savedProgress = JSON.parse(localStorage.getItem('todoProgress')) || [];
-      setProgress(savedProgress);
-    
+    const savedProgress = JSON.parse(localStorage.getItem('todoProgress')) || [];    
   }, [todoProgress]);
   const addTodo = () => {
     const newTodo = { id: uuidv4(), title: '', content: '', isEdit: true, color: 'red' };
