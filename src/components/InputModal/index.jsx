@@ -12,8 +12,19 @@ export const InputModal = ({ closeModal, status }) => {
 
     const dispatch = useDispatch();
     const handleAddTicket = () => {
+        if (title === '' || content === '') {
+            alert('제목과 내용을 모두 입력해 주세요👺');
+            return;
+        }
+
         const data = status === 'TODO' ? todos : status === 'PROGRESS' ? progress : done;
-        dispatch({ type: `ADD_${status}`, data: { id: data.length + 1, title: '제목', content: '내용' } })
+        dispatch({
+            type: `ADD_${status}`, data: {
+                id: data.length + 1,
+                title: title, content: content
+            }
+        })
+        closeModal();
     }
 
     return (
@@ -21,7 +32,8 @@ export const InputModal = ({ closeModal, status }) => {
             'w-[600px]',
             'h-[300px]',
 
-            'p-8',
+            'py-4',
+            'px-8',
 
             'absolute',
             'top-[50%]',
@@ -30,23 +42,106 @@ export const InputModal = ({ closeModal, status }) => {
             'translate-x-[-50%]',
             'translate-y-[-50%]',
 
-            'bg-white',
+            'bg-[#f5f5f5]',
 
             'rounded-md',
 
             'z-50',
         )}>
             {/* header */}
-            <div></div>
+            <div className={classNames(
+                'w-full',
 
-            {/* title */}
-            <div></div>
+                'py-2',
+
+                'flex',
+                'justify-between',
+                'items-center',
+
+                'text-[1.5rem]',
+            )}>
+                <div className={classNames(
+                    'font-bold',
+                )}>할 일을 입력해 주세요✅</div>
+
+                <div className={classNames(
+                    'flex',
+                    'items-center',
+                    'justify-center',
+
+                    'cursor-pointer',
+                    'hover:opacity-60',
+                )}>
+                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} />
+                </div>
+            </div>
+
+            <input className={classNames(
+                'w-full',
+
+                'py-2',
+                'px-4',
+                'mb-4',
+
+                'box-border',
+
+                'rounded-md',
+
+            )} type="text" value={title} placeholder='제목' onChange={(e) => setTitle(e.target.value)} />
+
 
             {/* content */}
-            <div></div>
+
+            <textarea className={classNames(
+                'w-full',
+
+                'py-2',
+                'px-4',
+                'mb-4',
+
+                'box-border',
+
+                'rounded-md',
+                
+                'resize-none',
+            )} value={content} placeholder='내용' onChange={(e) => setContent(e.target.value)} />
+
 
             {/* button */}
-            <div></div>
+            <div className={classNames(
+                'w-full',
+                'flex',
+                'justify-center',
+                'gap-x-4',
+
+            )}>
+                <button onClick={handleAddTicket} className={classNames(
+                    'w-1/2',
+                    'h-12',
+
+                    'bg-black',
+                    'text-white',
+
+                    'font-bold',
+
+                    'rounded-md',
+
+                    'hover:bg-opacity-80',
+                )}>추가</button>
+                <button onClick={closeModal} className={classNames(
+                    'w-1/2',
+                    'h-12',
+
+                    'bg-gray-300',
+                    'text-white',
+
+                    'font-bold',
+
+                    'rounded-md',
+
+                    'hover:bg-opacity-80',
+                )}>취소</button>
+            </div>
         </div>
     )
 }
