@@ -13,7 +13,7 @@ const EditCardForm = ({card,cards,setCards,type,boards,setBoards, setIsEdit}) =>
 
   const [title, setTitle] = useState(card.title);
   const [body, setBody] = useState(card.body);
-  const [color, setColor] = useState(btnColor.mintBtn);
+  const [color, setColor] = useState(card.color);
     //TODO: 클릭시 테두리
   const handleColorBtnClick = (col) =>{
           setColor(btnColor[col]);
