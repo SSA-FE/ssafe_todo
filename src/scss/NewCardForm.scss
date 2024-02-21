@@ -1,3 +1,8 @@
+$mint:rgba(0, 178, 148, 1);
+$red:rgba(217, 53, 53, 1);
+$blue:rgba(48, 127, 226, 1);
+$purple:rgba(118, 120, 209, 1);
+
 .newCardForm{
     position:relative;
     width: 320px;
@@ -57,14 +62,14 @@
     height: 20px;
 }
 .mintBtn{
-    background-color:rgba(0, 178, 148, 1);
+    background-color:$mint;
 }
 .redBtn{
-    background-color:rgba(217, 53, 53, 1);
+    background-color:$red;
 }
 .blueBtn{
-    background-color:rgba(48, 127, 226, 1);
+    background-color:$blue;
 }
 .purpleBtn{
-    background-color:rgba(118, 120, 209, 1);
+    background-color:$purple;
 }

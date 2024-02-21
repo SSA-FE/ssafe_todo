@@ -50,7 +50,7 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
   {isEdit?
    <EditCardForm card={card} cards={cards} setCards={setCards} type={type} boards={boards} setBoards={setBoards} setIsEdit={setIsEdit} />
   :
-    <div className="card">
+    <div className="card" style={{backgroundColor:card.color}}>
       <div className="cardBtns">
       <button onClick={handleEditBtnClick}>
           <img src={editIcon} alt="X"></img>

@@ -1,11 +1,25 @@
 import '../scss/NewCardForm.scss';
 import jsonLocalStorage from '../utils/jsonLocalStorage';
-
+import { useState } from 'react';
 const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,boards,setBoards}) => {
+  const btnColor = {
+    mintBtn:"rgba(0, 178, 148, 1)",
+    redBtn:"rgba(217, 53, 53, 1)",
+    blueBtn:"rgba(48, 127, 226, 1)",
+    purpleBtn:"rgba(118, 120, 209, 1)",
+  };
+  const [color, setColor] = useState(btnColor["mintBtn"]);
+  
+  // console.log(Object.keys(btnColor).map(color=>console.log(color)));
+  
+  //TODO: 클릭시 테두리
+  const handleColorBtnClick = (col) =>{
+    setColor(btnColor[col]);
+  }
 
    const handleFormSubmit = (e) => {
     e.preventDefault();
-    const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value}];
+    const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value, color:color}];
     setCards(nextCards);
     
     updateCardId();
@@ -24,13 +38,11 @@ const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,board
     setIsCreate(false);
   }; 
 
+
   return (
     <form className="newCardForm" onSubmit={handleFormSubmit}>
       <div className="colors">
-        <div class="mintBtn"></div>
-        <div class="redBtn"></div>
-        <div class="blueBtn"></div>
-        <div class="purpleBtn"></div>
+        {Object.keys(btnColor).map((col,idx) => {return <div key={idx} className={col} onClick={()=>handleColorBtnClick(col)}></div>})}
       </div>
       <input
         className="inputTitle"
