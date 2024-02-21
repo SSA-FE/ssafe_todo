@@ -22,7 +22,7 @@ const EditCardForm = ({card,cards,setCards,type,boards,setBoards, setIsEdit}) =>
   const handleEditSubmit = (e) => {
     e.preventDefault();
     let nextCards = cards.filter(e=>e.cardId !==card.cardId);
-    nextCards = nextCards.concat({ cardId: card.cardId, title: title, body: body, color:color })
+    nextCards = nextCards.concat({ cardId: card.cardId, title: title, body: body, color:color }).sort((a, b) =>(a.cardId - b.cardId));
     setCards(nextCards);
     jsonLocalStorage.setItem(type, nextCards);
     setIsEdit(false);

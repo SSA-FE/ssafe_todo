@@ -18,7 +18,7 @@ const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,board
 
   const handleFormSubmit = (e) => {
   e.preventDefault();
-  const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value, color:color}];
+  const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value, color:color}].sort((a, b) =>a.cardId - b.cardId);
   setCards(nextCards);
   
   updateCardId();

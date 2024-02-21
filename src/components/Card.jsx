@@ -27,13 +27,13 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
     const handleMoveBtnClick = (end) => {
       //현재 배열에서 삭제
       const movedCard = cards.find((e)=>e.cardId===card.cardId);
-      const nextStartCards = cards.filter(e=>e.cardId !==card.cardId);
+      const nextStartCards = cards.filter(e=>e.cardId !==card.cardId).sort((a, b) =>(a.cardId - b.cardId));
       setCards(nextStartCards);
       jsonLocalStorage.setItem(type, nextStartCards);
 
       //도착 배열에서 이 배열을 추가.
       const endBoard = boards.find((e)=>e.type===end);
-      const nextEndCards = [...endBoard.cards,movedCard];
+      const nextEndCards = [...endBoard.cards,movedCard].sort((a, b) =>(a.cardId - b.cardId));
       jsonLocalStorage.setItem(end, nextEndCards);
 
       //Boards에서 변경
