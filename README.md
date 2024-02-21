@@ -1,91 +1,105 @@
-# Ssafe To Do List
-- **보드** : 일정을 올려둘 보드 (TO DO / IN PROGRESS / DONE)
-    - 일정 추가(Create) 기능
-        - ~~추가 : + 누르면 하단에 추가 블록 올라옴~~
-        - 일정 4개 title만 남기고 위로 밀며 올라옴
-        - ~~추가 블록 너비 = 최대 블록 너비~~
-        - 일정이 최대 높이를 넘을 경우 스크롤
-        - ~~일정 추가 시 색상 지정 가능, defalut 색상 지정 필요~~
-        - **~~사이트를 껐다 켜도 일정이 유지~~**
-        
-    - 일정 정렬 기능
-        - 시간순, 색상순 선택 가능
-    
-    - DnD로 다른 보드로 일정 이동 기능
+# React To Do List
 
-- **일정**
-    - ~~일정 수정, 삭제 기능~~
-        - 수정 : 추가 Form으로 바뀌고 글 수정
-        
-    - 생성된 일정에 마우스 올리면 양 옆에  Move 버튼 생성, 버튼 외의 위치에 있을 경우 손 모양으로 커서 바꾸기
-        - Move 버튼 누른 방향으로 일정 이동 → 설정해둔 정렬 기준으로 이동
-        - 손 모양일 때, 1초간 클릭 유지 시 일정 DnD 가능
-            - DnD로 바꾼 위치는 정렬 무시
+<br>
 
-- **Etc**
-    - 라이트 모드 / 다크 모드
-        - 달 아이콘 : 토글 시, 다크 모드로 변하며 태양 아이콘으로 변경
-        - 태양 아이콘 : 토글 시, 라이트 모드로 변하며 달 아이콘으로 변경
-        - **다크**
-            - text : #d9deea
-            - back :  #0a1626
-            - border : #17233b
-            - colorChart :
-                - #C674CA
-                - #94AAF8
-                - #9AC9C4
-                - #E06D68
-        
-        - **라이트**
-        - **디폴트**
-            - color : #D4D4D4
-            
-    - 스켈레톤 UI
-    
-    - 보드마다 All Clear 기능 추가
-      
+**언어 및 라이브러리**
+
+<div style="display:flex; margin-bottom:20px;">
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
+
+<img src="https://img.shields.io/badge/🐻 Zustand-3578E5?style=for-the-badge">
+
+</div>
+
+**설계 및 환경**
+
+<div style="display:flex; margin-bottom:20px;">
+
+<img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
+
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
+</div>
+
 <br><br>
 
-## **버그 & 고칠 것**
+## ⚙ 기능
 
-- **ReWrite**
-    - 기능
-        - 수정하는 form이 ReWriteForm으로 변하는 것이 아니고 아래 창이 뜨는 형식임
-            
-            → form → ReWriteForm 으로 변하도록 고치기
-            
-        - 현재 수정 방식 :  이전 데이터를 지우고 새로운 데이터를 다시 만들어주는 방식
-            
-            → 원래 있던 자리에 있지 않고 수정 후 데이터가 맨 아래로 내려옴
-            
-        - 수정 전 색상이 선택돼있는 상태로 창이 켜지도록 수정
-    
-- **Add**
-    - 기능
-        - default 색상으로 설정하는 기능 추가하기
-            
-            → 선택돼있는 색상을 다시 클릭해서 아무 색도 선택돼있지 않은 상태가 되면 default 색상으로 표시
-            
-    
-    - UI
-        - 색상을 먼저 선택하고 다른곳을 클릭하면 색상 선택이 풀림(값은 저장돼있음)
-            
-            → 다른 곳 클릭해도 유지되도록 설정
-            
-    
-- **UI**
-    - Board 최대 높이 이상으로 요소가 들어오면 그냥 튀어나옴
-        
-        → 범위를 넘으면 form요소는 스크롤 구현, add요소는 form을 title      만 남게 접고 (최대 4개) 띄워주기
-        
-    - 이벤트 발생 시 애니메이션 추가
-        - 요소 추가 시 높낮이 부드럽게 변화
-        - 모드 실행 시 부드럽게 변화
-    - 일정 입력에서 줄바꿈 한 것 적용 안됨. 
-    작성창에서 작성한 그대로 form에 추가되면 좋을 듯
-        
-        
-    
-- **ETC**
-    - 라이트 모드 추가하기
-    - DnD
+**보드(Board)** : 일정을 올려둘 보드 (TO DO / IN PROGRESS / DONE)
+
+- 일정 추가(Create) 기능 - 보드의 ⊕ 버튼을 누르면 Add Card 생성
+  <br><br>
+
+**일정(Card)** : 일정을 입력하고 표시하는 카드 (Add Card / Card / Rewrite Card)
+
+- 생성(Add Card) 기능
+
+  - Title, Text 입력창
+  - Card 색상 선택
+  - Create 버튼 클릭 시, Card 생성
+  - x 버튼 클릭 시, Add Card 종료
+
+- 일정(Card)
+
+  - Add Card에서 입력한 정보를 반영한 Card
+  - 새로고침 이후에도 데이터 유지
+  - 수정 버튼 클릭 시, Rewrite Card 생성
+  - x 버튼 클릭 시, Card 삭제 (스토리지에서도 삭제)
+
+- 수정(Rewrite Card) 기능
+  - Add Card와 같은 기능
+  - 수정 전 Title, Text가 미리 작성돼있음.
+  - Go 버튼 클릭 시, Card 수정
+  - x 버튼 클릭 시, Rewrite Card 종료
+
+<br><br>
+
+## 📍 추가 구현 계획
+
+**보드(Board)**
+
+- 기능
+
+  - id 순서로 정렬 → default
+  - DnD (Drag and Drop) → 정렬 무시
+  - 다크 / 라이트 모드
+
+- UI
+  - Board 위치 상단 고정
+  - Board 범위를 초과한 Card요소는 스크롤
+  - Add Card 실행 시, Add Card 앞에는 최대 4개의 Card만 최신순으로 표시
+
+<br><br>
+
+**일정(Card)** <br><br>
+다크 / 라이트 모드
+
+- 생성(Add Card)
+
+  - Card 색상 선택 : <br>
+
+    1. 아무 색도 선택돼있지 않으면 default 색상으로 표시 <br>
+    2. 색상을 선택한 채로 다른 곳 클릭해도 선택 CSS 효과 유지 <br>
+    3. 이미 선택된 색상 클릭 시, 선택 해제 <br>
+
+  - Text 입력 창 : <br>
+    입력창에서 적용한 줄바꿈 Card에도 똑같이 보이게 적용
+
+- 수정(Rewrite Card)
+  - 수정할 Card가 Rewrite Card로 변하는 방식으로 수정
+  - 수정 전 설정한 색상이 선택된 채로 Rewrite Card 실행
+
+<br><br>
+
+## 🛠 리팩토링 계획
+
+- 함수, 변수명 직관적으로 수정
+- 함수, 변수명 컨벤션에 맞게 수정
+- 중복된 CSS 코드 수정
+- 빈 태그 샐프 클로징 태그로 변경
+- svg 파일 컴포넌트로 사용
+- props 적용 가능한 CSS 요소에 props 적용
+- 컬러 팔레트 생성해서 사용
