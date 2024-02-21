@@ -1,16 +1,25 @@
-.WorkContainer{
+.board{
+    display: block;
     width: 368px;
     min-height: 10px;
+    height: 100%;
     padding: 24px;
     border-radius: 16px;
     gap: 16px;
     background-color: rgba(38, 38, 38, 1);
     color:#FFFFFF;
 }
-.containerTitle{
+.boardTitle{
     font-size: 37px;
     font-weight: 700;
     line-height: 44px;
     letter-spacing: 0em;
     text-align: left;
+}
+.plusBtn{
+    position:relative;
+    left:50%;
+    bottom:-33px;
+    border-radius: 50%;
+    border:none;   
 }

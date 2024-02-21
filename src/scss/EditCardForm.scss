@@ -1,7 +1,6 @@
-.EditItemForm{
+.editCardForm{
     position:relative;
     width: 320px;
-    top: 25px;
     border-radius: 8px;
     gap: 8px;
     background: rgba(212, 212, 212, 1);
@@ -17,7 +16,6 @@
     text-align: left;
     width: 272px;
     height: 24px;
-    // color:rgba(255, 255, 255, 0.75);
 }
 .editInputBody{
     font-size: 14px;
@@ -26,20 +24,21 @@
     line-height: 20px;
     text-align: left;
     min-height:68px;
-    // color:rgba(255, 255, 255, 0.75);
 }
 
-.EditItemForm>input,textarea{
-    background: rgba(212, 212, 212, 1);
-    outline:none;
-    border:none;
-}
-.EditItemForm>button{
-    background: rgba(181, 181, 181, 1);
-    min-width:60px;
-    height:30px;
-    border:none;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-right:15px;
+.editCardForm{
+    input,textarea{
+        background: rgba(212, 212, 212, 1);
+        outline:none;
+        border:none;
+    }
+    button{
+        background: rgba(181, 181, 181, 1);
+        min-width:60px;
+        height:30px;
+        border:none;
+        cursor: pointer;
+        border-radius: 8px;
+        margin-right:15px;
+    }   
 }
