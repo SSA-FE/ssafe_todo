@@ -1,12 +1,13 @@
 .board{
+    display: block;
     width: 368px;
     min-height: 10px;
+    height: 100%;
     padding: 24px;
     border-radius: 16px;
     gap: 16px;
     background-color: rgba(38, 38, 38, 1);
     color:#FFFFFF;
-   
 }
 .boardTitle{
     font-size: 37px;
