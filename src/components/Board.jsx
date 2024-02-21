@@ -11,30 +11,13 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
   useEffect(()=>{
     setCards(jsonLocalStorage.getItem(type)||[]);
   },[boards])
-  const handleCancelBtnClick = () => {
-    setIsCreate(false);
-  }; 
+
   
   const handlePlusBtnClick = () => {
     setIsCreate(true);
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value}];
-    setCards(nextCards);
-    
-    updateCardId();
-    jsonLocalStorage.setItem(type, nextCards);
 
-    const board = boards.find((e)=>e.type===type);
-    board.cards=nextCards;
-    const nextBoards = boards.filter((e)=>e.type!==type);
-    setBoards([...nextBoards,board]);
-    console.log(boards);
-  };
-  
- 
   return (
     <div className="board">
       <h2 className="boardTitle">{children}</h2>
@@ -52,8 +35,14 @@ const Board = ({ children, cardId,updateCardId,type,boards,setBoards }) => {
         ))}
 
       {isCreate&&(<NewCardForm
-      onCancelBtnClick={handleCancelBtnClick}
-      handleFormSubmit={handleFormSubmit}
+      setIsCreate={setIsCreate}
+      cardId = {cardId}
+      updateCardId = {updateCardId}
+      type = {type}
+      boards = {boards}
+      cards ={cards}
+      setCards={setCards}
+      setBoards ={setBoards}
     />)}
     
       <button onClick={handlePlusBtnClick}>+</button>

@@ -1,6 +1,28 @@
 import '../scss/NewCardForm.scss';
+import jsonLocalStorage from '../utils/jsonLocalStorage';
 
-const NewCardForm = ({ onCancelBtnClick,handleFormSubmit}) => {
+const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,boards,setBoards}) => {
+
+   const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const nextCards = [...cards, { cardId: cardId.current, title: e.target.title.value, body: e.target.body.value}];
+    setCards(nextCards);
+    
+    updateCardId();
+    jsonLocalStorage.setItem(type, nextCards);
+
+    const board = boards.find((e)=>e.type===type);
+    board.cards=nextCards;
+    const nextBoards = boards.filter((e)=>e.type!==type);
+    setBoards([...nextBoards,board]);
+
+    e.target.title.value="";
+    e.target.body.value="";
+  };
+
+  const handleCancelBtnClick = () => {
+    setIsCreate(false);
+  }; 
 
   return (
     <form className="newCardForm" onSubmit={handleFormSubmit}>
@@ -21,7 +43,7 @@ const NewCardForm = ({ onCancelBtnClick,handleFormSubmit}) => {
         name="body"
       />
       <button type="submit">등록</button>
-      <button onClick={onCancelBtnClick}>취소</button>
+      <button onClick={handleCancelBtnClick}>취소</button>
     </form>
   );
 };
