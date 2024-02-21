@@ -5,7 +5,10 @@ const NewCardForm = ({ onCancelBtnClick,handleFormSubmit}) => {
   return (
     <form className="newCardForm" onSubmit={handleFormSubmit}>
       <div className="colors">
-        <div></div>
+        <div class="mintBtn"></div>
+        <div class="redBtn"></div>
+        <div class="blueBtn"></div>
+        <div class="purpleBtn"></div>
       </div>
       <input
         className="inputTitle"
