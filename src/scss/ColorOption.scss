@@ -15,6 +15,10 @@ $purple:rgba(118, 120, 209, 1);
     border-radius: 50%;
     width:20px;
     height: 20px;
+    border: none;
+    &:focus {
+        border: 1px solid black;
+    } 
 }
 .mintBtn{
     background-color:$mint;

@@ -40,7 +40,7 @@ const NewCardForm = ({setIsCreate ,cardId,cards,setCards,updateCardId,type,board
   return (
     <form className="newCardForm" onSubmit={handleFormSubmit}>
       <div className="colors">
-          {Object.keys(btnColor).map((col,idx) => {return <div key={idx} className={col} onClick={()=>handleColorBtnClick(col)}></div>})}
+          {Object.keys(btnColor).map((col,idx) => {return <button type="button" key={idx} className={col} onClick={()=>handleColorBtnClick(col)}></button>})}
       </div>
       <input
         className="inputTitle"
