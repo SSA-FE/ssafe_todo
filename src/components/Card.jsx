@@ -6,7 +6,7 @@ import jsonLocalStorage from "../utils/jsonLocalStorage";
 import { useState } from "react";
 import EditCardForm from "./EditCardForm";
 
-const Card= ({card,cards,setCards,type,boards,setBoards}) => {
+const Card= ({card,cards,setCards,type,boards,setBoards,setIsCreate}) => {
   const btnCategory =[
     {type:"todo", title:"🐣"},
     {type:"inProgress", title:"🐥"},
@@ -27,6 +27,7 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
 
     const handleEditBtnClick = () => {
       setIsEdit(true);
+      setIsCreate(false);
     };
 
     const handleMoveBtnClick = (end) => {
@@ -57,19 +58,16 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
   :
     <div className="card" style={{backgroundColor:card.color}}>
       <div className="cardBtns">
-      {btnCategory.filter(e=>e.type!==type).map((e, idx) => (<div key={idx} onClick={() => handleMoveBtnClick(e.type)}>{e.title}</div>))}
-      <button onClick={handleEditBtnClick}>
-          <img src={editIcon} alt="X"></img>
+        {btnCategory.filter(e=>e.type!==type).map((e, idx) => (<div key={idx} onClick={() => handleMoveBtnClick(e.type)}>{e.title}</div>))}
+        <button onClick={handleEditBtnClick}>
+            <img src={editIcon} alt="X"></img>
         </button>
         <button onClick={handleRemoveBtnClick}>
           <img src={closeIcon} alt="X"></img>
         </button>
-      </div>
-        
-
+      </div>  
       <h3 className="cardTitle">{card.title}</h3>
-
-      {card.body ? <div className="cardBody">{card.body}</div> : null}
+      {card.body && <div className="cardBody">{card.body}</div>}
     </div>}
     </>
 };

@@ -6,6 +6,7 @@
     gap: 16px;
     background-color: rgba(38, 38, 38, 1);
     color:#FFFFFF;
+   
 }
 .boardTitle{
     font-size: 37px;
@@ -13,4 +14,11 @@
     line-height: 44px;
     letter-spacing: 0em;
     text-align: left;
+}
+.plusBtn{
+    position:relative;
+    left:50%;
+    bottom:-33px;
+    border-radius: 50%;
+    border:none;   
 }
