@@ -4,18 +4,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
-import Home from "./components/Board/BoardToDo.jsx";
-import Menu from "./components/Card/Menu.jsx";
-import AddMenu from "./components/Edit/AddMenu.jsx";
+import Card from "./components/Card/Card.jsx";
 import { useState } from "react";
 import { AppContextProvider } from "./context/AppContext.jsx";
-import BoardToDo from "./components/Board/BoardToDo.jsx";
-
-//react-scripts 오류 https://thespoiler.tistory.com/21
+import AddCard from "./components/Edit/AddCard.jsx";
 
 // https://html-css-js.com/html/character-codes/
-
-// Q. 모든 박스마다 같은 위치에 같은 아이콘 넣으려면?
 
 const Full = styled.div`
   display: flex;
@@ -45,7 +39,7 @@ const Boards = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
-// height flexible 적용되게 -> flex-start
+
 const Board = styled.div`
   display: inline-block;
   color: white;
@@ -77,68 +71,6 @@ const Menus = styled.div`
   justify-content: space-between;
 `;
 
-const MenuView = styled(Menus)`
-  height: flexible;
-  background-color: #f8bbd0;
-`;
-const MenuInNote = styled(Menus)`
-  height: 140px;
-  background-color: #b39ddb;
-`;
-const MenuOptions = styled(Menus)`
-  height: 140px;
-  background-color: #90caf9;
-`;
-const MenuStoring = styled(Menus)`
-  height: 140px;
-  background-color: #4db6ac;
-`;
-
-const AddButton = styled.button`
-  width: 30px;
-  border-radius: 40%;
-`;
-
-// const MenuMod = styled(Menu)`
-//   height: 112px;
-//   background-color: #b0bec5;
-//   &:hover {
-//     background-color: #607d8b;
-//   }
-// `;
-
-// const ModHeader = styled.div`
-// display: flex;
-// width: 300px;
-// `
-
-// Icon 나오게 ...
-// const ModIcon = styled.div`
-// display: flex;
-// width: 50px;
-// color: black;
-// `
-
-// 사실상 바뀌는 게 color밖에 없음
-// menu 추가될 때마다 있어야하는 속성이니까 렌더링을 할 수는 있지만 ~ 적절하지 않을듯
-
-const IconClose = styled(IoMdClose)`
-  cursor: pointer;
-  float: right;
-  margin-top: 7px;
-`;
-const IconEdit = styled(FaRegEdit)`
-  cursor: pointer;
-  float: right;
-  margin-right: 10px;
-  margin-top: 7px;
-`;
-
-// const IconAdd = styled.div`
-//   border-radius: 50%;
-//   background-color: #d93535;
-// `;
-
 ///App.js에 useEffect 쓰기
 ///받은 다음 Menu에다가 props 전달
 /// 전달한 걸 바탕으로 title, contents 라는 이름으로 받은 다음
@@ -146,7 +78,7 @@ const IconEdit = styled(FaRegEdit)`
 /// useEffect 쓸 때 localstorage.getItem을 쓸것
 
 function App() {
-  const [isClicked, setIsClicked] = useState(false);
+  // const [byeCard, setByeCard] = useState();   // Card의 button onClick하면 여기서 Card가 없어지게?
 
   return (
     <AppContextProvider>
@@ -162,8 +94,9 @@ function App() {
                 🐥
               </span>
             </Title>
-            <BoardToDo />
+            <AddCard />
           </Board>
+
           <Board>
             <Title>
               In Progress{" "}
@@ -171,6 +104,7 @@ function App() {
                 🐣
               </span>
             </Title>
+            <Card />
           </Board>
 
           <Board>
@@ -186,17 +120,5 @@ function App() {
     </AppContextProvider>
   );
 }
-
-// const App = () => {
-//   const { bears, increasePopulation, removeAllBears} = useStore(state => state);
-
-//   return (
-//     <>
-//       <h1>{bears} around here...</h1>
-//       <button onClick = {increasePopulation}>one up</button>
-//       <button onClick = {removeAllBears}>remove all</button>
-//     </>
-//   )
-// }
 
 export default App;

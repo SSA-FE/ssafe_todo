@@ -69,3 +69,39 @@
             <h3>Mobile home screen</h3>
             Folders, tags, and notes lists are sorted by recent.
           </MenuOptions>
+
+
+
+
+
+
+<styled ... .~~>
+
+const MenuView = styled(Menus)`
+  height: flexible;
+  background-color: #f8bbd0;
+`;
+const MenuInNote = styled(Menus)`
+  height: 140px;
+  background-color: #b39ddb;
+`;
+const MenuOptions = styled(Menus)`
+  height: 140px;
+  background-color: #90caf9;
+`;
+const MenuStoring = styled(Menus)`
+  height: 140px;
+  background-color: #4db6ac;
+`;
+
+const IconClose = styled(IoMdClose)`
+  cursor: pointer;
+  float: right;
+  margin-top: 7px;
+`;
+const IconEdit = styled(FaRegEdit)`
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+  margin-top: 7px;
+`;
