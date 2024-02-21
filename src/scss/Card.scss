@@ -7,6 +7,7 @@
     border-radius: 8px;
     gap: 8px;
 }
+
 .cardTitle{
     display: inline;
     font-size: 16px;
@@ -27,19 +28,26 @@
     color:rgba(255, 255, 255, 0.75);
 }
 .cardBtns {
-    position:absolute;
-    text-align: right;
-    top: 14px;
-    left:270px;
+    display: flex;
+    justify-content: right;
+    gap:5px;
+    *{
+        cursor: pointer;
+    }
+    div{
+        opacity: 0;
+    .card:hover & {
+        visibility: visible;
+        opacity: 1;
+    }
+    }
     button{
         background-color: transparent;
         padding:0;
         text-align: center;
         border:none;
-        cursor: pointer;
         width: 15px;
         text-align: center;
-        margin-right: 8px;
         img{
             width: 100%;
             vertical-align: middle;
@@ -47,7 +55,7 @@
     }
 }
 
-.moveTodo, .moveProgress, .moveDone{
-    display:inline;
-    margin-left:10px;
-}
+
+// .moveTodo, .moveProgress, .moveDone{
+ 
+// }

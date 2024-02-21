@@ -7,6 +7,11 @@ import { useState } from "react";
 import EditCardForm from "./EditCardForm";
 
 const Card= ({card,cards,setCards,type,boards,setBoards}) => {
+  const btnCategory =[
+    {type:"todo", title:"🐣"},
+    {type:"inProgress", title:"🐥"},
+    {type:"done", title:"🦅"}
+  ]
     const [isEdit,setIsEdit] = useState(false);
 
     const handleRemoveBtnClick = () => {
@@ -52,6 +57,7 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
   :
     <div className="card" style={{backgroundColor:card.color}}>
       <div className="cardBtns">
+      {btnCategory.filter(e=>e.type!==type).map((e, idx) => (<div key={idx} onClick={() => handleMoveBtnClick(e.type)}>{e.title}</div>))}
       <button onClick={handleEditBtnClick}>
           <img src={editIcon} alt="X"></img>
         </button>
@@ -59,26 +65,9 @@ const Card= ({card,cards,setCards,type,boards,setBoards}) => {
           <img src={closeIcon} alt="X"></img>
         </button>
       </div>
+        
+
       <h3 className="cardTitle">{card.title}</h3>
-      {/* 맵처리 가능할 듯 */}
-      <div
-        className="moveTodo"
-        onClick={() => handleMoveBtnClick("todo")}
-      >
-        🐣
-      </div>
-      <div
-        className="moveProgress"
-        onClick={() => handleMoveBtnClick("inProgress")}
-      >
-        🐥
-      </div>
-      <div
-        className="moveDone"
-        onClick={() => handleMoveBtnClick("done")}
-      >
-        🦅
-      </div>
 
       {card.body ? <div className="cardBody">{card.body}</div> : null}
     </div>}
