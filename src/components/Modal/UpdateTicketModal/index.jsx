@@ -2,9 +2,19 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+
+const COLORS = [
+    '#00A88B',
+    '#D93535',
+    '#307FE2',
+    '#6A6DCD'
+]
+
 export const UpdateTicketModal = ({ closeModal, status, todo }) => {
     const [title, setTitle] = useState(todo.title);
     const [content, setContent] = useState(todo.content);
+    const [color, setColor] = useState(todo.color);
 
     const dispatch = useDispatch();
     const handleEditTicket = () => {
@@ -17,10 +27,15 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
             type: `UPDATE_${status}`,
             id: todo.id,
             data: {
-                title: title, content: content
+                title: title, content: content,
+                color: color,
             }
         })
         closeModal();
+    }
+
+    const handleColor = (col) => {
+        setColor(col);
     }
 
     return (
@@ -65,12 +80,38 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
                 <div className={classNames(
                     'flex',
                     'items-center',
-                    'justify-center',
-
-                    'cursor-pointer',
-                    'hover:opacity-60',
+                    'justify-between',
                 )}>
-                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} />
+                    <div className={classNames(
+                        'mr-4',
+
+                        'flex',
+                        'gap-x-2',
+                    )}>
+                        {
+                            COLORS.map((v) => (<div className={classNames(
+                                'w-5',
+                                'h-5',
+
+                                'bg-black',
+                                'rounded-full',
+
+                                `bg-[${v}]`,
+                                'cursor-pointer',
+
+                                'opacity-20',
+                                    
+                                { 'opacity-100': color === v }
+                            )} key={'color_update_'+v} onClick={() => {
+                                handleColor(v);
+                            }} />))
+                        }
+
+                    </div>
+                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} className={classNames(
+                        'cursor-pointer',
+                        'hover:opacity-60',
+                    )} />
                 </div>
             </div>
 

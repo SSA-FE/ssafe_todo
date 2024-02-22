@@ -38,9 +38,10 @@ export const Ticket = ({ status, todo }) => {
       <TicketContainer
         className={classNames(
           {
-            'bg-DONE': status === 'DONE',
-            'bg-PROGRESS': status === 'PROGRESS',
-            'bg-TODO': status === 'TODO',
+            'bg-[#00A88B]' : todo.color === '#00A88B',
+            'bg-[#D93535]' : todo.color === '#D93535',
+            'bg-[#307FE2]' : todo.color === '#307FE2',
+            'bg-[#6A6DCD]' : todo.color === '#6A6DCD',
           },
 
           'py-2',

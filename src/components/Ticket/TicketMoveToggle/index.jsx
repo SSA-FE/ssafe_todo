@@ -16,7 +16,8 @@ export const TicketMoveToggle = ({ move, status, todo }) => {
       type: `ADD_${move}`,
       data: {
         id: uuidv4()
-        , title: todo.title, content: todo.content
+        , title: todo.title, content: todo.content,
+        color: todo.color,
       },
     });
   };

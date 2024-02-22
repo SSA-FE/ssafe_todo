@@ -1,16 +1,21 @@
 import classNames from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-export const AddTicketModal = ({ closeModal, status }) => {
-    const { todos } = useSelector((state) => state.todos);
-    const { progress } = useSelector((state) => state.progress);
-    const { done } = useSelector((state) => state.done);
+const COLORS = [
+    '#00A88B',
+    '#D93535',
+    '#307FE2',
+    '#6A6DCD'
+]
 
+export const AddTicketModal = ({ closeModal, status }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    const [color, setColor] = useState('#00A88B');
 
     const dispatch = useDispatch();
     const handleAddTicket = () => {
@@ -19,14 +24,18 @@ export const AddTicketModal = ({ closeModal, status }) => {
             return;
         }
 
-        const data = status === 'TODO' ? todos : status === 'PROGRESS' ? progress : done;
         dispatch({
             type: `ADD_${status}`, data: {
                 id: uuidv4(),
-                title: title, content: content
+                title: title, content: content,
+                color: color,
             }
         })
         closeModal();
+    }
+
+    const handleColor = (col) => {
+        setColor(col);
     }
 
     return (
@@ -44,7 +53,7 @@ export const AddTicketModal = ({ closeModal, status }) => {
             'translate-x-[-50%]',
             'translate-y-[-50%]',
 
-            'bg-[#f5f5f5]',
+            `bg-[#f5f5f5]`,
 
             'rounded-md',
 
@@ -69,12 +78,38 @@ export const AddTicketModal = ({ closeModal, status }) => {
                 <div className={classNames(
                     'flex',
                     'items-center',
-                    'justify-center',
-
-                    'cursor-pointer',
-                    'hover:opacity-60',
+                    'justify-between',
                 )}>
-                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} />
+                    <div className={classNames(
+                        'mr-4',
+
+                        'flex',
+                        'gap-x-2',
+                    )}>
+                        {
+                            COLORS.map((v) => (<div className={classNames(
+                                'w-5',
+                                'h-5',
+
+                                'rounded-full',
+
+                                `bg-[${v}]`,
+                                'cursor-pointer',
+
+                                'opacity-20',
+                                    
+                                { 'opacity-100': color === v }
+
+                            )} key={'color_'+v} onClick={() => {
+                                handleColor(v);
+                            }}/> ))
+                        }
+
+                    </div>
+                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} className={classNames(
+                        'cursor-pointer',
+                        'hover:opacity-60',
+                    )} />
                 </div>
             </div>
 
@@ -104,7 +139,7 @@ export const AddTicketModal = ({ closeModal, status }) => {
                 'box-border',
 
                 'rounded-md',
-                
+
                 'resize-none',
             )} value={content} placeholder='내용' onChange={(e) => setContent(e.target.value)} />
 
