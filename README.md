@@ -69,7 +69,7 @@
 
 - UI
   - [x] Board 위치 상단 고정
-  - [ ] Board 범위를 초과한 Card요소는 스크롤
+  - [x] Board 범위를 초과한 Card요소는 스크롤
   - [ ] Add Card 실행 시, Add Card 앞에는 최대 4개의 Card만 최신순으로 표시
 
 <br><br>
