@@ -1,11 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-export const TicketMoveToggle = ({ move, status, todo }) => {
-  const { todos } = useSelector((state) => state.todos);
-  const { progress } = useSelector((state) => state.progress);
-  const { done } = useSelector((state) => state.done);
+import { v4 as uuidv4 } from 'uuid';
 
+export const TicketMoveToggle = ({ move, status, todo }) => {
   const dispatch = useDispatch();
 
   const handleMove = () => {
@@ -17,7 +15,7 @@ export const TicketMoveToggle = ({ move, status, todo }) => {
     dispatch({
       type: `ADD_${move}`,
       data: {
-        id: move === 'TODO' ? todos.length + 1 : move === 'PROGRESS' ? progress.length + 1 : done.length + 1
+        id: uuidv4()
         , title: todo.title, content: todo.content
       },
     });

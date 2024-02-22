@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+
 export const AddTicketModal = ({ closeModal, status }) => {
     const { todos } = useSelector((state) => state.todos);
     const { progress } = useSelector((state) => state.progress);
@@ -20,7 +22,7 @@ export const AddTicketModal = ({ closeModal, status }) => {
         const data = status === 'TODO' ? todos : status === 'PROGRESS' ? progress : done;
         dispatch({
             type: `ADD_${status}`, data: {
-                id: data.length + 1,
+                id: uuidv4(),
                 title: title, content: content
             }
         })
