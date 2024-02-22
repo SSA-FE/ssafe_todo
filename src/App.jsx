@@ -1,14 +1,24 @@
 
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 
 import { Container } from './components/Container';
 import classNames from 'classnames';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isDarkMode, setIsDarkMode] = useState()
+
+  useEffect(() => {
+    const localDarkmode = localStorage.getItem('darkmode') 
+    setIsDarkMode(localDarkmode)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkMode === 'dark')
+    localStorage.setItem('darkmode', isDarkMode)
+  }, [isDarkMode])
 
   const handleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
+    isDarkMode === 'dark' ? setIsDarkMode('light') : setIsDarkMode('dark')
   }
 
   return (
@@ -34,7 +44,7 @@ function App() {
 
         {/* 다크모드 <-> 라이트모드 */}
         <div onClick={handleDarkMode}>
-          <img src={isDarkMode ? "asset/icon/dark.png" : "asset/icon/light.png"} alt="darkmode" className={classNames(
+          <img src={isDarkMode === 'dark' ? "asset/icon/dark.png" : "asset/icon/light.png"} alt="darkmode" className={classNames(
             'w-12',
             'h-12',
 
