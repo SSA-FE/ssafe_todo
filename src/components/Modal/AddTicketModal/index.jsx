@@ -96,9 +96,7 @@ export const AddTicketModal = ({ closeModal, status }) => {
                                 `bg-[${v}]`,
                                 'cursor-pointer',
 
-                                'opacity-20',
-                                    
-                                { 'opacity-100': color === v }
+                                color === v ? 'opacity-100' : 'opacity-20',
 
                             )} key={'color_'+v} onClick={() => {
                                 handleColor(v);

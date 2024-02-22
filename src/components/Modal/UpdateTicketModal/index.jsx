@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { v4 as uuidv4 } from 'uuid';
-
 const COLORS = [
     '#00A88B',
     '#D93535',
@@ -93,16 +91,14 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
                                 'w-5',
                                 'h-5',
 
-                                'bg-black',
                                 'rounded-full',
 
                                 `bg-[${v}]`,
                                 'cursor-pointer',
 
-                                'opacity-20',
-                                    
-                                { 'opacity-100': color === v }
-                            )} key={'color_update_'+v} onClick={() => {
+                                color === v ? 'opacity-100' : 'opacity-20',
+
+                            )} key={'color_update_' + v} onClick={() => {
                                 handleColor(v);
                             }} />))
                         }
