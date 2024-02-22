@@ -1,6 +1,7 @@
-import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+
+import classNames from 'classnames';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -14,10 +15,10 @@ const COLORS = [
 export const AddTicketModal = ({ closeModal, status }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-
     const [color, setColor] = useState('#00A88B');
 
     const dispatch = useDispatch();
+    
     const handleAddTicket = () => {
         if (title === '' || content === '') {
             alert('제목과 내용을 모두 입력해 주세요👺');
@@ -27,7 +28,8 @@ export const AddTicketModal = ({ closeModal, status }) => {
         dispatch({
             type: `ADD_${status}`, data: {
                 id: uuidv4(),
-                title: title, content: content,
+                title: title, 
+                content: content,
                 color: color,
             }
         })
@@ -58,9 +60,9 @@ export const AddTicketModal = ({ closeModal, status }) => {
             'rounded-md',
 
             'z-50',
+
             'dark:text-black',
         )}>
-            {/* header */}
             <div className={classNames(
                 'w-full',
 
@@ -98,14 +100,13 @@ export const AddTicketModal = ({ closeModal, status }) => {
                                 'cursor-pointer',
 
                                 color === v ? 'opacity-100' : 'opacity-20',
-
                             )} key={'color_'+v} onClick={() => {
                                 handleColor(v);
                             }}/> ))
                         }
 
                     </div>
-                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} className={classNames(
+                    <img src={process.env.PUBLIC_URL + '/asset/icon/close_black.png'} alt="closeModal" onClick={closeModal} className={classNames(
                         'cursor-pointer',
                         'hover:opacity-60',
                     )} />
@@ -122,11 +123,7 @@ export const AddTicketModal = ({ closeModal, status }) => {
                 'box-border',
 
                 'rounded-md',
-
             )} type="text" value={title} placeholder='제목' onChange={(e) => setTitle(e.target.value)} />
-
-
-            {/* content */}
 
             <textarea className={classNames(
                 'w-full',
@@ -142,8 +139,6 @@ export const AddTicketModal = ({ closeModal, status }) => {
                 'resize-none',
             )} value={content} placeholder='내용' onChange={(e) => setContent(e.target.value)} />
 
-
-            {/* button */}
             <div className={classNames(
                 'w-full',
                 'flex',

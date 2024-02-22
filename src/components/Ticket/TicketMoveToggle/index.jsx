@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
-import classNames from 'classnames';
 
 import { v4 as uuidv4 } from 'uuid';
+
+import classNames from 'classnames';
 
 export const TicketMoveToggle = ({ move, status, todo }) => {
   const dispatch = useDispatch();
@@ -15,8 +16,9 @@ export const TicketMoveToggle = ({ move, status, todo }) => {
     dispatch({
       type: `ADD_${move}`,
       data: {
-        id: uuidv4()
-        , title: todo.title, content: todo.content,
+        id: uuidv4(), 
+        title: todo.title, 
+        content: todo.content,
         color: todo.color,
       },
     });

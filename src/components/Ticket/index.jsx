@@ -1,10 +1,11 @@
+import { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import classNames from 'classnames';
 import { TicketContainer } from '../../layout/TicketContainer';
-import { Fragment, useState } from 'react';
 import { TicketMoveToggle } from './TicketMoveToggle';
 import { UpdateTicketModal } from '../Modal/UpdateTicketModal';
+
+import classNames from 'classnames';
 
 export const Ticket = ({ status, todo }) => {
   const [isTicketHover, setIsTicketHover] = useState(false);
@@ -45,10 +46,9 @@ export const Ticket = ({ status, todo }) => {
           },
 
           'py-2',
+          'mb-4',
 
           'box-border',
-
-          'mb-4',
 
           'relative'
         )}
@@ -66,7 +66,6 @@ export const Ticket = ({ status, todo }) => {
               'bottom-8',
 
               'flex',
-
               'justify-center',
               'items-center'
             )}
@@ -86,6 +85,7 @@ export const Ticket = ({ status, todo }) => {
         <div
           className={classNames(
             'w-full',
+
             'pl-6',
             'pr-4',
 
@@ -95,11 +95,12 @@ export const Ticket = ({ status, todo }) => {
           )}
         >
           <img
-            src="asset/icon/edit.png"
+            src={process.env.PUBLIC_URL + '/asset/icon/edit.png'}
             alt="edit"
             className={classNames(
               'w-4',
               'h-4',
+
               'mr-4',
 
               'cursor-pointer'
@@ -107,8 +108,8 @@ export const Ticket = ({ status, todo }) => {
             onClick={openEditModal}
           />
           <img
-            src="asset/icon/close.png"
-            alt="del"
+            src={process.env.PUBLIC_URL + '/asset/icon/close.png'}
+            alt="delete"
             className={classNames(
               'w-4',
               'h-4',
@@ -120,7 +121,6 @@ export const Ticket = ({ status, todo }) => {
           />
         </div>
 
-        {/* 제목 */}
         <div
           className={classNames(
             'py-2',
@@ -134,7 +134,6 @@ export const Ticket = ({ status, todo }) => {
           {todo.title}
         </div>
 
-        {/* 내용 */}
         <div
           className={classNames(
             'pb-2',
@@ -148,6 +147,7 @@ export const Ticket = ({ status, todo }) => {
           {todo.content}
         </div>
       </TicketContainer>
+
       {isEditModal && (
         <div className={classNames(
           'w-full',
@@ -165,10 +165,10 @@ export const Ticket = ({ status, todo }) => {
           'z-40'
         )} onClick={closeEditModal}/>
       )}
+
       {isEditModal && (
         <UpdateTicketModal closeModal={closeEditModal} status={status} todo={todo}/>
       )}
     </Fragment>
-
   );
 };

@@ -1,6 +1,7 @@
-import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+
+import classNames from 'classnames';
 
 const COLORS = [
     '#00A88B',
@@ -15,6 +16,7 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
     const [color, setColor] = useState(todo.color);
 
     const dispatch = useDispatch();
+
     const handleEditTicket = () => {
         if (title === '' || content === '') {
             alert('제목과 내용을 모두 입력해 주세요👺');
@@ -25,7 +27,8 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
             type: `UPDATE_${status}`,
             id: todo.id,
             data: {
-                title: title, content: content,
+                title: title, 
+                content: content,
                 color: color,
             }
         })
@@ -59,7 +62,6 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
 
             'z-50',
         )}>
-            {/* header */}
             <div className={classNames(
                 'w-full',
 
@@ -104,7 +106,8 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
                         }
 
                     </div>
-                    <img src="/asset/icon/close_black.png" alt="closeModal" onClick={closeModal} className={classNames(
+
+                    <img src={process.env.PUBLIC_URL + '/asset/icon/close_black.png'} alt="closeModal" onClick={closeModal} className={classNames(
                         'cursor-pointer',
                         'hover:opacity-60',
                     )} />
@@ -124,9 +127,6 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
 
             )} type="text" value={title} placeholder='제목' onChange={(e) => setTitle(e.target.value)} />
 
-
-            {/* content */}
-
             <textarea className={classNames(
                 'w-full',
 
@@ -141,8 +141,6 @@ export const UpdateTicketModal = ({ closeModal, status, todo }) => {
                 'resize-none',
             )} value={content} placeholder='내용' onChange={(e) => setContent(e.target.value)} />
 
-
-            {/* button */}
             <div className={classNames(
                 'w-full',
                 'flex',

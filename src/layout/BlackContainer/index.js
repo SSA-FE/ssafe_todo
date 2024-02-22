@@ -4,7 +4,6 @@ export const BlackContainer = styled.div`
     width: 368px;
     min-height: 500px;
 
-    
     box-sizing: border-box;
 
     background-color: #262626;

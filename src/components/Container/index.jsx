@@ -1,9 +1,11 @@
+import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 import { BlackContainer } from "../../layout/BlackContainer"
 import { Ticket } from "../Ticket"
-import classNames from 'classnames';
-import { Fragment, useEffect, useState } from "react";
 import { AddTicketModal } from "../Modal/AddTicketModal";
+
+import classNames from 'classnames';
 
 const MATCH_STATUS = {
     'To do': 'TODO',
@@ -36,19 +38,23 @@ export const Container = (props) => {
         <Fragment>
             <BlackContainer className={classNames(
                 'box-border',
+
                 'px-8',
                 'py-4',
 
                 'gap-y-4',
-            )}>                    <div className={classNames(
-                'w-full',
-                'text-[2.3rem]',
-                'font-bold',
-
-                'mb-2'
             )}>
+                <div className={classNames(
+                    'w-full',
+
+                    'mb-2',
+
+                    'text-[2.3rem]',
+                    'font-bold',
+                )}>
                     <span>{props.status}</span>
                 </div>
+
                 <div className={classNames(
                     'w-full',
                     'max-h-[500px]',
@@ -59,7 +65,6 @@ export const Container = (props) => {
 
                     'scroll'
                 )}>
-
 
                     {
                         containerStatus === 'TODO' ? todos.map((todo, index) => (
@@ -84,6 +89,7 @@ export const Container = (props) => {
                     <div className={classNames(
                         'w-[32px]',
                         'h-[32px]',
+
                         'bg-[#B5B5B5]',
 
                         'flex',
@@ -91,6 +97,7 @@ export const Container = (props) => {
                         'items-center',
 
                         'rounded-full',
+
                         'text-[1rem]',
                         'font-bold',
 
@@ -98,6 +105,7 @@ export const Container = (props) => {
                     )}>+</div>
                 </div>
             </BlackContainer>
+
             {isAddModal && (
                 <div className={classNames(
                     'w-full',

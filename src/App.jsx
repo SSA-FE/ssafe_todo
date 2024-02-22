@@ -2,30 +2,34 @@
 import { useState, Fragment, useEffect } from 'react';
 
 import { Container } from './components/Container';
+
 import classNames from 'classnames';
 
+
+const STATUS = ["To do", "In progress", "Done"]
+
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState()
+  const [mode, setMode] = useState()
 
   useEffect(() => {
     const localDarkmode = localStorage.getItem('darkmode') 
-    setIsDarkMode(localDarkmode)
+    setMode(localDarkmode)
   }, [])
 
   useEffect(() => {
-    isDarkMode === 'dark' ? document.documentElement.classList.add('dark')  : document.documentElement.classList.remove('dark')
-    localStorage.setItem('darkmode', isDarkMode)
-  }, [isDarkMode])
+    mode === 'dark' ? document.documentElement.classList.remove('dark')  : document.documentElement.classList.add('dark')
+    localStorage.setItem('darkmode', mode)
+  }, [mode])
 
   const handleDarkMode = () => {
-    isDarkMode === 'dark' ? setIsDarkMode('light') : setIsDarkMode('dark')
+    mode === 'dark' ? setMode('light') : setMode('dark')
   }
 
   return (
     <Fragment>
-      {/* Roadmap */}
       <div className={classNames(
         'w-full',
+
         'py-12',
         'px-8',
 
@@ -44,9 +48,8 @@ function App() {
       )}>
         <span>Roadmap</span>
 
-        {/* 다크모드 <-> 라이트모드 */}
         <div onClick={handleDarkMode}>
-          <img src={isDarkMode !== 'dark' ? "asset/icon/dark.png" : "asset/icon/light.png"} alt="darkmode" className={classNames(
+          <img src={process.env.PUBLIC_URL + `/asset/icon/${mode}.png`} alt="darkmode" className={classNames(
             'w-12',
             'h-12',
 
@@ -56,9 +59,9 @@ function App() {
         </div>
       </div>
 
-      {/* Main Container */}
       <div className={classNames(
         'w-full',
+
         'flex',
         'justify-around',
 
@@ -67,7 +70,7 @@ function App() {
         'max-sm:gap-y-8'
       )}>
         {
-          ["To do", "In progress", "Done"].map((status, index) => (
+          STATUS.map((status, index) => (
             <Container key={index} status={status} />
           ))
         }
