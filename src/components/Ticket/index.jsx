@@ -50,7 +50,7 @@ export const Ticket = ({ status, todo }) => {
 
           'box-border',
 
-          'relative'
+          'relative',
         )}
         onMouseOver={handleMoustIn}
         onMouseOut={handleMoustOut}
@@ -141,7 +141,10 @@ export const Ticket = ({ status, todo }) => {
             'pr-4',
 
             'font-light',
-            'text-[0.875rem]'
+            'text-[0.875rem]',
+
+            'whitespace-pre-line',
+            'break-words'
           )}
         >
           {todo.content}
