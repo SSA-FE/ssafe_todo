@@ -5,11 +5,11 @@ const useFormStore = create(
   persist(
     (set) => ({
       forms: [],
-      addForm: ({ title, text, color, category }) =>
+      addForm: ({ title, text, color, category, edit }) =>
         set((state) => ({
           forms: [
+            { id: new Date().toLocaleString(), title, text, color, category, edit },
             ...state.forms,
-            { id: new Date().toLocaleString(), title, text, color, category },
           ],
         })),
 

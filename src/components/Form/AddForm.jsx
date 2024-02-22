@@ -31,7 +31,7 @@ const AddForm = ({ category, setMore }) => {
     <form onSubmit={handleSubmit}>
       <StyleAddForm>
         <AddFormButton>
-          <CreateButton type="submit" disabled={!title && !text}>
+          <CreateButton type="submit" disabled={!title || !text}>
             Create
           </CreateButton>
           <ExitButton type="button" onClick={handleExitButton} src={Exit} />
@@ -68,7 +68,7 @@ const StyleAddForm = styled.div`
   height: 18.4rem;
   margin: 0 2.4rem 1.6rem 2.4rem;
 
-  background-color: #d4d4d4;
+  background-color: #c7c7c7;
   border-radius: 0.8rem;
 `;
 
@@ -195,9 +195,9 @@ const AddFormInputTitle = styled.input`
   height: 4rem;
   max-width: 25.9rem;
   max-height: 4.2rem;
-  background-color: #d4d4d4;
-  border: 0.2rem solid #d4d4d4;
-  border-bottom: 0.2rem dashed #bcbcbc;
+  background-color: #c7c7c7;
+  border: 0.2rem solid #c7c7c7;
+  border-bottom: 0.2rem dashed #aeaeae;
   outline: none;
 
   font-size: 1.6rem;
@@ -217,8 +217,8 @@ const AddFormInputText = styled.textarea`
   margin-left: 2.4rem;
   width: 27.2rem;
   height: 6.4rem;
-  background-color: #bcbcbc;
-  border-color: #bcbcbc;
+  background-color: #aeaeae;
+  border-color: #aeaeae;
   max-width: 27.2rem;
   max-height: 6.4rem;
   font-size: 1.4rem;
@@ -246,7 +246,7 @@ const AddFormTextBox = styled.div`
   bottom: 0;
   width: 29rem;
   height: 7.4rem;
-  background-color: #bcbcbc;
+  background-color: #aeaeae;
   border-radius: 0.8rem;
 `;
 

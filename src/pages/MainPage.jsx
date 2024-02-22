@@ -29,16 +29,16 @@ const MainPage = () => {
       <ContentsBox>
         <Title>Roadmap</Title>
         <Icon src={MoonIcon}></Icon>
+        <BoardBox>
+          {boardForms.map((board) => (
+            <Board
+              key={board.category}
+              category={board.category}
+              forms={board.forms}
+            />
+          ))}
+        </BoardBox>
       </ContentsBox>
-      <BoardBox>
-        {boardForms.map((board) => (
-          <Board
-            key={board.category}
-            category={board.category}
-            forms={board.forms}
-          />
-        ))}
-      </BoardBox>
     </FlexBox>
   );
 };
@@ -52,9 +52,8 @@ const FlexBox = styled.div`
 
 const ContentsBox = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   justify-content: center;
-
   width: 139.2rem;
   height: 75rem;
   background-color: #17233b;
@@ -63,7 +62,9 @@ const ContentsBox = styled.div`
 
 const BoardBox = styled.div`
   display: flex;
+  position: absolute;
   max-height: 72.1rem;
+  margin-top: 10rem;
 `;
 
 const Title = styled.h1`

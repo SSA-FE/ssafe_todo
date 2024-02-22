@@ -22,7 +22,14 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Noto Sans KR', sans-serif;
         background-color: #0A1626;
         height: 100vh;
-    }
+        -ms-overflow-style: none;
+        ::-webkit-scrollbar {
+            display: none;
+        
+        }
+ }
+ 
+
     ol, ul{
         list-style: none;
     }

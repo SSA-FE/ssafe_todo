@@ -12,6 +12,7 @@ const Form = ({
   setRewrite,
   setReTitle,
   setReText,
+  category,
 }) => {
   const { removeForm } = useFormStore();
 
@@ -26,8 +27,65 @@ const Form = ({
     setReText(formText);
   };
 
+  // const handleCategoryButton = (button) => {
+  //   if (button === "ToDo") {
+  //   } else if (button === "InProgress") {
+  //   } else {
+  //   }
+  // };
+
   return (
     <StyleForm color={color}>
+      {/* {category === "ToDo" && (
+        <>
+          <button
+            onClick={handleCategoryButton}
+            button="InProgress"
+          >
+            🎡
+          </button>
+          <button
+            onClick={handleCategoryButton}
+            button="Done"
+          >
+            🎆
+          </button>
+        </>
+      )}
+      {category === "InProgress" && (
+        <>
+          <button
+            onClick={handleCategoryButton}
+            button="ToDo"
+          >
+            🎠
+          </button>
+          <button
+            onClick={handleCategoryButton}
+            button="Done"
+          >
+            🎆
+          </button>
+        </>
+      )}
+      {category === "Done" && (
+        <>
+          <button
+            onClick={handleCategoryButton}
+            button="ToDo"
+            category={category}
+          >
+            🎠
+          </button>
+          <button
+            onClick={handleCategoryButton}
+            button="InProgress"
+            category={category}
+          >
+            🎡
+          </button>
+        </>
+      )} */}
       <FormButton>
         <ReWriteButton
           type="button"
@@ -36,10 +94,7 @@ const Form = ({
         />
         <ExitButton type="button" onClick={handleExitButton} src={Exit} />
       </FormButton>
-
-      <FormTitle>
-        <span>✿</span> {formTitle}
-      </FormTitle>
+      <FormTitle>{formTitle}</FormTitle>
       <FormText formText={formText}>{formText}</FormText>
     </StyleForm>
   );
@@ -51,14 +106,15 @@ const StyleForm = styled.div`
   max-height: 14rem;
   margin: 0 2.4rem 1.6rem 2.4rem;
 
-  background-color: ${(props) => props.color || "#d4d4d4"};
+  background-color: ${(props) => props.color || "#c7c7c7"};
   border-radius: 0.8rem;
 `;
 
 const FormButton = styled.div`
   display: flex;
-  position: absolute;
-  left: 29rem;
+  position: relative;
+  width: 4rem;
+  left: 27rem;
   margin-top: 1rem;
 `;
 
@@ -81,32 +137,25 @@ const ExitButton = styled.img`
 `;
 
 const FormTitle = styled.h3`
-  padding-top: 1.7rem;
   padding-bottom: 0.7rem;
   margin-left: 2.4rem;
-  height: 4.3rem;
-  max-width: 25.9rem;
+  height: 2.8rem;
+  max-width: 22.9rem;
   max-height: 4.3rem;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-family: "Inter", sans-serif;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 600;
+  font-weight: 800;
   color: #ffffff;
-  border-bottom: 0.2rem dashed rgba(255, 255, 255, 0.3);
   white-space: nowrap;
   overflow: hidden;
-
-  span {
-    font-size: 1.6rem;
-    opacity: 0.6;
-  }
+  text-overflow: ellipsis;
 `;
 
 const FormText = styled.h3`
   position: relative;
-  top: 0.8rem;
   padding: 0 2.4rem;
-  margin-bottom: ${(props) => (props.formText ? `3.2rem` : `2.4rem`)};
+  margin-bottom: 3.2rem;
   max-width: 32rem;
   max-height: 6.4rem;
   font-size: 1.4rem;

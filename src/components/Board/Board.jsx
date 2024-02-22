@@ -22,29 +22,32 @@ const Board = ({ category, forms }) => {
         {category === "InProgress" ? "In Progress 🎡" : null}
         {category === "Done" ? "Done 🎆" : null}
       </BoardTitle>
-      <FormBox>
-        {forms.map((form, index) => (
-          <Form
-            key={index}
-            formTitle={form.title}
-            formText={form.text}
-            color={form.color}
-            id={form.id}
-            setRewrite={setRewrite}
-            setReTitle={setReTitle}
-            setReText={setReText}
-          ></Form>
-        ))}
-        {rewrite ? (
-          <ReWriteForm
-            category={category}
-            rewrite={rewrite}
-            retitle={retitle}
-            retext={retext}
-            setRewrite={setRewrite}
-          />
-        ) : null}
-        {more ? <AddForm category={category} setMore={setMore} /> : null}
+      {more && <AddForm category={category} setMore={setMore} />}
+      <FormBox more={more}>
+        <StyleForm>
+          {forms.map((form, index) => (
+            <Form
+              key={index}
+              formTitle={form.title}
+              formText={form.text}
+              color={form.color}
+              id={form.id}
+              setRewrite={setRewrite}
+              setReTitle={setReTitle}
+              setReText={setReText}
+              category={category}
+            ></Form>
+          ))}
+          {rewrite && (
+            <ReWriteForm
+              category={category}
+              rewrite={rewrite}
+              retitle={retitle}
+              retext={retext}
+              setRewrite={setRewrite}
+            />
+          )}
+        </StyleForm>
       </FormBox>
       <MoreViewsButton
         src={MoreViews}
@@ -60,19 +63,17 @@ const StyleBoard = styled.div`
   width: 36.8rem;
   height: 100%;
   max-height: 62rem;
-  margin: 6rem 6rem 0 0;
+  margin: 0 3rem;
   padding-bottom: 1rem;
   background-color: #0a1626;
   border-radius: 1.6rem;
-
-  transition: all 1s;
 `;
 
 const BoardTitle = styled.h2`
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 8rem;
+  margin-bottom: 5rem;
   top: 2.4rem;
   left: 2.4rem;
 
@@ -83,13 +84,19 @@ const BoardTitle = styled.h2`
 `;
 
 const FormBox = styled.div`
+  display: block;
+  max-height: ${(props) => (props.more ? `28rem` : `49rem`)};
+  overflow-y: auto;
+`;
+
+const StyleForm = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const MoreViewsButton = styled.img`
-  position: absolute;
-  bottom: -2.5rem;
+  position: relative;
+  bottom: -3.7rem;
   left: 50%;
   transform: translate(-50%, -50%);
 
