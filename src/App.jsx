@@ -13,7 +13,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkMode === 'dark')
+    isDarkMode === 'dark' ? document.documentElement.classList.add('dark')  : document.documentElement.classList.remove('dark')
     localStorage.setItem('darkmode', isDarkMode)
   }, [isDarkMode])
 
@@ -39,12 +39,14 @@ function App() {
 
         'max-sm:flex-col',
         'max-sm:justify-center',
+
+        'dark:text-white',
       )}>
         <span>Roadmap</span>
 
         {/* 다크모드 <-> 라이트모드 */}
         <div onClick={handleDarkMode}>
-          <img src={isDarkMode === 'dark' ? "asset/icon/dark.png" : "asset/icon/light.png"} alt="darkmode" className={classNames(
+          <img src={isDarkMode !== 'dark' ? "asset/icon/dark.png" : "asset/icon/light.png"} alt="darkmode" className={classNames(
             'w-12',
             'h-12',
 

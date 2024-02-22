@@ -40,8 +40,6 @@ export const Container = (props) => {
                 'py-4',
 
                 'gap-y-4',
-
-
             )}>                    <div className={classNames(
                 'w-full',
                 'text-[2.3rem]',

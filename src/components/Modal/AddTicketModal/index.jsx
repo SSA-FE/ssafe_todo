@@ -58,6 +58,7 @@ export const AddTicketModal = ({ closeModal, status }) => {
             'rounded-md',
 
             'z-50',
+            'dark:text-black',
         )}>
             {/* header */}
             <div className={classNames(
