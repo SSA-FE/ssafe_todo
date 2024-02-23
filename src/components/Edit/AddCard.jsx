@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../../context/AppContext.jsx";
+import React, { useState } from "react";
+import { useTodoDispatch } from "../../context/TodoContext";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import CardEx from "../Card/Card.jsx";
 
 const Card = styled.div`
+  width: 90%;
   max-width: 320px;
   color: white;
   background-color: #b0bec5;
@@ -25,10 +25,11 @@ const SubmitButton = styled.button`
   text-align: center;
   border-color: transparent;
   background-color: #4db6ac;
+  cursor: pointer;
 `;
 
 const TextTitle = styled.input`
-  font-size: 19px;
+  font-size: 24px;
   font-weight: bold;
   width: 200px;
   max-height: 30px;
@@ -56,20 +57,25 @@ const TextContents = styled.input`
     sans-serif;
 `;
 
-function AddCard() {
+function AddCard({ setTodoAdd }) {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-
-  const useAppContext = useContext(AppContext);
-  // const { list, setList } = useAppContext;   // 같은 말
+  const dispatch = useTodoDispatch();
 
   const handleSubmit = () => {
-    useAppContext.setList([
-      ...useAppContext.list,
-      { id: uuidv4(), inputTitle: title, inputContents: contents },
-    ]);
+    const newTodo = {
+      id: uuidv4(),
+      inputTitle: title,
+      inputContents: contents,
+    };
+    dispatch({
+      type: "CREATE",
+      todo: newTodo,
+    });
+
     setTitle("");
     setContents("");
+    setTodoAdd(false);
   };
 
   const onChange = (event) => {
@@ -98,28 +104,8 @@ function AddCard() {
         value={contents}
       />
       <SubmitButton onClick={handleSubmit}>+</SubmitButton>
-      {useAppContext.list.map(({ id, inputTitle, inputContents }) => {
-        return (
-          <div key={id}>
-            <h1>{inputTitle}</h1>
-            <div>{inputContents}</div>
-          </div>
-        );
-      })}
     </Card>
   );
 }
-
-//   return (
-//
-//
-//       <CardEx />
-
-//       {/* <AddMenu /> */}
-//       {/* {isClicked ? <AddMenu /> : null} */}
-//       <AddButton onClick={() => setIsClicked(true)}>+</AddButton>
-//
-//   );
-// }
 
 export default AddCard;

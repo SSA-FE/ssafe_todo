@@ -1,15 +1,10 @@
-// import useStore from './store.js';
+import React, { useState } from "react";
 import styled from "styled-components";
-import { FaRegEdit } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
-
-import Card from "./components/Card/Card.jsx";
-import { useState } from "react";
-import { AppContextProvider } from "./context/AppContext.jsx";
-import AddCard from "./components/Edit/AddCard.jsx";
-
-// https://html-css-js.com/html/character-codes/
+import { TodoContextProvider } from "./context/TodoContext";
+import AddCard from "./components/Edit/AddCard";
+import CardList from "./components/Card/CardList";
+import plusIcon from "./assets/Icon/plus.png";
 
 const Full = styled.div`
   display: flex;
@@ -41,14 +36,16 @@ const Boards = styled.div`
 `;
 
 const Board = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   background-color: #242424;
   top: 146px;
   width: 368px;
   height: flexible;
   border-radius: 16px;
-  padding: 10px 24px 10px 24px;
+  padding: 10px 24px 24px 24px;
   margin: 10px 10px;
   gap: 16px;
 `;
@@ -60,28 +57,24 @@ const Title = styled.h1`
   text-align: left;
 `;
 
-// max-width로 가로 길이 고정
-const Menus = styled.div`
-  max-width: 320px;
-  color: white;
-  border-radius: 8px;
-  text-align: left;
-  padding: 2% 5% 7% 7%;
-  margin-bottom: 20px;
-  justify-content: space-between;
+const Button = styled.button`
+  width: 20px;
+  height: 20px;
+  background-color: none;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 `;
 
-///App.js에 useEffect 쓰기
-///받은 다음 Menu에다가 props 전달
-/// 전달한 걸 바탕으로 title, contents 라는 이름으로 받은 다음
-/// {title} {contents} 보여줌
-/// useEffect 쓸 때 localstorage.getItem을 쓸것
+const ButtonImg = styled.img`
+  width: 100%;
+`;
 
 function App() {
-  // const [byeCard, setByeCard] = useState();   // Card의 button onClick하면 여기서 Card가 없어지게?
-
+  const [todoAdd, setTodoAdd] = useState(false);
   return (
-    <AppContextProvider>
+    <TodoContextProvider>
       <Full>
         <Header>
           <IconMoon />
@@ -94,7 +87,11 @@ function App() {
                 🐥
               </span>
             </Title>
-            <AddCard />
+            <CardList />
+            {todoAdd && <AddCard setTodoAdd={setTodoAdd} />}
+            <Button onClick={() => setTodoAdd((prev) => !prev)}>
+              <ButtonImg src={plusIcon} alt="add" />
+            </Button>
           </Board>
 
           <Board>
@@ -104,7 +101,6 @@ function App() {
                 🐣
               </span>
             </Title>
-            <Card />
           </Board>
 
           <Board>
@@ -117,7 +113,7 @@ function App() {
           </Board>
         </Boards>
       </Full>
-    </AppContextProvider>
+    </TodoContextProvider>
   );
 }
 
