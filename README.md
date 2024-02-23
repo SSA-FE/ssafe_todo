@@ -1,5 +1,3 @@
-# 2차 - TODO
-
 # SSAFE 2차 MISSION
 
 2차 주니어 미션은 SPA(Single Page Application)로 **TODO LIST**만들기 입니다.
