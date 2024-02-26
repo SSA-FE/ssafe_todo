@@ -1,58 +1,105 @@
-# SSAFE 2차 MISSION
+# React To Do List
 
-2차 주니어 미션은 SPA(Single Page Application)로 **TODO LIST**만들기 입니다.
+<br>
 
-많은 부트캠프나, 프론트엔드 커리큘럼에서 처음으로 진행하는 TODO List만들기는
+**언어 및 라이브러리**
 
-컴포넌트 분리, 상태관리와 같은 기술적인 내용을 직관적으로 학습할 수 있고
+<div style="display:flex; margin-bottom:20px;">
 
-코드의 재사용성, 모듈화, 유지보수성 등을 고려하여 질 좋은 코드 작성을 연습할 수 있습니다.
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 
-이번 프로젝트부터는 **리액트(React)** 개발환경에서 개발을 진행해주시면 됩니다. 
+<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
 
-아래 **필수 요구 사항**은 모두 구현하여야 하고, **선택 요구 사항**은 적어도 3개 이상 구현하는 것을 목표로 해주세요.
+<img src="https://img.shields.io/badge/🐻 Zustand-3578E5?style=for-the-badge">
 
-아래 **피그마** 링크를 바탕으로 개발을 진행해주세요. 피그마에 구현된 디자인은 margin, padding과 같은 상세한 값을 확인할 수 있기 때문에 UI를 구성할 때 도움이 됩니다. 
+</div>
 
-### 기간
+**설계 및 환경**
 
-1차: 2월 8일(목) ~ 2월 14일(수) 오후 6시
-1차: 2월 15일(목) ~ 2월 21일(수) 오후 6시
+<div style="display:flex; margin-bottom:20px;">
 
-### 제출 방법
+<img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
 
-[https://github.com/SSA-FE/ssafe_todo](https://github.com/SSA-FE/ssafe_todo)
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
-1. 위 레포를 자신의 레포지토리로 fork해 갑니다.
-2. 이슈단위로 브랜치를 나누어 작업합니다.
-3. 기능내 세부 기능이 완료될 때마다 커밋을 진행합니다.
-4. 작업이 모두 완료된 후 메인 레포지토리에 pull request를 전송합니다.
+</div>
 
-### 필수 요구 사항
+<br><br>
 
-- TO DO / IN PROGRESS / DONE 3개의 보드가 존재 합니다.
-- 각각의 보드에는 새로운 일정을 추가(Create)할 수 있는 기능이 있습니다.
-- 모든 일정은 수정(Edit)하거나 삭제(Delete)할 수 있습니다.
-- 생성된 일정에 마우스를 올리면 다른 상태로 이동(Move)시킬 수 있는 버튼 2개가 생깁니다.
-- 이동 버튼을 누르면 페이지 새로고침 없이 현재 보드에서 다른 보드로 일정이 옮겨집니다.
+## ⚙ 기능
 
-### 선택 요구 사항
+**보드(Board)** : 일정을 올려둘 보드 (TO DO / IN PROGRESS / DONE)
 
-- 사이트를 껐다 켜도 일정이 유지됩니다.
-- 일정에 중요도를 부여할 수 있습니다.
-- 라이트 모드일 때 달 아이콘을 누르면 다크모드로 변하며 아이콘도 태양 아이콘으로 변합니다.
-- 일정을 추가할 때 색상을 정할 수 있습니다.
-    - 색상을 지정하지 않으면 기본 색상을 부여합니다.
-- 일정은 검색 기능을 통해 검색 가능합니다.
-    - 제목이나 상세내용 검색 시, 해당 컨텐츠만 필터링 됩니다.
-- 스켈레톤 UI를 부여할 수 있습니다.
-- 정렬 기능을 제공합니다.
-    - 시간순, 색상별 등등 기준은 자유롭게 정합니다.
-- 일정을 DRAG AND DROP(DnD)으로 다른 보드에 옮길 수 있습니다.
-- 일정이 옮겨 질 때 애니메이션으로 자연스럽게 이동합니다.
+- 일정 추가(Create) 기능 - 보드의 ⊕ 버튼을 누르면 Add Card 생성
+  <br><br>
 
-[https://meeting.ssafy.com/api/v4/users/wcskmbhjiigabcosmx8tecm7zc/image?_=1704359145448](https://meeting.ssafy.com/api/v4/users/wcskmbhjiigabcosmx8tecm7zc/image?_=1704359145448)
+**일정(Card)** : 일정을 입력하고 표시하는 카드 (Add Card / Card / Rewrite Card)
 
-### 참고용 피그마 링크
+- 생성(Add Card) 기능
 
-[https://www.figma.com/file/2muZAOAkErDyUA2Xad8x22/SSAFE_MISSION?type=design&node-id=156-796&mode=design](https://www.figma.com/file/2muZAOAkErDyUA2Xad8x22/SSAFE_MISSION?type=design&node-id=156-796&mode=design)
+  - Title, Text 입력창
+  - Card 색상 선택
+  - Create 버튼 클릭 시, Card 생성
+  - x 버튼 클릭 시, Add Card 종료
+
+- 일정(Card)
+
+  - Add Card에서 입력한 정보를 반영한 Card
+  - 새로고침 이후에도 데이터 유지
+  - 수정 버튼 클릭 시, Rewrite Card 생성
+  - x 버튼 클릭 시, Card 삭제 (스토리지에서도 삭제)
+
+- 수정(Rewrite Card) 기능
+  - Add Card와 같은 기능
+  - 수정 전 Title, Text가 미리 작성돼있음.
+  - Go 버튼 클릭 시, Card 수정
+  - x 버튼 클릭 시, Rewrite Card 종료
+
+<br><br>
+
+## 📍 추가 구현 계획
+
+**보드(Board)**
+
+- 기능
+
+  - [ ] id 순서로 정렬 → default
+  - [ ] DnD (Drag and Drop) → 정렬 무시
+  - [ ] 다크 / 라이트 모드
+
+- UI
+  - [x] Board 위치 상단 고정
+  - [x] Board 범위를 초과한 Card요소는 스크롤
+  - [ ] Add Card 실행 시, Add Card 앞에는 최대 4개의 Card만 최신순으로 표시
+
+<br><br>
+
+**일정(Card)** <br><br>
+- [ ] 다크 / 라이트 모드
+
+- 생성(Add Card)
+
+  - Card 색상 선택 : <br>
+
+    - [ ] 1. 아무 색도 선택돼있지 않으면 default 색상으로 표시 <br>
+    - [ ] 2. 색상을 선택한 채로 다른 곳 클릭해도 선택 CSS 효과 유지 <br>
+    - [ ] 3. 이미 선택된 색상 클릭 시, 선택 해제 <br>
+
+  - [ ] Text 입력 창 : <br>
+    입력창에서 적용한 줄바꿈 Card에도 똑같이 보이게 적용
+
+- 수정(Rewrite Card)
+  - [ ] 수정할 Card가 Rewrite Card로 변하는 방식으로 수정
+  - [ ] 수정 전 설정한 색상이 선택된 채로 Rewrite Card 실행
+
+<br><br>
+
+## 🛠 리팩토링 계획
+
+- [ ] 함수, 변수명 직관적으로 수정
+- [ ] 함수, 변수명 컨벤션에 맞게 수정
+- [ ] 중복된 CSS 코드 수정
+- [ ] 빈 태그 샐프 클로징 태그로 변경
+- [ ] svg 파일 컴포넌트로 사용
+- [ ] props 적용 가능한 CSS 요소에 props 적용
+- [ ] 컬러 팔레트 생성해서 사용
